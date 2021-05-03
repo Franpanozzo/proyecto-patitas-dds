@@ -5,7 +5,7 @@ public class DatoDeContacto {
     Integer telefono;
     String email;
 
-    DatoDeContacto(String nombreApellido, Integer telefono, String email){
+   public DatoDeContacto(String nombreApellido, Integer telefono, String email){
         this.nombreApellido = nombreApellido;
         //TODO validacion formato del telefono
         this.telefono = telefono;

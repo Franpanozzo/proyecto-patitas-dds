@@ -3,7 +3,7 @@ package Asociacion;
 import EntidadesExternas.Rescatista;
 import Mascota.MascotaPerdida;
 import Usuario.Usuario;
-import jdk.vm.ci.meta.Local;
+//import jdk.vm.ci.meta.Local;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ public class Asociacion {
     List<Usuario> usuariosRegistrados = new ArrayList<>();
     List<MascotaPerdida> mascotasEncontradasEnCalleList = new ArrayList<>();
     List<String> caracteristicasPosibles = new ArrayList<>();
+
 
     private static Asociacion instance = new Asociacion();
 
@@ -31,8 +32,16 @@ public class Asociacion {
         caracteristicasPosibles.add(caracteristica);
     }
 
-    public static void registrarUsuario(){
+    public static void registrarUsuario(Usuario usuarioNuevo){
 
+    }
+
+    public List<String> getCaracteristicasPosibles(){
+        return caracteristicasPosibles;
+    }
+
+    public List<MascotaPerdida> getMascotasEncontradasEnCalleList() {
+        return mascotasEncontradasEnCalleList;
     }
 
     public void quitarMascota(MascotaPerdida mascotaPerdida) {
@@ -45,6 +54,7 @@ public class Asociacion {
                 filter(mascota -> mascota.encontradaEnFecha(date)).
                 collect(Collectors.toList());
     }
+
 
     public boolean esCaractPosible(String caracteristica) {
     return caracteristicasPosibles.contains(caracteristica);

@@ -2,6 +2,7 @@ package Usuario;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public abstract class Usuario {
@@ -9,8 +10,8 @@ public abstract class Usuario {
     String contraseña;
     String nombreApellido;
     LocalDate fechaNacimiento;
-    String TipoDocumento;
-    Integer NumeroDocumento;
+    String tipoDocumento;
+    Integer numeroDocumento;
     List<DatoDeContacto> datoDeContactoList = new ArrayList<>();
 
     public Usuario(String nombreUsuario, String contraseña, String nombreApellido, LocalDate fechaNacimiento, String tipoDocumento, Integer numeroDocumento, List<DatoDeContacto> datoDeContactoList) {
@@ -18,10 +19,11 @@ public abstract class Usuario {
         this.contraseña = contraseña;
         this.nombreApellido = nombreApellido;
         this.fechaNacimiento = fechaNacimiento;
-        TipoDocumento = tipoDocumento;
-        NumeroDocumento = numeroDocumento;
+        this.tipoDocumento = tipoDocumento;
+        this.numeroDocumento = numeroDocumento;
         this.datoDeContactoList = datoDeContactoList;
     }
+
 }
 
 

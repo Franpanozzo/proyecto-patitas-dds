@@ -14,9 +14,13 @@ public class UsuarioDuenio extends Usuario {
         mascotasList.add(mascotaNueva);
     }
 
-    public UsuarioDuenio(String nombreUsuario, String contraseña, String nombreApellido, LocalDate fechaNacimiento, String tipoDocumento, Integer numeroDocumento, List<DatoDeContacto> datoDeContactoList, List<Mascota> mascotasList) {
+    public List<Mascota> getMascotasList(){
+        return mascotasList;
+    }
+
+    public UsuarioDuenio(String nombreUsuario, String contraseña, String nombreApellido, LocalDate fechaNacimiento, String tipoDocumento, Integer numeroDocumento, List<DatoDeContacto> datoDeContactoList) {
         super(nombreUsuario, contraseña, nombreApellido, fechaNacimiento, tipoDocumento, numeroDocumento, datoDeContactoList);
-        this.mascotasList = mascotasList;
+        //this.mascotasList = mascotasList;  // esta parte no la logro entender bien.
     }
 }
 
