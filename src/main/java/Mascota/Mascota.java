@@ -3,8 +3,8 @@ package Mascota;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mascota {
 
+public class Mascota {
     Animal tipo;
     String nombre;
     String apodo;
@@ -13,6 +13,7 @@ public class Mascota {
     String descripcion;
     String foto;
     List<String> caracteristicas = new ArrayList<String>();
+
 
     public Mascota(Animal tipo, String nombre, String apodo, Integer edadAprox, Sexo sexo, String descripcion, String foto, List<String> caracteristicas) {
         this.tipo = tipo;

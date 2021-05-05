@@ -5,8 +5,8 @@ import EntidadesExternas.Rescatista;
 
 import java.time.LocalDate;
 
-public class MascotaPerdida {
 
+public class MascotaPerdida {
     Rescatista rescatista;
     String foto;
     String descripcionEstado;

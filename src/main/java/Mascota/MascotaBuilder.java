@@ -1,4 +1,4 @@
-package Mascota;
+/**package Mascota;
 
 import Asociacion.Asociacion;
 
@@ -54,3 +54,4 @@ public class MascotaBuilder{
         return new Mascota(tipo, nombre, apodo, edadAprox, sexo, descripcion, foto, caracteristicas);
     }
 }
+*/
