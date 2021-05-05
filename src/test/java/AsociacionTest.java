@@ -11,8 +11,8 @@ import Mascota.Animal;
 import Mascota.Sexo;
 import EntidadesExternas.Rescatista;
 import Usuario.Usuario;
-
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.time.LocalDate;
 
@@ -52,8 +52,10 @@ public class AsociacionTest {
 
   @Test
   public void personaPuedeInformarUnPerroPerdido(){
-    franB().informarMascotaEncontrada(wendy());
-    assertTrue(Asociacion.getInstance().getMascotasEncontradasEnCalleList().contains(wendy()));
+    Rescatista franB = usuariosRescatista("franB");
+    MascotaPerdida wendy = mascotaPerdida("perra perdida", fechaActual,franB);
+    franB.informarMascotaEncontrada(wendy, patitas);
+    assertTrue(patitas.getMascotasEncontradasEnCalleList().contains(wendy));
   }
 
   @Test

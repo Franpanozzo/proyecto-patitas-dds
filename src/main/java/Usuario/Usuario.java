@@ -8,9 +8,9 @@ import Seguridad.ReglasNist;
 import java.time.LocalDate;
 import java.util.*;
 
-public abstract class Usuario {
+public abstract class Usuario{
     String nombreUsuario;
-    String contraseña;
+    String contrasenia;
     String nombreApellido;
     LocalDate fechaNacimiento;
     tipoDocumento tipoDocumento;
