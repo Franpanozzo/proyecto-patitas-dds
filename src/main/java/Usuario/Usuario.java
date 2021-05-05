@@ -16,6 +16,12 @@ public abstract class Usuario {
     Asociacion asociacion;
 
 
+    public Usuario(String nombreUsuario, String contrasenia, Asociacion asociacion) {
+        this.nombreUsuario = Objects.requireNonNull(nombreUsuario, "Nombre de usuario no tiene que ser null");
+        this.contrasenia = ValidacionesMain.validarContrasenia(nombreUsuario, contrasenia);
+        this.asociacion = Objects.requireNonNull(asociacion, "El usuario tiene que registrarse en una asociacion");
+        asociacion.registrarUsuario(this);
+    }
 
 
 
