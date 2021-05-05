@@ -55,9 +55,8 @@ public class Asociacion {
                 collect(Collectors.toList());
     }
 
-
     public boolean esCaractPosible(String caracteristica) {
-    return caracteristicasPosibles.contains(caracteristica);
+        return caracteristicasPosibles.contains(caracteristica);
     }
 
 

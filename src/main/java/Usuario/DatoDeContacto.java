@@ -9,7 +9,7 @@ public class DatoDeContacto {
         this.nombreApellido = nombreApellido;
         //TODO validacion formato del telefono
         this.telefono = telefono;
-        //TODO validacion formato del eamil
+        //TODO validacion formato del email
         this.email = email;
     }
 }

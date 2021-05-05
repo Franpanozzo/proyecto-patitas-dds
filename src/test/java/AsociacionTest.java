@@ -1,4 +1,5 @@
 import Asociacion.Asociacion;
+import Exceptions.ContraseniaDebilException;
 import Mascota.Mascota;
 import Usuario.UsuarioDuenio;
 import Usuario.DatoDeContacto;
@@ -23,13 +24,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AsociacionTest {
 
   List<String> caracteristicasBombon = Arrays.asList("marron","grande");
-  LocalDate fechita;
-  LocalDate fecha;
-  LocalDate fechaPerdida = LocalDate.now();
-  List<Usuario> usuariosRegistrados;
-  List<MascotaPerdida> mascotasEncontradasEnCalleList;
-  List<String> caracteristicasPosibles;
-
+  LocalDate fechaUnMesAtras = LocalDate.now().minusDays(29);
+  LocalDate fechaAntigua = LocalDate.of(1999,05,23);
+  LocalDate fechaActual = LocalDate.now();
+  Asociacion patitas = new Asociacion();
 
   @Test
   public void registrarDosMascotasAUnUsuario(){
@@ -39,13 +37,14 @@ public class AsociacionTest {
     assertTrue(pepe().getMascotasList().contains(oli()));
     assertTrue(pepe().getMascotasList().contains(bombon()));
   }
-  @Test
-  public void administradorPuedeAgregarFacilmenteCaracteristicas(){
-    fran().agregarCaracteristica("peludo");
-    fran().agregarCaracteristica("negro");
-    assertTrue(Asociacion.getInstance().getCaracteristicasPosibles().contains("peludo"));
-    assertTrue(Asociacion.getInstance().getCaracteristicasPosibles().contains("negro"));
 
+  @Test
+  public void administradorPuedeAgregarFacilmenteCaracteristica(){
+    UsuarioAdministrador fran = usuarioAdmin();
+    fran.agregarCaracteristica("peludo");
+    fran.agregarCaracteristica("negro");
+    assertTrue(patitas.getCaracteristicasPosibles().contains("PELUDO"));
+    assertTrue(patitas.getCaracteristicasPosibles().contains("NEGRO"));
   }
 
   @Test
@@ -56,14 +55,29 @@ public class AsociacionTest {
 
   @Test
   public void listarMascotasPerdidas10Dias(){
-    franB().informarMascotaEncontrada(wendy());
-    franB().informarMascotaEncontrada(murri());
-    facu().informarMascotaEncontrada(millo());
-    facu().informarMascotaEncontrada(milton());
-    assertEquals(Asociacion.getInstance().obtenerMascotasDeLosUltimosDias(), Arrays.asList(wendy(),murri(),milton()));
-    /**este test esta mal pq no sabemos usar ASSERTEQUALS y como
-     * usamos local date no sabemos la fecha de millo, suponemos que no lo devuelve por el now
-     * pero nos falta saber el intervalo de los 10 dias*/
+    Rescatista franB = usuariosRescatista("franB");
+    Rescatista facu = usuariosRescatista("facu");
+    MascotaPerdida wendy = mascotaPerdida("Sola, asustada", fechaActual, franB);
+    MascotaPerdida murri = mascotaPerdida("perra perdida", fechaActual, franB);
+    MascotaPerdida milton = mascotaPerdida("perra perdida", fechaActual, facu);
+    MascotaPerdida millo = mascotaPerdida("perra perdida", fechaUnMesAtras, facu);
+    franB.informarMascotaEncontrada(wendy, patitas);
+    franB.informarMascotaEncontrada(murri,patitas);
+    facu.informarMascotaEncontrada(millo, patitas);
+    facu.informarMascotaEncontrada(milton, patitas);
+    assertEquals(Arrays.asList(wendy,murri,milton), patitas.obtenerMascotasDeLosUltimosDias());
+  }
+
+  @Test
+  public void crearUsuarioContraseniasErroneas(){
+    assertThrows(ContraseniaDebilException.class, new UsuarioAdministrador().crearUsuario("usuarioDebil","12345678","Usuario Debil", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas));
+    /*UsuarioAdministrador usuarioNist1 = new UsuarioAdministrador().crearUsuario("usuarioNist1","as","Usuario Nist1", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);
+    UsuarioAdministrador usuarioNist2 = new UsuarioAdministrador().crearUsuario("usuarioNist2","usuarioNist2","Usuario Nist2", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);;
+    UsuarioAdministrador usuarioNist3 = new UsuarioAdministrador().crearUsuario("usuarioNist3","AAAAAAAAAA","Usuario Nist3", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);
+    UsuarioAdministrador usuarioNist4 = new UsuarioAdministrador().crearUsuario("usuarioNist4","123456789","Usuario Nist4", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);;
+    UsuarioAdministrador usuarioNist5 = new UsuarioAdministrador().crearUsuario("usuarioNist5","987654321","Usuario Nist5", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);;
+    UsuarioAdministrador usuarioNist6 = new UsuarioAdministrador().crearUsuario("usuarioNist6","aspoweqrrs","Usuario Nist6", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);;
+    */
   }
 
   private MascotaPerdida millo(){
@@ -82,15 +96,12 @@ public class AsociacionTest {
   return new MascotaPerdida(franB(),"foto","perdida",new Coordenadas("52° 31' 28'' N"," 13° 24' 38'' E"),fechaPerdida);
   }
 
-  private Rescatista facu(){
-    return new Rescatista("facuAlv",fecha,"dni",40122587,new Coordenadas("52° 31' 28'' N"," 13° 24' 38'' E"),Collections.singletonList(datoFacu("fede",1130450832,"fedecarp@gmail.com")));
+  private Rescatista usuariosRescatista(String nombre){
+    return new Rescatista(nombre, fechaAntigua,"dni",40122287,new Coordenadas("52° 31' 28'' N"," 13° 24' 38'' E"), Collections.singletonList(datoFran("facundofacu",1130550832,"facuelmejor@gmail.com")));
   }
 
-  private Rescatista franB(){
-    return new Rescatista("FranBlasco",fecha,"dni",40122287,new Coordenadas("52° 31' 28'' N"," 13° 24' 38'' E"),Collections.singletonList(datoFran("facundofacu",1130550832,"facuelmejor@gmail.com")));
-  }
-  private UsuarioAdministrador fran(){
-    return new UsuarioAdministrador("franpano","sofilamejor","franBautiPanozzo",fecha,"dni",42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")));
+  private UsuarioAdministrador usuarioAdmin(){
+    return new UsuarioAdministrador().crearUsuario("franpano","sofilamejor","franBautiPanozzo", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);
   }
 
   private Mascota oli() {

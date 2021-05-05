@@ -6,6 +6,8 @@ import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Rescatista {
     String nombreYApellido;
@@ -13,7 +15,7 @@ public class Rescatista {
     String tipoDocumento;
     Integer nroDocumento;
     Coordenadas direccion;
-    DatoDeContacto contacto;
+    List<DatoDeContacto> contacto = new ArrayList<DatoDeContacto>();
 
     public Rescatista(String nombreYApellido, LocalDate fechaNacimiento, String tipoDocumento, Integer nroDocumento, Coordenadas direccion, DatoDeContacto contacto) {
         this.nombreYApellido = nombreYApellido;
