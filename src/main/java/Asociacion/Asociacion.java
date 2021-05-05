@@ -15,15 +15,6 @@ public class Asociacion {
     List<MascotaPerdida> mascotasEncontradasEnCalleList = new ArrayList<>();
     List<String> caracteristicasPosibles = new ArrayList<>();
 
-
-    private static Asociacion instance = new Asociacion();
-
-    private Asociacion() {}
-
-    public static Asociacion getInstance() {
-        return instance;
-    }
-
     public void cargarMascota(MascotaPerdida mascota){
         mascotasEncontradasEnCalleList.add(mascota);
     }
@@ -32,9 +23,7 @@ public class Asociacion {
         caracteristicasPosibles.add(caracteristica);
     }
 
-    public static void registrarUsuario(Usuario usuarioNuevo){
-
-    }
+    /*public static void registrarUsuario(Usuario usuarioNuevo){}*/
 
     public List<String> getCaracteristicasPosibles(){
         return caracteristicasPosibles;
@@ -49,9 +38,9 @@ public class Asociacion {
     }
 
     public List<MascotaPerdida> obtenerMascotasDeLosUltimosDias(){
-        LocalDate date = LocalDate.now().minusDays(10);
+        LocalDate fechaMin = LocalDate.now().minusDays(10);
         return mascotasEncontradasEnCalleList.stream().
-                filter(mascota -> mascota.encontradaEnFecha(date)).
+                filter(mascota -> mascota.encontradaDespuesDe(fechaMin)).
                 collect(Collectors.toList());
     }
 

@@ -26,7 +26,7 @@ public class Rescatista {
         this.contacto = contacto;
     }
 
-    public void informarMascotaEncontrada(MascotaPerdida mascota) {
-        Asociacion.getInstance().cargarMascota(mascota);
+    public void informarMascotaEncontrada(MascotaPerdida mascota,Asociacion asociacion) {
+        asociacion.cargarMascota(mascota);
     }
 }

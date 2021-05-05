@@ -45,14 +45,9 @@ public class MascotaBuilder{
         this.foto = foto;
     }
 
-    void setCaracteristicas(List<String> caracteristicas){
-
-        caracteristicas.stream().filter(caracteristica -> this.caracteristicaEsValida(caracteristica)).collect(Collectors.toList());
+    void setCaracteristicas(List<String> caracteristicas,Asociacion asociacion){
+        caracteristicas.stream().filter(caracteristica -> asociacion.esCaractPosible(caracteristica)).collect(Collectors.toList());
         this.caracteristicas = caracteristicas;
-    }
-
-    public boolean caracteristicaEsValida(String caracteristica){
-        return Asociacion.getInstance().esCaractPosible(caracteristica);
     }
 
     public Mascota crearMascota(){

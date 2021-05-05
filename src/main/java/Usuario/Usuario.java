@@ -1,5 +1,10 @@
 package Usuario;
 
+import Asociacion.Asociacion;
+import Exceptions.ContraseniaDebilException;
+import Exceptions.ReglasNistException;
+import Seguridad.ReglasNist;
+
 import java.time.LocalDate;
 import java.util.*;
 

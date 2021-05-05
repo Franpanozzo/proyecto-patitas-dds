@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class MascotaPerdida {
 
     Rescatista rescatista;
-    //Foto foto;
+    String foto;
     String descripcionEstado;
     Coordenadas lugarDeEncuentro;
     LocalDate fechaEncuentro;

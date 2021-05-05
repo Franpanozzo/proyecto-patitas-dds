@@ -4,6 +4,7 @@ import Mascota.Mascota;
 import Usuario.UsuarioDuenio;
 import Usuario.DatoDeContacto;
 import Usuario.UsuarioAdministrador;
+import Usuario.tipoDocumento;
 import Mascota.MascotaPerdida;
 import Mascota.Coordenadas;
 import Mascota.Animal;
@@ -30,12 +31,14 @@ public class AsociacionTest {
   Asociacion patitas = new Asociacion();
 
   @Test
-  public void registrarDosMascotasAUnUsuario(){
-    pepe().registrarMascota(bombon());
-    pepe().registrarMascota(oli());
-   /** assertEquals(pepe().getMascotasList(),Arrays.asList(bombon(),oli()),0);*/
-    assertTrue(pepe().getMascotasList().contains(oli()));
-    assertTrue(pepe().getMascotasList().contains(bombon()));
+  public void crearUnUsuarioYRegistrarDosMascotas(){
+    UsuarioDuenio pepe = duenioConDosMascotas();
+    Mascota oli = oli();
+    Mascota bombon = bombon();
+    pepe.registrarMascota(oli);
+    pepe.registrarMascota(bombon);
+    assertTrue(pepe.getMascotasList().contains(oli));
+    assertTrue(pepe.getMascotasList().contains(bombon));
   }
 
   @Test
@@ -112,8 +115,8 @@ public class AsociacionTest {
     return new Mascota(Animal.PERRO,"bombon","bombi",15,Sexo.HEMBRA, "labrador","foto", caracteristicasBombon );
   }
 
-  private UsuarioDuenio pepe() {
-    return new UsuarioDuenio("pepe12", "pepito", "pepeGonzales",fecha,"dni",2022440, Collections.singletonList(datoPepe("juliaGonzales",1140520843, "jgonzales@gmail.com")));
+  private UsuarioDuenio duenioConDosMascotas() {
+   return new UsuarioDuenio().crearUsuario("pepe12", "pepito", "pepeGonzales", fechaAntigua, tipoDocumento.DNI,2022440, Collections.singletonList(datoPepe("juliaGonzales",1140520843, "jgonzales@gmail.com")), patitas);
   }
 
   private DatoDeContacto datoFacu(String nombreYApellido, Integer telefono, String email) {
@@ -127,8 +130,6 @@ public class AsociacionTest {
   private DatoDeContacto datoPepe(String nombreYApellido, Integer telefono, String email) {
     return new DatoDeContacto(nombreYApellido, telefono, email);
   }
-
-
 
 }
 
