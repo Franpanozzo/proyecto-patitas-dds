@@ -46,7 +46,7 @@ public class MascotaBuilder{
     }
 
     void setCaracteristicas(List<String> caracteristicas,Asociacion asociacion){
-        caracteristicas.stream().filter(caracteristica -> asociacion.esCaractPosible(caracteristica)).collect(Collectors.toList());
+        caracteristicas.stream().filter(asociacion::esCaractPosible).collect(Collectors.toList());
         this.caracteristicas = caracteristicas;
     }
 

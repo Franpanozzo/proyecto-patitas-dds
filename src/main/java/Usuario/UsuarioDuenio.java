@@ -10,7 +10,17 @@ import Mascota.Mascota;
 import Usuario.DatoDeContacto;
 
 public class UsuarioDuenio extends Usuario {
+    String nombreApellido;
+    LocalDate fechaNacimiento;
+    tipoDocumento tipoDocumento;
+    Integer numeroDocumento;
+    List<DatoDeContacto> datoDeContactoList = new ArrayList<>();
     List<Mascota> mascotasList = new ArrayList<>();
+
+    /*public UsuarioDuenio(String pepe12, String ahz1e38dJmnp, Asociacion.Asociacion patitas, LocalDate fechaAntigua, Usuario.tipoDocumento dni, int i, List<Usuario.DatoDeContacto> asList) {
+        super();
+    }*/
+
 
     public void registrarMascota(Mascota mascotaNueva) {
         mascotasList.add(mascotaNueva);
