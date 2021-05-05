@@ -4,11 +4,14 @@ import java.util.List;
 
 public class ReglasNist {
         public boolean cumpleLargo(String unaContrasenia) {
-            Integer largoMin = 8;
-            Integer largoMax = 64;
-            Integer longitud = unaContrasenia.length();
+          Integer largoMin = 8;
+          Integer largoMax = 64;
+          Integer longitud = unaContrasenia.length();
 
-            return(largoMin <= longitud && longitud <= largoMax);
+          if (largoMin <= longitud && longitud <= largoMax) {
+            return true;
+          }
+          return false;
         }
 
         public boolean usuarioYContraDistintos(String unaContrasenia, String nombreUsuario){
