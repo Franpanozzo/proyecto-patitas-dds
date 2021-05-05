@@ -25,7 +25,7 @@ public class MascotaPerdida {
         this.fechaEncuentro = fechaEncuentro;
     }
 
-    public boolean encontradaEnFecha(LocalDate fecha){
-        return fecha.isEqual(fechaEncuentro);
+    public boolean encontradaDespuesDe(LocalDate fechaLimite){
+        return fechaEncuentro.isAfter(fechaLimite);
     }
 }

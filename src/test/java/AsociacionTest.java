@@ -83,20 +83,8 @@ public class AsociacionTest {
     */
   }
 
-  private MascotaPerdida millo(){
-    return new MascotaPerdida(facu(),"foto","perdida",new Coordenadas("52° 31' 28'' N"," 13° 24' 38'' E"),fechita);
-  }
-
-  private MascotaPerdida milton(){
-    return new MascotaPerdida(facu(),"foto","perdida",new Coordenadas("52° 31' 28'' N"," 13° 24' 38'' E"),fecha);
-  }
-
-  private MascotaPerdida murri(){
-    return new MascotaPerdida(franB(),"foto","perdida",new Coordenadas("52° 31' 28'' N"," 13° 24' 38'' E"),fecha);
-  }
-
-  private MascotaPerdida wendy(){
-  return new MascotaPerdida(franB(),"foto","perdida",new Coordenadas("52° 31' 28'' N"," 13° 24' 38'' E"),fechaPerdida);
+  private MascotaPerdida mascotaPerdida(String descripcion, LocalDate fecha, Rescatista rescatista){
+    return new MascotaPerdida(rescatista,"foto",descripcion,new Coordenadas("52° 31' 28'' N"," 13° 24' 38'' E"),fecha);
   }
 
   private Rescatista usuariosRescatista(String nombre){
@@ -117,10 +105,6 @@ public class AsociacionTest {
 
   private UsuarioDuenio duenioConDosMascotas() {
    return new UsuarioDuenio().crearUsuario("pepe12", "pepito", "pepeGonzales", fechaAntigua, tipoDocumento.DNI,2022440, Collections.singletonList(datoPepe("juliaGonzales",1140520843, "jgonzales@gmail.com")), patitas);
-  }
-
-  private DatoDeContacto datoFacu(String nombreYApellido, Integer telefono, String email) {
-    return new DatoDeContacto(nombreYApellido, telefono, email);
   }
 
   private DatoDeContacto datoFran(String nombreYApellido, Integer telefono, String email) {

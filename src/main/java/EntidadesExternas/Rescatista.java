@@ -17,7 +17,7 @@ public class Rescatista {
     Coordenadas direccion;
     List<DatoDeContacto> contacto = new ArrayList<DatoDeContacto>();
 
-    public Rescatista(String nombreYApellido, LocalDate fechaNacimiento, String tipoDocumento, Integer nroDocumento, Coordenadas direccion, DatoDeContacto contacto) {
+    public Rescatista(String nombreYApellido, LocalDate fechaNacimiento, String tipoDocumento, Integer nroDocumento, Coordenadas direccion, List<DatoDeContacto> contacto) {
         this.nombreYApellido = nombreYApellido;
         this.fechaNacimiento = fechaNacimiento;
         this.tipoDocumento = tipoDocumento;
