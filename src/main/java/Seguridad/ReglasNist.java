@@ -27,7 +27,7 @@ public class ReglasNist {
             return largoContrasenia == i;
         }
 
-        public boolean esIncremental(String unaContrasenia) {
+       public boolean esIncremental(String unaContrasenia) {
             char[] ArrayContrasenia = unaContrasenia.toCharArray();
             char primerCaracter = ArrayContrasenia[0];
             int i = 0, largoContrasenia = unaContrasenia.length();

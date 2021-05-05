@@ -26,6 +26,7 @@ public class UsuarioAdministrador extends Usuario {
         this.numeroDocumento = Objects.requireNonNull(numeroDocumento, "El numero documento no tiene que ser null");
         this.datoDeContactoList = Objects.requireNonNull(datoDeContactoList, "El dato de contacto no tiene que ser null");
         this.asociacionDondeTrabaja = Objects.requireNonNull(asociacionDondeTrabaja, "La asociacion donde trabaja no tiene que ser null");
+        asociacionDondeTrabaja.registrarUsuario(this);
         return new UsuarioAdministrador();
     }
 

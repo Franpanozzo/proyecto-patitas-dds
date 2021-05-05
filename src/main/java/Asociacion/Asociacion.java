@@ -23,7 +23,13 @@ public class Asociacion {
         caracteristicasPosibles.add(caracteristica);
     }
 
-    /*public static void registrarUsuario(Usuario usuarioNuevo){}*/
+    public void registrarUsuario(Usuario usuarioNuevo){
+        usuariosRegistrados.add(usuarioNuevo);
+    }
+
+    public List<Usuario> getUsuariosRegistrados() {
+        return usuariosRegistrados;
+    }
 
     public List<String> getCaracteristicasPosibles(){
         return caracteristicasPosibles;

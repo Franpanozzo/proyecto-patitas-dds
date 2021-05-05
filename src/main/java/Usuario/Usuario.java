@@ -8,7 +8,7 @@ import Seguridad.ReglasNist;
 import java.time.LocalDate;
 import java.util.*;
 
-public abstract class Usuario{
+public abstract class Usuario {
     String nombreUsuario;
     String contrasenia;
     String nombreApellido;
@@ -26,6 +26,7 @@ public abstract class Usuario{
                                          Integer numeroDocumento,
                                          List<DatoDeContacto> datoDeContactoList,
                                          Asociacion asociacionDondeTrabaja);
+
 
     public String validarContrasenia(String nombreUsuario, String contrasenia) {
         Objects.requireNonNull(contrasenia, "La contrasenia no tiene que ser null");
@@ -46,6 +47,7 @@ public abstract class Usuario{
         if (!reglasNist.mismoCaracterRepetido(contrasenia)){
             throw new ReglasNistException("La contrasenia no debe tener caracteres repetitivos");
         }
+
         if (!reglasNist.esIncremental(contrasenia)){
             throw new ReglasNistException("La contrasenia no puede ser una secuencia de numeros");
         }
