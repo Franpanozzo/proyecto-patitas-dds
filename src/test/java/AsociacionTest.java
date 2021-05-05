@@ -96,7 +96,7 @@ public class AsociacionTest {
   }
 
   private UsuarioAdministrador usuarioAdmin(){
-    return new UsuarioAdministrador().crearUsuario("franpano","sofilamejoR24","franBautiPanozzo", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);
+    return new UsuarioAdministrador("franpano","sofilamejoR24",patitas);
   }
 
   private Mascota oli() {
@@ -108,7 +108,15 @@ public class AsociacionTest {
   }
 
   private UsuarioDuenio duenioConDosMascotas() {
-   return new UsuarioDuenio().crearUsuario("pepe12", "Peito28j3", "pepeGonzales", fechaAntigua, tipoDocumento.DNI,2022440, Collections.singletonList(datoPepe("juliaGonzales",1140520843, "jgonzales@gmail.com")), patitas);
+    DatoDeContacto datosPepe = datoPepe("juliaGonzales",1140520843, "jgonzales@gmail.com");
+    return new UsuarioDuenio("pepe12",
+            "ABC123DfD",
+            patitas,
+            "Pep",
+            fechaAntigua ,
+            tipoDocumento.DNI,
+            20149687,
+            Collections.singletonList(datosPepe));
   }
 
   private DatoDeContacto datoFran(String nombreYApellido, Integer telefono, String email) {
