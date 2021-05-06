@@ -96,7 +96,7 @@ public class AsociacionTest {
   }
 
   private UsuarioAdministrador usuarioAdmin(){
-    return new UsuarioAdministrador("franpano","sofilamejoR24",patitas);
+    return new UsuarioAdministrador("franpano","sofilamejR24",patitas);
   }
 
   private Mascota oli() {
@@ -110,7 +110,7 @@ public class AsociacionTest {
   private UsuarioDuenio duenioConDosMascotas() {
     DatoDeContacto datosPepe = datoPepe("juliaGonzales",1140520843, "jgonzales@gmail.com");
     return new UsuarioDuenio("pepe12",
-            "ABC123DfD",
+            "ADr731xsqz",
             patitas,
             "Pep",
             fechaAntigua ,

@@ -1,7 +1,7 @@
 package Asociacion;
 
-import EntidadesExternas.Rescatista;
 import Mascota.MascotaPerdida;
+import SeguridadAlternativa.Validaciones;
 import Usuario.Usuario;
 //import jdk.vm.ci.meta.Local;
 
@@ -14,8 +14,9 @@ public class Asociacion {
     List<Usuario> usuariosRegistrados = new ArrayList<>();
     List<MascotaPerdida> mascotasEncontradasEnCalleList = new ArrayList<>();
     List<String> caracteristicasPosibles = new ArrayList<>();
+    //Validaciones validacionesAsociacion;
 
-    public void cargarMascota(MascotaPerdida mascota){
+    public void cargarMascota(MascotaPerdida mascota) {
         mascotasEncontradasEnCalleList.add(mascota);
     }
 
@@ -23,7 +24,7 @@ public class Asociacion {
         caracteristicasPosibles.add(caracteristica);
     }
 
-    public void registrarUsuario(Usuario usuarioNuevo){
+    public void registrarUsuario(Usuario usuarioNuevo) {
         usuariosRegistrados.add(usuarioNuevo);
     }
 
@@ -31,7 +32,7 @@ public class Asociacion {
         return usuariosRegistrados;
     }
 
-    public List<String> getCaracteristicasPosibles(){
+    public List<String> getCaracteristicasPosibles() {
         return caracteristicasPosibles;
     }
 
@@ -43,7 +44,7 @@ public class Asociacion {
         mascotasEncontradasEnCalleList.remove(mascotaPerdida);
     }
 
-    public List<MascotaPerdida> obtenerMascotasDeLosUltimosDias(){
+    public List<MascotaPerdida> obtenerMascotasDeLosUltimosDias() {
         LocalDate fechaMin = LocalDate.now().minusDays(10);
         return mascotasEncontradasEnCalleList.stream().
                 filter(mascota -> mascota.encontradaDespuesDe(fechaMin)).
@@ -54,5 +55,12 @@ public class Asociacion {
         return caracteristicasPosibles.contains(caracteristica);
     }
 
+    /*public Asociacion() {
+        this.validacionesAsociacion = new Validaciones();
+    }
+
+    public String validarContrasenia(String contrasenia, String usuario) {
+        return validacionesAsociacion.validarContrasenia(contrasenia, usuario);
+    }*/
 
 }

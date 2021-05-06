@@ -8,6 +8,7 @@ public class OWASP {
     static List<String> TOPcontraseniasInvalidas = new ArrayList<>(Arrays.asList("12345678", "QWERTY", "ABCDEFG"));
 
     public static boolean contraseniaDebil(String unaContrasenia) {
-           return TOPcontraseniasInvalidas.contains(unaContrasenia);
+        return TOPcontraseniasInvalidas.contains(unaContrasenia);
     }
 }
+

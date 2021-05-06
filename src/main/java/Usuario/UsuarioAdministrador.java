@@ -9,7 +9,7 @@ public class UsuarioAdministrador extends Usuario {
 
     public UsuarioAdministrador(String nombreUsuario, String contrasenia, Asociacion asociacionDondeTrabaja) {
         super(nombreUsuario, contrasenia, asociacionDondeTrabaja);
-        this.asociacionDondeTrabaja = Objects.requireNonNull(asociacionDondeTrabaja,"La asociacion donde trabaja no tiene que ser null");
+        this.asociacionDondeTrabaja = Objects.requireNonNull(asociacionDondeTrabaja,"La asociacion donde trabaja no tiene que ser nula");
     }
 
     public void agregarCaracteristica(String nuevaCaract) {
