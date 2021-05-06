@@ -1,5 +1,6 @@
 import Asociacion.Asociacion;
 import Exceptions.ContraseniaDebilException;
+
 import Mascota.Mascota;
 import Usuario.UsuarioDuenio;
 import Usuario.DatoDeContacto;
@@ -10,15 +11,14 @@ import Mascota.Coordenadas;
 import Mascota.Animal;
 import Mascota.Sexo;
 import EntidadesExternas.Rescatista;
+import Asociacion.RepositorioUsuarios;
 import Usuario.Usuario;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import java.time.LocalDate;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,27 +29,39 @@ public class AsociacionTest {
   LocalDate fechaAntigua = LocalDate.of(1999,05,23);
   LocalDate fechaActual = LocalDate.now();
   Asociacion patitas = new Asociacion();
+  RepositorioUsuarios repoUsuarios = patitas.getUsuariosRegistrados();
 
   @Test
   public void crearUnUsuarioYRegistrarDosMascotas(){
     UsuarioDuenio pepe = duenioConDosMascotas();
+    UsuarioAdministrador fran = usuarioAdmin();
+    fran.agregarCaracteristica("RAZA");
+    fran.agregarCaracteristica("COLOR");
     Mascota oli = oli();
     Mascota bombon = bombon();
-    pepe.registrarMascota(oli);
-    pepe.registrarMascota(bombon);
+    Map<String, String> caracOli = new HashMap<>();
+    caracOli.put("RAZA","Caniche");
+    caracOli.put("COLOR","Gris");
+    Map<String, String> carcBombon = new HashMap<>();
+    carcBombon.put("RAZA","Labrador");
+    carcBombon.put("TIPODEPELO","Rulos");
+    pepe.registrarMascota(oli, caracOli);
+    pepe.registrarMascota(bombon, carcBombon);
     assertTrue(pepe.getMascotasList().contains(oli));
     assertTrue(pepe.getMascotasList().contains(bombon));
-    assertTrue(patitas.getUsuariosRegistrados().getlistaDeUsuarios().contains(pepe));
+    assertTrue(repoUsuarios.getlistaDeUsuarios().contains(pepe));
   }
 
   @Test
   public void administradorPuedeAgregarFacilmenteCaracteristicaYEstaRegistradoEnElSistema(){
     UsuarioAdministrador fran = usuarioAdmin();
-    fran.agregarCaracteristica("peludo");
-    fran.agregarCaracteristica("negro");
-    assertTrue(patitas.getCaracteristicasPosibles().contains("PELUDO"));
-    assertTrue(patitas.getCaracteristicasPosibles().contains("NEGRO"));
-    assertTrue(patitas.getUsuariosRegistrados().getlistaDeUsuarios().contains(fran));
+    fran.agregarCaracteristica("RAZA");
+    fran.agregarCaracteristica("COLOR");
+    fran.agregarCaracteristica("TIPO DE PELO");
+    assertTrue(patitas.getCaracteristicasPosibles().contains("RAZA"));
+    assertTrue(patitas.getCaracteristicasPosibles().contains("COLOR"));
+    assertTrue(patitas.getCaracteristicasPosibles().contains("TIPO DE PELO"));
+    assertTrue(repoUsuarios.getlistaDeUsuarios().contains(fran));
   }
 
   @Test
@@ -100,11 +112,11 @@ public class AsociacionTest {
   }
 
   private Mascota oli() {
-    return new Mascota(Animal.PERRO,"olivia","oli",12,Sexo.HEMBRA, "educada","foto", Collections.singletonList("gris"));
+    return new Mascota(Animal.PERRO,"olivia","oli",12,Sexo.HEMBRA, "educada","foto" /*Collections.singletonList("gris")*/ );
   }
 
   private Mascota bombon() {
-    return new Mascota(Animal.PERRO,"bombon","bombi",15,Sexo.HEMBRA, "labrador","foto", caracteristicasBombon );
+    return new Mascota(Animal.PERRO,"bombon","bombi",15,Sexo.HEMBRA, "labrador","foto" /*caracteristicasBombon*/ );
   }
 
   private UsuarioDuenio duenioConDosMascotas() {

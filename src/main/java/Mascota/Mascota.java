@@ -2,10 +2,7 @@ package Mascota;
 
 import Asociacion.Asociacion;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import java.util.*;
 
 public class Mascota {
     Animal tipo;
@@ -15,10 +12,9 @@ public class Mascota {
     Sexo sexo;
     String descripcion;
     String foto;
-    List<String> caracteristicas = new ArrayList<String>();
+    Map<String, String> caracteristicas = new HashMap<String, String>();
 
-
-    public Mascota(Animal tipo, String nombre, String apodo, Integer edadAprox, Sexo sexo, String descripcion, String foto, List<String> caracteristicas) {
+    public Mascota(Animal tipo, String nombre, String apodo, Integer edadAprox, Sexo sexo, String descripcion, String foto) {
         this.tipo = tipo;
         this.nombre = nombre;
         this.apodo = apodo;
@@ -26,13 +22,26 @@ public class Mascota {
         this.sexo = sexo;
         this.descripcion = descripcion;
         this.foto = foto;
-        this.caracteristicas = caracteristicas;
     }
 
+    public Map<String, String> getCaracteristicas() {
+        return caracteristicas;
+    }
 
-    public void chequearCaracteristicasSegun(Asociacion asociacion) {
-        this.caracteristicas = caracteristicas.stream().filter(asociacion::esCaractPosible).collect(Collectors.toList());
-        ;
+    public void inicializarCarcteristicas(Asociacion asociacion, Map<String, String> caracteristicasNuevas) {
+        List<String> listaCaracteristicas = asociacion.getCaracteristicasPosibles();
+        for (Integer i = 0; listaCaracteristicas.size() > i; i++) {
+            caracteristicas.put(listaCaracteristicas.get(i), null);
+        }
+        Set<String> keyscaracteristicasUsuario = caracteristicasNuevas.keySet();
+        for ( String key : keyscaracteristicasUsuario) {
+            if (caracteristicas.containsKey(key)){
+                caracteristicas.put(key, caracteristicasNuevas.get(key));
+            }
+        };
+
+
+
     }
 }
 

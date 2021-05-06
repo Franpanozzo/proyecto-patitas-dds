@@ -3,6 +3,7 @@ package Usuario;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import Asociacion.Asociacion;
@@ -21,9 +22,8 @@ public class UsuarioDuenio extends Usuario {
         super();
     }*/
 
-
-    public void registrarMascota(Mascota mascotaNueva) {
-        mascotaNueva.chequearCaracteristicasSegun(asociacion);
+    public void registrarMascota(Mascota mascotaNueva, Map<String, String> caracteristicas) {
+        mascotaNueva.inicializarCarcteristicas(asociacion, caracteristicas);
         mascotasList.add(mascotaNueva);
     }
 

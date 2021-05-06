@@ -14,15 +14,13 @@ public class Asociacion {
     List<MascotaPerdida> mascotasEncontradasEnCalleList = new ArrayList<>();
     List<String> caracteristicasPosibles = new ArrayList<>();
     RepositorioUsuarios usuariosRegistrados;
-    //Validaciones validacionesAsociacion;
+    //Validaciones validacionesAsociacion; {Marca: 'Samsung', Tipo: ''}
 
     public void cargarMascota(MascotaPerdida mascota) {
         mascotasEncontradasEnCalleList.add(mascota);
     }
 
-    public void agregarCarateristica(String caracteristica) {
-        caracteristicasPosibles.add(caracteristica);
-    }
+    public void agregarCarateristica(String caracteristica) {caracteristicasPosibles.add(caracteristica); }
 
     public RepositorioUsuarios getUsuariosRegistrados() {
         return usuariosRegistrados;
