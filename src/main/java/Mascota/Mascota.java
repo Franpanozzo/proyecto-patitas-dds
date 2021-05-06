@@ -1,7 +1,10 @@
 package Mascota;
 
+import Asociacion.Asociacion;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class Mascota {
@@ -24,6 +27,12 @@ public class Mascota {
         this.descripcion = descripcion;
         this.foto = foto;
         this.caracteristicas = caracteristicas;
+    }
+
+
+    public void chequearCaracteristicasSegun(Asociacion asociacion) {
+        this.caracteristicas = caracteristicas.stream().filter(asociacion::esCaractPosible).collect(Collectors.toList());
+        ;
     }
 }
 

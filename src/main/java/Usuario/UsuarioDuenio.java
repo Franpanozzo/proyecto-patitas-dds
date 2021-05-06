@@ -23,6 +23,7 @@ public class UsuarioDuenio extends Usuario {
 
 
     public void registrarMascota(Mascota mascotaNueva) {
+        mascotaNueva.chequearCaracteristicasSegun(asociacion);
         mascotasList.add(mascotaNueva);
     }
 

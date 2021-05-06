@@ -26,6 +26,8 @@ public class Validaciones {
         return contrasenia;
     }
 
+    //concatenar mensaje de error
+
     public boolean cumpleValidaciones(String contrasenia, String nombreUsuario) {
         return validacionesRecomendadas.stream().allMatch(validacion -> validacion.validar(contrasenia, nombreUsuario));
     }
