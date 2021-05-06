@@ -39,7 +39,7 @@ public class AsociacionTest {
     pepe.registrarMascota(bombon);
     assertTrue(pepe.getMascotasList().contains(oli));
     assertTrue(pepe.getMascotasList().contains(bombon));
-    assertTrue(patitas.getUsuariosRegistrados().contains(pepe));
+    assertTrue(patitas.getUsuariosRegistrados().getlistaDeUsuarios().contains(pepe));
   }
 
   @Test
@@ -49,7 +49,7 @@ public class AsociacionTest {
     fran.agregarCaracteristica("negro");
     assertTrue(patitas.getCaracteristicasPosibles().contains("PELUDO"));
     assertTrue(patitas.getCaracteristicasPosibles().contains("NEGRO"));
-    assertTrue(patitas.getUsuariosRegistrados().contains(fran));
+    assertTrue(patitas.getUsuariosRegistrados().getlistaDeUsuarios().contains(fran));
   }
 
   @Test

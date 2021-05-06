@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Asociacion {
-    List<Usuario> usuariosRegistrados = new ArrayList<>();
     List<MascotaPerdida> mascotasEncontradasEnCalleList = new ArrayList<>();
     List<String> caracteristicasPosibles = new ArrayList<>();
+    RepositorioUsuarios usuariosRegistrados;
     //Validaciones validacionesAsociacion;
 
     public void cargarMascota(MascotaPerdida mascota) {
@@ -24,12 +24,12 @@ public class Asociacion {
         caracteristicasPosibles.add(caracteristica);
     }
 
-    public void registrarUsuario(Usuario usuarioNuevo) {
-        usuariosRegistrados.add(usuarioNuevo);
+    public RepositorioUsuarios getUsuariosRegistrados() {
+        return usuariosRegistrados;
     }
 
-    public List<Usuario> getUsuariosRegistrados() {
-        return usuariosRegistrados;
+    public void registrarUsuario(Usuario usuarioNuevo){
+        usuariosRegistrados.cargarNuevoUsuario(usuarioNuevo);
     }
 
     public List<String> getCaracteristicasPosibles() {
@@ -55,10 +55,11 @@ public class Asociacion {
         return caracteristicasPosibles.contains(caracteristica);
     }
 
-    /*public Asociacion() {
-        this.validacionesAsociacion = new Validaciones();
+    public Asociacion() {
+        //this.validacionesAsociacion = new Validaciones();
+        this.usuariosRegistrados = new RepositorioUsuarios();
     }
-
+    /*
     public String validarContrasenia(String contrasenia, String usuario) {
         return validacionesAsociacion.validarContrasenia(contrasenia, usuario);
     }*/
