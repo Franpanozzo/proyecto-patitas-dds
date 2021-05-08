@@ -14,19 +14,21 @@ public class Asociacion {
     List<MascotaPerdida> mascotasEncontradasEnCalleList = new ArrayList<>();
     List<String> caracteristicasPosibles = new ArrayList<>();
     RepositorioUsuarios usuariosRegistrados;
-    //Validaciones validacionesAsociacion; {Marca: 'Samsung', Tipo: ''}
+    Validaciones validacionesAsociacion;
 
     public void cargarMascota(MascotaPerdida mascota) {
         mascotasEncontradasEnCalleList.add(mascota);
     }
 
-    public void agregarCarateristica(String caracteristica) {caracteristicasPosibles.add(caracteristica); }
+    public void agregarCarateristica(String caracteristica) {
+        caracteristicasPosibles.add(caracteristica);
+    }
 
     public RepositorioUsuarios getUsuariosRegistrados() {
         return usuariosRegistrados;
     }
 
-    public void registrarUsuario(Usuario usuarioNuevo){
+    public void registrarUsuario(Usuario usuarioNuevo) {
         usuariosRegistrados.cargarNuevoUsuario(usuarioNuevo);
     }
 
@@ -54,12 +56,12 @@ public class Asociacion {
     }
 
     public Asociacion() {
-        //this.validacionesAsociacion = new Validaciones();
+        this.validacionesAsociacion = new Validaciones();
         this.usuariosRegistrados = new RepositorioUsuarios();
     }
-    /*
+
     public String validarContrasenia(String contrasenia, String usuario) {
         return validacionesAsociacion.validarContrasenia(contrasenia, usuario);
-    }*/
+    }
 
 }

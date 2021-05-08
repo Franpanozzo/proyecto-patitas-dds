@@ -8,12 +8,11 @@ import java.util.Objects;
 
 import Asociacion.Asociacion;
 import Mascota.Mascota;
-import Usuario.DatoDeContacto;
 
 public class UsuarioDuenio extends Usuario {
     String nombreApellido;
     LocalDate fechaNacimiento;
-    tipoDocumento tipoDocumento;
+    TipoDocumento tipoDocumento;
     Integer numeroDocumento;
     List<DatoDeContacto> datoDeContactoList = new ArrayList<>();
     List<Mascota> mascotasList = new ArrayList<>();
@@ -31,7 +30,7 @@ public class UsuarioDuenio extends Usuario {
         return mascotasList;
     }
 
-    public UsuarioDuenio(String nombreUsuario, String contrasenia, Asociacion asociacion, String nombreApellido, LocalDate fechaNacimiento, tipoDocumento tipoDocumento, Integer numeroDocumento, List<DatoDeContacto> datoDeContactoList) {
+    public UsuarioDuenio(String nombreUsuario, String contrasenia, Asociacion asociacion, String nombreApellido, LocalDate fechaNacimiento, TipoDocumento tipoDocumento, Integer numeroDocumento, List<DatoDeContacto> datoDeContactoList) {
         super(nombreUsuario, contrasenia, asociacion);
         this.nombreApellido = Objects.requireNonNull(nombreApellido, "El nombre apellido no tiene que ser null");
         this.fechaNacimiento =Objects.requireNonNull(fechaNacimiento, "La fecha nacimiento no tiene que ser null");

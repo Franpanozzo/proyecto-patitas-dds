@@ -1,5 +1,5 @@
 package Usuario;
 
-public enum tipoDocumento{
+public enum TipoDocumento {
     DNI, PASAPORTE, CUIT;
 }

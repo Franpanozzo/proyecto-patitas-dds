@@ -7,7 +7,7 @@ public class cumpleLargoNist implements ValidacionContra {
         Integer largoMax = 64;
         Integer longitud = unaContrasenia.length();
 
-        return largoMin <= longitud && longitud <= largoMax;
+        return (largoMin <= longitud && longitud <= largoMax);
     }
 
 }
