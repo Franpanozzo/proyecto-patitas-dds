@@ -22,4 +22,7 @@ public class esIncremental implements ValidacionContra {
         return false;
     }
 
+    public String mensajeError(){
+        return "La contrasenia no puede ser una secuencia de numeros. ";
+    }
 }

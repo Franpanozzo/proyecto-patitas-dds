@@ -10,4 +10,8 @@ public class oswap implements ValidacionContra {
     public boolean validar(String unaContrasenia, String nombreUsuario) {
         return TOPcontraseniasInvalidas.contains(unaContrasenia);
     }
+
+    public String mensajeError(){
+        return  "La contrasenia es muy debil. ";
+    }
 }

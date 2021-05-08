@@ -23,5 +23,9 @@ public class cumpleReglasSint implements ValidacionContra {
 
         return ((contN > 0) && (contLMay > 0) && (contLMin > 0));
     }
+
+    public String mensajeError(){
+        return "La contrasenia debe contar al menos con una letra mayuscula, minuscula y un numero. ";
+    }
 }
 

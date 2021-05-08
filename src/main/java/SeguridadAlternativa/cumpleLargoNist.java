@@ -10,4 +10,9 @@ public class cumpleLargoNist implements ValidacionContra {
         return (largoMin <= longitud && longitud <= largoMax);
     }
 
+    public String mensajeError() {
+        return "La contrasenia debe tener entre 8 y 64 caracteres. ";
+    }
+
 }
+

@@ -18,4 +18,7 @@ public class mismoCaracterRepetido implements ValidacionContra {
         return false;
     }
 
+    public String mensajeError(){
+        return "La contrasenia no debe tener caracteres repetitivos. ";
+    }
 }
