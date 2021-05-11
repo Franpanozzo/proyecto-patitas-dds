@@ -14,7 +14,6 @@ public class Asociacion {
     List<MascotaPerdida> mascotasEncontradasEnCalleList = new ArrayList<>();
     List<String> caracteristicasPosibles = new ArrayList<>();
     RepositorioUsuarios usuariosRegistrados;
-    Validaciones validacionesAsociacion;
 
     public void cargarMascota(MascotaPerdida mascota) {
         mascotasEncontradasEnCalleList.add(mascota);
@@ -56,12 +55,8 @@ public class Asociacion {
     }
 
     public Asociacion() {
-        this.validacionesAsociacion = new Validaciones();
         this.usuariosRegistrados = new RepositorioUsuarios();
     }
 
-    public String validarContrasenia(String contrasenia, String usuario) {
-        return validacionesAsociacion.validarContrasenia(contrasenia, usuario);
-    }
 
 }
