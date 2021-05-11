@@ -19,9 +19,9 @@ public class esDecremental implements ValidacionContra {
                 contador = 0;
             }
 
-            if (contador == 4) return true;
+            if (contador == 4) return false;
         }
-        return false;
+        return true;
     }
 
     public String mensajeError(){
