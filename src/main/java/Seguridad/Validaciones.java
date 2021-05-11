@@ -1,6 +1,6 @@
-package SeguridadAlternativa;
+package Seguridad;
 
-import Exceptions.ContraseniaDebilException;
+import Exceptions.ContraseniaInvalidaException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +20,7 @@ public class Validaciones {
         List<ValidacionContra> validacionIncumplidas = noCumpleValidaciones(contrasenia, nombreUsuario);
 
         if (!validacionIncumplidas.isEmpty()) {
-            throw new ContraseniaDebilException(mensajeError(validacionIncumplidas));
+            throw new ContraseniaInvalidaException(mensajeError(validacionIncumplidas));
         }
         return contrasenia;
     }

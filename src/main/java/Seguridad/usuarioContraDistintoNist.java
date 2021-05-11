@@ -1,4 +1,4 @@
-package SeguridadAlternativa;
+package Seguridad;
 
 public class usuarioContraDistintoNist implements ValidacionContra {
 

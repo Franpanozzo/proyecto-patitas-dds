@@ -1,7 +1,6 @@
 package Asociacion;
 
 import Mascota.MascotaPerdida;
-import SeguridadAlternativa.Validaciones;
 import Usuario.Usuario;
 //import jdk.vm.ci.meta.Local;
 

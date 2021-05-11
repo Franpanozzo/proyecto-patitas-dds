@@ -1,4 +1,4 @@
-package SeguridadAlternativa;
+package Seguridad;
 
 
 //Se podria buscar combinar con la de incremental
