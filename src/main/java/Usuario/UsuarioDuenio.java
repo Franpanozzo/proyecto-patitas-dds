@@ -10,10 +10,7 @@ import Asociacion.Asociacion;
 import Mascota.Mascota;
 
 public class UsuarioDuenio extends Usuario {
-    String nombreApellido;
-    LocalDate fechaNacimiento;
-    TipoDocumento tipoDocumento;
-    Integer numeroDocumento;
+    DatosPersonales datosPersonales;
     List<DatoDeContacto> datoDeContactoList = new ArrayList<>();
     List<Mascota> mascotasList = new ArrayList<>();
 
@@ -30,12 +27,9 @@ public class UsuarioDuenio extends Usuario {
         return mascotasList;
     }
 
-    public UsuarioDuenio(String nombreUsuario, String contrasenia, Asociacion asociacion, String nombreApellido, LocalDate fechaNacimiento, TipoDocumento tipoDocumento, Integer numeroDocumento, List<DatoDeContacto> datoDeContactoList) {
+    public UsuarioDuenio(String nombreUsuario, String contrasenia, Asociacion asociacion,DatosPersonales datosPersonales, List<DatoDeContacto> datoDeContactoList) {
         super(nombreUsuario, contrasenia, asociacion);
-        this.nombreApellido = Objects.requireNonNull(nombreApellido, "El nombre apellido no tiene que ser null");
-        this.fechaNacimiento =Objects.requireNonNull(fechaNacimiento, "La fecha nacimiento no tiene que ser null");
-        this.tipoDocumento = Objects.requireNonNull(tipoDocumento, "El tipo documento, no tiene que ser null");
-        this.numeroDocumento = Objects.requireNonNull(numeroDocumento, "El numero documento no tiene que ser null");
+        this.datosPersonales = Objects.requireNonNull(datosPersonales, "Los datos personales no tienen que ser null");
         this.datoDeContactoList = Objects.requireNonNull(datoDeContactoList, "El dato de contacto no tiene que ser null");
     }
 

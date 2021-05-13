@@ -2,10 +2,7 @@ import Asociacion.Asociacion;
 
 import Exceptions.ContraseniaInvalidaException;
 import Mascota.Mascota;
-import Usuario.UsuarioDuenio;
-import Usuario.DatoDeContacto;
-import Usuario.UsuarioAdministrador;
-import Usuario.TipoDocumento;
+import Usuario.*;
 import Mascota.MascotaPerdida;
 import Mascota.Coordenadas;
 import Mascota.Animal;
@@ -102,7 +99,8 @@ public class AsociacionTest {
     }
 
     private Rescatista usuariosRescatista(String nombre) {
-        return new Rescatista(nombre, fechaAntigua, "dni", 40122287, new Coordenadas("52° 31' 28'' N", " 13° 24' 38'' E"), Collections.singletonList(datoFran("facundofacu", 1130550832, "facuelmejor@gmail.com")));
+        DatosPersonales datosPersonales = new DatosPersonales(nombre, fechaAntigua, TipoDocumento.DNI, 40122287);
+        return new Rescatista(datosPersonales, new Coordenadas("52° 31' 28'' N", " 13° 24' 38'' E"), Collections.singletonList(crearDatoDeContacto("facundofacu", 1130550832, "facuelmejor@gmail.com")));
     }
 
     private UsuarioAdministrador usuarioAdmin() {
@@ -118,23 +116,25 @@ public class AsociacionTest {
     }
 
     private UsuarioDuenio duenioConDosMascotas() {
-        DatoDeContacto datosPepe = datoPepe("juliaGonzales", 1140520843, "jgonzales@gmail.com");
+        DatoDeContacto datosDeContactoPepe = crearDatoDeContacto("juliaGonzales", 1140520843, "jgonzales@gmail.com");
+        DatosPersonales datosPersonalesPepe = crearDatosPersonales("Pep", fechaAntigua, TipoDocumento.DNI, 20149687);
         return new UsuarioDuenio("pepe12",
                 "ADr731xsqz",
                 patitas,
-                "Pep",
-                fechaAntigua,
-                TipoDocumento.DNI,
-                20149687,
-                Collections.singletonList(datosPepe));
+                datosPersonalesPepe,
+                Collections.singletonList(datosDeContactoPepe));
     }
 
-    private DatoDeContacto datoFran(String nombreYApellido, Integer telefono, String email) {
+
+    private DatoDeContacto crearDatoDeContacto(String nombreYApellido, Integer telefono, String email) {
         return new DatoDeContacto(nombreYApellido, telefono, email);
     }
 
-    private DatoDeContacto datoPepe(String nombreYApellido, Integer telefono, String email) {
-        return new DatoDeContacto(nombreYApellido, telefono, email);
+    private DatosPersonales crearDatosPersonales(String nombreApellido,
+                                                 LocalDate fechaNacimiento,
+                                                 TipoDocumento tipoDocumento,
+                                                 Integer numeroDocumento){
+        return new DatosPersonales(nombreApellido,fechaNacimiento,tipoDocumento,numeroDocumento);
     }
 
 }

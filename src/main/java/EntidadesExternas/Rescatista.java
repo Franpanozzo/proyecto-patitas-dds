@@ -4,24 +4,19 @@ import Asociacion.Asociacion;
 import Usuario.DatoDeContacto;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
+import Usuario.DatosPersonales;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Rescatista {
-    String nombreYApellido;
-    LocalDate fechaNacimiento;
-    String tipoDocumento;
-    Integer nroDocumento;
+    DatosPersonales datosPersonales;
     Coordenadas direccion;
     List<DatoDeContacto> contacto = new ArrayList<DatoDeContacto>();
 
-    public Rescatista(String nombreYApellido, LocalDate fechaNacimiento, String tipoDocumento, Integer nroDocumento, Coordenadas direccion, List<DatoDeContacto> contacto) {
-        this.nombreYApellido = nombreYApellido;
-        this.fechaNacimiento = fechaNacimiento;
-        this.tipoDocumento = tipoDocumento;
-        this.nroDocumento = nroDocumento;
+    public Rescatista(DatosPersonales datosPersonales, Coordenadas direccion, List<DatoDeContacto> contacto) {
+        this.datosPersonales = datosPersonales;
         this.direccion = direccion;
         this.contacto = contacto;
     }
