@@ -12,7 +12,13 @@ public class UsuarioAdministrador extends Usuario {
         this.asociacionDondeTrabaja = Objects.requireNonNull(asociacionDondeTrabaja,"La asociacion donde trabaja no tiene que ser nula");
     }
 
+    @Override
+    public boolean mismoCodigoQR(String codigoQR) {
+        return false;
+    }
+
     public void agregarCaracteristica(String nuevaCaract) {
         asociacionDondeTrabaja.agregarCarateristica(nuevaCaract.toUpperCase());
     }
+
 }

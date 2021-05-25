@@ -19,7 +19,7 @@ public class AsociacionTest {
     LocalDate fechaUnMesAtras = LocalDate.now().minusDays(29);
     LocalDate fechaAntigua = LocalDate.of(1999, 05, 23);
     LocalDate fechaActual = LocalDate.now();
-    Asociacion patitas = new Asociacion();
+    Asociacion patitas = new Asociacion(new Coordenadas(52.5244444,13.410555555555552));
     RepositorioUsuarios repoUsuarios = patitas.getUsuariosRegistrados();
 
     @Test
@@ -59,7 +59,7 @@ public class AsociacionTest {
     public void personaPuedeInformarUnPerroPerdido() {
         Rescatista franB = usuariosRescatista("franB");
         MascotaPerdida wendy = mascotaPerdida("perra perdida", fechaActual, franB);
-        franB.informarMascotaEncontrada(wendy, patitas);
+        franB.informarMascotaEncontrada(wendy, Collections.singletonList(patitas));
         assertTrue(patitas.getMascotasEncontradasEnCalleList().contains(wendy));
     }
 
@@ -71,10 +71,10 @@ public class AsociacionTest {
         MascotaPerdida murri = mascotaPerdida("perra perdida", fechaActual, franB);
         MascotaPerdida milton = mascotaPerdida("perra perdida", fechaActual, facu);
         MascotaPerdida millo = mascotaPerdida("perra perdida", fechaUnMesAtras, facu);
-        franB.informarMascotaEncontrada(wendy, patitas);
-        franB.informarMascotaEncontrada(murri, patitas);
-        facu.informarMascotaEncontrada(millo, patitas);
-        facu.informarMascotaEncontrada(milton, patitas);
+        franB.informarMascotaEncontrada(wendy, Collections.singletonList(patitas));
+        franB.informarMascotaEncontrada(murri, Collections.singletonList(patitas));
+        facu.informarMascotaEncontrada(millo, Collections.singletonList(patitas));
+        facu.informarMascotaEncontrada(milton, Collections.singletonList(patitas));
         assertEquals(Arrays.asList(wendy, murri, milton), patitas.obtenerMascotasDeLosUltimosDias());
     }
 
@@ -91,13 +91,13 @@ public class AsociacionTest {
     }
 
     private MascotaPerdida mascotaPerdida(String descripcion, LocalDate fecha, Rescatista rescatista) {
-        return new MascotaPerdida(rescatista, "foto", descripcion, new Coordenadas("52° 31' 28'' N", " 13° 24' 38'' E"), fecha);
+        return new MascotaPerdida(rescatista, "foto", descripcion, new Coordenadas(52.5244444, 13.410555555555556), fecha);
     }
 
     private Rescatista usuariosRescatista(String nombre) {
         DatoDeContacto datoDeContacto = new DatoDeContacto("facundofacu", 1130550832, "facuelmejor@gmail.com");
         DatosPersonales datosPersonales = new DatosPersonales(nombre, fechaAntigua, TipoDocumento.DNI, 40122287);
-        return new Rescatista(datosPersonales, new Coordenadas("52° 31' 28'' N", " 13° 24' 38'' E"), Collections.singletonList(datoDeContacto));
+        return new Rescatista(datosPersonales, new Coordenadas(52.5244444, 13.410555555555556), Collections.singletonList(datoDeContacto));
     }
 
     private UsuarioAdministrador usuarioAdmin() {

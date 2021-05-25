@@ -1,10 +1,10 @@
 package Mascota;
 
 public class Coordenadas {
-    String latitud;
-    String longitud;
+    Double latitud;
+    Double longitud;
 
-    public Coordenadas(String latitud,String longitud){
+    public Coordenadas(Double latitud,Double longitud){
         this.latitud = latitud;
         this.longitud = longitud;
     }

@@ -18,6 +18,8 @@ public abstract class Usuario {
     asociacion.registrarUsuario(this);
   }
 
+  public abstract boolean mismoCodigoQR(String codigoQR);
+
 }
 
 

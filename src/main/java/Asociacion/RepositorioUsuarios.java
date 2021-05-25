@@ -1,5 +1,6 @@
 package Asociacion;
 
+import Mascota.MascotaPerdida;
 import Usuario.Usuario;
 
 import java.util.ArrayList;
@@ -14,5 +15,13 @@ public class RepositorioUsuarios {
 
   public List<Usuario> getlistaDeUsuarios() {
     return listaDeUsuarios;
+  }
+
+  public void buscarDuenio(MascotaPerdida mascotaPerdida) {
+    Usuario usuario = listaDeUsuarios
+      .stream()
+      .filter(unUsuario -> unUsuario.mismoCodigoQR(mascotaPerdida.getCodigoQR()))
+      .findAny().get();
+    //TODO: usuario.notificarPorMail();
   }
 }

@@ -1,5 +1,6 @@
 package Asociacion;
 
+import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
 import Usuario.Usuario;
 //import jdk.vm.ci.meta.Local;
@@ -13,6 +14,7 @@ public class Asociacion {
     List<MascotaPerdida> mascotasEncontradasEnCalleList = new ArrayList<>();
     List<String> caracteristicasPosibles = new ArrayList<>();
     RepositorioUsuarios usuariosRegistrados;
+    Coordenadas direccion;
 
     public void cargarMascota(MascotaPerdida mascota) {
         mascotasEncontradasEnCalleList.add(mascota);
@@ -53,9 +55,28 @@ public class Asociacion {
         return caracteristicasPosibles.contains(caracteristica);
     }
 
-    public Asociacion() {
+    public Asociacion(Coordenadas direccion) {
         this.usuariosRegistrados = new RepositorioUsuarios();
+        this.direccion = direccion;
     }
 
+    public double distanciaALugarDeEncuentro(MascotaPerdida mascotaPerdida) {
+        return mascotaPerdida.distanciaAEncuentro(direccion);
+    }
 
+    public void buscarDuenio(MascotaPerdida mascotaPerdida) {
+        usuariosRegistrados.buscarDuenio(mascotaPerdida);
+    }
+
+    public void registrarPublicacion(Publicacion publicacion) {
+        listaDePublicaciones.add(publicacion);
+    }
+
+    public List<Publicacion> publicacionesValidadas() {
+        return listaDePublicaciones.stream().filter(publicacion -> publicacion.validada()).collect(Collectors.toList());
+    }
+
+    public void aprobarPublicaciones() {
+        listaDePublicaciones.forEach(publicacion -> publicacion.validar());
+    }
 }

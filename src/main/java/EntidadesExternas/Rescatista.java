@@ -21,7 +21,12 @@ public class Rescatista {
         this.contacto = contacto;
     }
 
-    public void informarMascotaEncontrada(MascotaPerdida mascota,Asociacion asociacion) {
-        asociacion.cargarMascota(mascota);
+    //Middle man??
+    public void informarMascotaEncontrada(MascotaPerdida mascota, List<Asociacion> asociacionesPosibles) {
+        mascota.buscarAsociacionMasCercana(asociacionesPosibles);
     }
 }
+
+
+
+

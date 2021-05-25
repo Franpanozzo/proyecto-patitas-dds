@@ -13,6 +13,7 @@ public class UsuarioDuenio extends Usuario {
     DatosPersonales datosPersonales;
     List<DatoDeContacto> datoDeContactoList = new ArrayList<>();
     List<Mascota> mascotasList = new ArrayList<>();
+    String codigoQR;
 
     /*public UsuarioDuenio(String pepe12, String ahz1e38dJmnp, Asociacion.Asociacion patitas, LocalDate fechaAntigua, Usuario.tipoDocumento dni, int i, List<Usuario.DatoDeContacto> asList) {
         super();
@@ -33,6 +34,14 @@ public class UsuarioDuenio extends Usuario {
         this.datoDeContactoList = Objects.requireNonNull(datoDeContactoList, "El dato de contacto no tiene que ser null");
     }
 
+    @Override
+    public boolean mismoCodigoQR(String codigoQR) {
+        return this.codigoQR.equals(codigoQR);
+    }
+
+    public void buscarMascota() {
+
+    }
 }
 
 
