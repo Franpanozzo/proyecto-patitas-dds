@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class Asociacion {
     List<MascotaPerdida> mascotasEncontradasEnCalleList = new ArrayList<>();
     List<String> caracteristicasPosibles = new ArrayList<>();
+    List<Publicacion> listaDePublicaciones = new ArrayList<>();
     RepositorioUsuarios usuariosRegistrados;
     Coordenadas direccion;
 
