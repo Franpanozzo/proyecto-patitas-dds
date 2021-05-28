@@ -8,27 +8,15 @@ import FormasDeEncuentro.FormaDeEncuentro;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 
 public class MascotaPerdida {
-    Rescatista rescatista;
-    String foto;
-    String descripcionEstado;
-    Coordenadas lugarDeEncuentro;
-    LocalDate fechaEncuentro;
-    String codigoQR;
-    FormaDeEncuentro formaDeEncuentro;
-
-    public LocalDate getFechaEncuentro(){
-        return fechaEncuentro;
-    }
+    Chapita chapita;
+    DatosMascotaPerdida datosMascotaPerdida;
 
     public MascotaPerdida(Rescatista rescatista, String foto, String descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro) {
-        this.rescatista = rescatista;
-        this.foto = foto;
-        this.descripcionEstado = descripcionEstado;
-        this.lugarDeEncuentro = lugarDeEncuentro;
-        this.fechaEncuentro = fechaEncuentro;
+        datosMascotaPerdida = new DatosMascotaPerdida(rescatista,foto,descripcionEstado,lugarDeEncuentro,fechaEncuentro);
     }
 
     public MascotaPerdida(Rescatista rescatista, String foto, String descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro, String codigoQR) {
@@ -37,28 +25,18 @@ public class MascotaPerdida {
         this.descripcionEstado = descripcionEstado;
         this.lugarDeEncuentro = lugarDeEncuentro;
         this.fechaEncuentro = fechaEncuentro;
-        this.codigoQR = codigoQR;
-    }
-
-    public String getCodigoQR(){
-        return codigoQR;
-    }
+        this.chapita = chapita.;
+    }*/
 
     public boolean encontradaDespuesDe(LocalDate fechaLimite){
         return fechaEncuentro.isAfter(fechaLimite);
     }
 
-    public void buscarAsociacionMasCercana(List<Asociacion> asociacionesPosibles) {
-
-        formaDeEncuentro.ejecutarAccion(asociacionesPosibles,this);
-
-        //Si no tiene QR
-
-        //
-
+    public double distanciaAEncuentro(Coordenadas direccion) {
+        return datosMascotaPerdida.getLugarDeEncuentro().distanciaA(direccion);
     }
 
-    public double distanciaAEncuentro(Coordenadas direccion) {
-       return lugarDeEncuentro.distanciaA(direccion);
+    public void buscarDuenioCorrespondiente() {
+        chapita.identificarDuenioEnAsociacion();
     }
 }

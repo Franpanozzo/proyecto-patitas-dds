@@ -1,12 +1,12 @@
 package EntidadesExternas;
 
 import Asociacion.Asociacion;
+import FormasDeEncuentro.FormaDeEncuentro;
 import Usuario.DatoDeContacto;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
 import Usuario.DatosPersonales;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +22,14 @@ public class Rescatista {
     }
 
     //Middle man??
-    public void informarMascotaEncontrada(MascotaPerdida mascota, List<Asociacion> asociacionesPosibles) {
-        mascota.buscarAsociacionMasCercana(asociacionesPosibles);
+    public void informarMascotaEncontrada(MascotaPerdida mascota, FormaDeEncuentro formaDeEncuentro) {
+       formaDeEncuentro.ejecutarAccion(mascota);
     }
 }
+
+
+
+
 
 
 

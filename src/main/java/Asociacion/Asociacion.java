@@ -65,8 +65,8 @@ public class Asociacion {
         return mascotaPerdida.distanciaAEncuentro(direccion);
     }
 
-    public void buscarDuenio(MascotaPerdida mascotaPerdida) {
-        usuariosRegistrados.buscarDuenio(mascotaPerdida);
+    public void buscarDuenioYNotificar(String codigoQR) {
+        usuariosRegistrados.buscarDuenioYNotificar(codigoQR);
     }
 
     public void registrarPublicacion(Publicacion publicacion) {

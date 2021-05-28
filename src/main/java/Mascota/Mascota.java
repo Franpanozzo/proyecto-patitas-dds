@@ -30,8 +30,8 @@ public class Mascota {
 
     public void inicializarCarcteristicas(Asociacion asociacion, Map<String, String> caracteristicasNuevas) {
         List<String> listaCaracteristicas = asociacion.getCaracteristicasPosibles();
-        for (Integer i = 0; listaCaracteristicas.size() > i; i++) {
-            caracteristicas.put(listaCaracteristicas.get(i), null);
+        for (String caracteristica : listaCaracteristicas) {
+            caracteristicas.put(caracteristica, null);
         }
         Set<String> keyscaracteristicasUsuario = caracteristicasNuevas.keySet();
         for ( String key : keyscaracteristicasUsuario) {

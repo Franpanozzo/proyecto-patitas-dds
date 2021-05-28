@@ -17,11 +17,18 @@ public class RepositorioUsuarios {
     return listaDeUsuarios;
   }
 
-  public void buscarDuenio(MascotaPerdida mascotaPerdida) {
+  public void buscarDuenioYNotificar(String codigoQR) {
     Usuario usuario = listaDeUsuarios
       .stream()
       .filter(unUsuario -> unUsuario.mismoCodigoQR(mascotaPerdida.getCodigoQR()))
       .findAny().get();
-    //TODO: usuario.notificarPorMail();
+    this.notificarPorMail();
+  }
+
+  private void notificarPorMail() {
   }
 }
+
+
+
+
