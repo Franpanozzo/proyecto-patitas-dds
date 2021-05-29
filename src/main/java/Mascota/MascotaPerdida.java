@@ -19,7 +19,7 @@ public class MascotaPerdida {
         datosMascotaPerdida = new DatosMascotaPerdida(rescatista,foto,descripcionEstado,lugarDeEncuentro,fechaEncuentro);
     }
 
-    public MascotaPerdida(Rescatista rescatista, String foto, String descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro, String codigoQR) {
+    /*public MascotaPerdida(Rescatista rescatista, String foto, String descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro, Optional<Chapita> chapita) {
         this.rescatista = rescatista;
         this.foto = foto;
         this.descripcionEstado = descripcionEstado;
