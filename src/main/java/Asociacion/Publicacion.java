@@ -11,6 +11,10 @@ public class Publicacion {
     validada = true;
   }
 
+  DatosMascotaPerdida getDatosMascotaPerdida() {
+    return datosMascotaPerdida;
+  }
+
   public boolean validada() {
     return validada;
   }
