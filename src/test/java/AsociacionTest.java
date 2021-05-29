@@ -1,10 +1,14 @@
 import Asociacion.Asociacion;
 
 import Exceptions.*;
+import FormasDeEncuentro.ConChapita;
+import FormasDeEncuentro.FormaDeEncuentro;
+import Repositorios.RepositorioUsuarios;
 import Usuario.*;
 import Mascota.*;
 import EntidadesExternas.*;
-import Asociacion.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -21,6 +25,23 @@ public class AsociacionTest {
     LocalDate fechaActual = LocalDate.now();
     Asociacion patitas = new Asociacion(new Coordenadas(52.5244444,13.410555555555552));
     RepositorioUsuarios repoUsuarios = patitas.getUsuariosRegistrados();
+
+    /*@BeforeAll
+    public void iniciar() {
+        Rescatista franB = usuariosRescatista("franB");
+        MascotaPerdida wendy = new MascotaPerdida(franB, "foto.png", "Pelo largo",new Coordenadas(42.5244444,12.410555555555552), fechaActual);
+        wendy.setChapita(new Chapita("1234", patitas));
+    }*/
+
+    @Test
+    public void personaPuedeInformarUnPerroPerdidoConChapita() {
+        Rescatista franB = usuariosRescatista("franB");
+        MascotaPerdida wendy = new MascotaPerdida(franB, "foto.png", "Pelo largo",new Coordenadas(42.5244444,12.410555555555552), fechaActual);
+        wendy.setChapita(new Chapita("1234", patitas));
+        UsuarioDuenio usuarioX = duenioConDosMascotas();
+        franB.informarMascotaEncontrada(wendy, new ConChapita());
+    }
+
 
     @Test
     public void crearUnUsuarioYRegistrarDosMascotas() {
@@ -56,11 +77,8 @@ public class AsociacionTest {
     }
 
     @Test
-    public void personaPuedeInformarUnPerroPerdido() {
-        Rescatista franB = usuariosRescatista("franB");
-        MascotaPerdida wendy = mascotaPerdida("perra perdida", fechaActual, franB);
-        franB.informarMascotaEncontrada(wendy, Collections.singletonList(patitas));
-        assertTrue(patitas.getMascotasEncontradasEnCalleList().contains(wendy));
+    public void personaPuedeInformarUnPerroPerdidoSinChapita() {
+
     }
 
     @Test
@@ -113,13 +131,14 @@ public class AsociacionTest {
     }
 
     private UsuarioDuenio duenioConDosMascotas() {
-        DatoDeContacto datosDeContactoPepe = new DatoDeContacto("juliaGonzales", 1140520843, "jgonzales@gmail.com");
+        DatoDeContacto datosDeContactoPepe = new DatoDeContacto("juliaGonzales", 1140520843, "francisco.panozzosf@gmail.com");
         DatosPersonales datosPersonalesPepe = new DatosPersonales("Pep", fechaAntigua, TipoDocumento.DNI, 20149687);
         return new UsuarioDuenio("pepe12",
                 "ADr731xsqz",
                 patitas,
                 datosPersonalesPepe,
-                Collections.singletonList(datosDeContactoPepe));
+                Collections.singletonList(datosDeContactoPepe),
+                "1234");
     }
 
 }

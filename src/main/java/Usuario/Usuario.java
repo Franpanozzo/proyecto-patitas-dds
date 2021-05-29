@@ -20,6 +20,7 @@ public abstract class Usuario {
 
   public abstract boolean mismoCodigoQR(String codigoQR);
 
+  public abstract String getMailContacto();
 }
 
 

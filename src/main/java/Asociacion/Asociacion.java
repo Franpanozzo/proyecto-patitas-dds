@@ -2,6 +2,7 @@ package Asociacion;
 
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
+import Repositorios.RepositorioUsuarios;
 import Usuario.Usuario;
 //import jdk.vm.ci.meta.Local;
 
@@ -45,15 +46,11 @@ public class Asociacion {
         mascotasEncontradasEnCalleList.remove(mascotaPerdida);
     }
 
-    public List<MascotaPerdida> obtenerMascotasDeLosUltimosDias() {
+    public List<Publicacion> obtenerPublicacionDeLosUltimosDias() {
         LocalDate fechaMin = LocalDate.now().minusDays(10);
-        return mascotasEncontradasEnCalleList.stream().
-                filter(mascota -> mascota.encontradaDespuesDe(fechaMin)).
-                collect(Collectors.toList());
-    }
-
-    public boolean esCaractPosible(String caracteristica) {
-        return caracteristicasPosibles.contains(caracteristica);
+        return this.publicacionesValidadas().stream().
+            filter(publi -> publi.encontradaDespuesDe(fechaMin)).
+            collect(Collectors.toList());
     }
 
     public Asociacion(Coordenadas direccion) {

@@ -2,9 +2,7 @@ package FormasDeEncuentro;
 
 import Asociacion.*;
 import Mascota.MascotaPerdida;
-
-import java.util.Comparator;
-import java.util.List;
+import Repositorios.RepositorioAsociaciones;
 
 public class SinChapita implements FormaDeEncuentro {
 
@@ -14,7 +12,6 @@ public class SinChapita implements FormaDeEncuentro {
     asociacionMasCercana.registrarPublicacion(new Publicacion(/*Datos personales segun ley*/));
   }
 }
-
 
 
 

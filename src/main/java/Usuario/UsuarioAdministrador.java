@@ -1,6 +1,7 @@
 package Usuario;
 
 import Asociacion.Asociacion;
+import Exceptions.UsuarioNoPerdioMascotaException;
 
 import java.util.Objects;
 
@@ -15,6 +16,11 @@ public class UsuarioAdministrador extends Usuario {
     @Override
     public boolean mismoCodigoQR(String codigoQR) {
         return false;
+    }
+
+    @Override
+    public String getMailContacto() {
+        throw new UsuarioNoPerdioMascotaException("Los usuarios administradores no pierden mascotas, por lo tanto no se los notifica");
     }
 
     public void agregarCaracteristica(String nuevaCaract) {

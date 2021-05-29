@@ -28,8 +28,12 @@ public class MascotaPerdida {
         this.chapita = chapita.;
     }*/
 
-    public boolean encontradaDespuesDe(LocalDate fechaLimite){
-        return fechaEncuentro.isAfter(fechaLimite);
+    public Chapita getChapita(){
+        return chapita;
+    }
+
+    public void setChapita(Chapita chapita) {
+        this.chapita = chapita;
     }
 
     public double distanciaAEncuentro(Coordenadas direccion) {

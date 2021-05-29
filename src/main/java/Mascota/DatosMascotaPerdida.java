@@ -24,8 +24,8 @@ public class DatosMascotaPerdida {
     return lugarDeEncuentro;
   }
 
-  public LocalDate getFechaEncuentro(){
-    return fechaEncuentro;
+  public boolean encontradaDespuesDe(LocalDate fechaLimite){
+    return fechaEncuentro.isAfter(fechaLimite);
   }
 
 }

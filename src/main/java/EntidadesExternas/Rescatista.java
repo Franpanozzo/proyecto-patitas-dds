@@ -23,6 +23,7 @@ public class Rescatista {
 
     //Middle man??
     public void informarMascotaEncontrada(MascotaPerdida mascota, FormaDeEncuentro formaDeEncuentro) {
+        System.out.println(mascota.getChapita());
        formaDeEncuentro.ejecutarAccion(mascota);
     }
 }

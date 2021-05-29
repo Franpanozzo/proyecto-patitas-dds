@@ -14,4 +14,8 @@ public class Publicacion {
   public boolean validada() {
     return validada;
   }
+
+  public boolean encontradaDespuesDe(LocalDate fechaMin) {
+    return datosMascotaPerdida.encontradaDespuesDe(fechaMin);
+  }
 }
