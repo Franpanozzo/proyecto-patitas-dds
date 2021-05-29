@@ -1,7 +1,11 @@
 package Asociacion;
 
-public class Publicacion {
+import Mascota.DatosMascotaPerdida;
 
+import java.time.LocalDate;
+
+public class Publicacion {
+  DatosMascotaPerdida datosMascotaPerdida;
   boolean validada = false;
 
   public Publicacion() {

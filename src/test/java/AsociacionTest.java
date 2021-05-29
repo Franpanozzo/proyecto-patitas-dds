@@ -90,7 +90,7 @@ public class AsociacionTest {
         MascotaPerdida murri = mascotaPerdida("perra perdida", fechaActual, franB);
         MascotaPerdida milton = mascotaPerdida("perra perdida", fechaActual, facu);
         MascotaPerdida millo = mascotaPerdida("perra perdida", fechaUnMesAtras, facu);
-        franB.informarMascotaEncontrada(wendy, Collections.singletonList(patitas));
+        franB.informarMascotaEncontrada(wendy, conChapita);
         franB.informarMascotaEncontrada(murri, Collections.singletonList(patitas));
         facu.informarMascotaEncontrada(millo, Collections.singletonList(patitas));
         facu.informarMascotaEncontrada(milton, Collections.singletonList(patitas));

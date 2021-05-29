@@ -14,4 +14,5 @@ public class ConChapita implements FormaDeEncuentro {
   public void ejecutarAccion(MascotaPerdida mascotaPerdida) {
     mascotaPerdida.buscarDuenioCorrespondiente();
   }
+
 }

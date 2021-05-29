@@ -12,15 +12,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Asociacion {
-    List<MascotaPerdida> mascotasEncontradasEnCalleList = new ArrayList<>();
     List<String> caracteristicasPosibles = new ArrayList<>();
     List<Publicacion> listaDePublicaciones = new ArrayList<>();
     RepositorioUsuarios usuariosRegistrados;
     Coordenadas direccion;
-
-    public void cargarMascota(MascotaPerdida mascota) {
-        mascotasEncontradasEnCalleList.add(mascota);
-    }
 
     public void agregarCarateristica(String caracteristica) {
         caracteristicasPosibles.add(caracteristica);
@@ -38,13 +33,11 @@ public class Asociacion {
         return caracteristicasPosibles;
     }
 
-    public List<MascotaPerdida> getMascotasEncontradasEnCalleList() {
-        return mascotasEncontradasEnCalleList;
+    /*
+    public void quitarPublicacion(Publicacion publicacion) {
+       listaDePublicaciones.remove(publicacion);
     }
-
-    public void quitarMascota(MascotaPerdida mascotaPerdida) {
-        mascotasEncontradasEnCalleList.remove(mascotaPerdida);
-    }
+    */
 
     public List<Publicacion> obtenerPublicacionDeLosUltimosDias() {
         LocalDate fechaMin = LocalDate.now().minusDays(10);
