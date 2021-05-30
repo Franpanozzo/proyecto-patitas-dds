@@ -1,8 +1,10 @@
-import Asociacion.Asociacion;
+import Asociacion.*;
 
 import Exceptions.*;
-import FormasDeEncuentro.ConChapita;
+import FormasDeEncuentro.*;
 import FormasDeEncuentro.FormaDeEncuentro;
+import Mailer.InterfazDeMails;
+import Repositorios.RepositorioAsociaciones;
 import Repositorios.RepositorioUsuarios;
 import Usuario.*;
 import Mascota.*;
@@ -24,7 +26,12 @@ public class AsociacionTest {
     LocalDate fechaAntigua = LocalDate.of(1999, 05, 23);
     LocalDate fechaActual = LocalDate.now();
     Asociacion patitas = new Asociacion(new Coordenadas(52.5244444,13.410555555555552));
+    Asociacion garritas = new Asociacion(new Coordenadas(12.5578234,9.086421783546927));
+    Asociacion colitas = new Asociacion(new Coordenadas(90.62036402,2.362539475273947));
     RepositorioUsuarios repoUsuarios = patitas.getUsuariosRegistrados();
+    Asociacion masCercanaAOli;
+    Asociacion masCercanaALasMascotas;
+    RepositorioAsociaciones repositorioDeAsociaciones = (RepositorioAsociaciones) Arrays.asList(patitas, garritas, colitas);
 
     /*@BeforeAll
     public void iniciar() {
@@ -40,6 +47,28 @@ public class AsociacionTest {
         wendy.setChapita(new Chapita("1234", patitas));
         UsuarioDuenio usuarioX = duenioConDosMascotas();
         franB.informarMascotaEncontrada(wendy, new ConChapita());
+    }
+
+    @Test
+    public void personaPuedeInformarUnPerroPerdidoConChapitaConMailMockito() {
+        InterfazDeMails mailFalso = Mockito.mock(InterfazDeMails.class);
+        Rescatista franB = usuariosRescatista("franB");
+        MascotaPerdida wendy = new MascotaPerdida(franB, "foto.png", "Pelo largo",new Coordenadas(42.5244444,12.410555555555552), fechaActual);
+        wendy.setChapita(new Chapita("1234", patitas));
+        UsuarioDuenio usuarioX = duenioConDosMascotas();
+        franB.informarMascotaEncontrada(wendy, new ConChapita());
+        Mockito.verify(mailFalso, Mockito.any()).enviarMail(Mockito.any());
+    }
+
+    @Test
+    public void personaPuedeInformarUnPerroPerdidoSinChapita() {
+        Rescatista franB = usuariosRescatista("franB");
+        MascotaPerdida oli = new MascotaPerdida(franB, "foto.png", "Pelo largo",new Coordenadas(42.5244444,12.410555555555552), fechaActual);
+        franB.informarMascotaEncontrada(oli, new SinChapita());
+        masCercanaAOli = repositorioDeAsociaciones.masCercanaA(oli);
+        //publicacionDeOli = new Publicacion(new DatosMascotaPerdida(franB,"foto.png", "Pelo largo",new Coordenadas(42.5244444,12.410555555555552), fechaActual) , true)
+       // assertTrue(masCercanaAOli.getListaDePublicaciones().contains(publicacionDeOli));
+
     }
 
 
@@ -76,10 +105,6 @@ public class AsociacionTest {
         assertTrue(repoUsuarios.getlistaDeUsuarios().contains(fran));
     }
 
-    @Test
-    public void personaPuedeInformarUnPerroPerdidoSinChapita() {
-
-    }
 
     @Test
     public void listarMascotasPerdidas10Dias() {
@@ -100,6 +125,27 @@ public class AsociacionTest {
         
     }
 
+    @Test
+    public void publicacionesDeLasMascotasPerdidasEnLosUltimos10Dias(){
+        Rescatista franB = usuariosRescatista("franB");
+        Rescatista facu = usuariosRescatista("facu");
+        MascotaPerdida wendy = mascotaPerdida("Sola, asustada", fechaActual, franB);
+        MascotaPerdida murri = mascotaPerdida("perra perdida", fechaActual, franB);
+        MascotaPerdida milton = mascotaPerdida("perra perdida", fechaActual, facu);
+        MascotaPerdida millo = mascotaPerdida("perra perdida", fechaUnMesAtras, facu);
+        Publicacion publiWendy = new Publicacion(new DatosMascotaPerdida(franB,"foto", "Sola, asustada",new Coordenadas(52.5244444, 13.410555555555556), fechaActual) , true);
+        Publicacion publiMurri = new Publicacion(new DatosMascotaPerdida(franB,"foto", "perra perdida",new Coordenadas(52.5244444, 13.410555555555556), fechaActual) , true);
+        Publicacion publiMilton = new Publicacion(new DatosMascotaPerdida(facu,"foto", "perra perdida",new Coordenadas(52.5244444, 13.410555555555556), fechaActual) , true);
+        Publicacion publiMillo = new Publicacion(new DatosMascotaPerdida(facu,"foto", "perra perdida",new Coordenadas(52.5244444, 13.410555555555556), fechaUnMesAtras) , true);
+        franB.informarMascotaEncontrada(wendy, new SinChapita());
+        franB.informarMascotaEncontrada(murri, new SinChapita());
+        facu.informarMascotaEncontrada(millo, new SinChapita());
+        facu.informarMascotaEncontrada(milton, new SinChapita());
+        masCercanaALasMascotas = repositorioDeAsociaciones.masCercanaA(wendy);
+        assertEquals(Arrays.asList(wendy, murri, milton), masCercanaALasMascotas.obtenerPublicacionDeLosUltimosDias());
+
+
+    }
     @Test
     public void crearUsuarioContraseniasErroneas() {
         assertThrows(ContraseniaInvalidaException.class, () -> new UsuarioAdministrador("franpano", "12345", patitas));

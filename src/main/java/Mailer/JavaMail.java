@@ -14,13 +14,13 @@ import javax.mail.internet.MimeMessage;
  *
  * @author Chuidiang
  */
-public class JavaMail {
+public class JavaMail implements InterfazDeMails {
   /**
    * main de prueba
    *
    * @param args Se ignoran.
    */
-  public static void enviarMail(Mail mailAEnviar) {
+  public void enviarMail(Mail mailAEnviar) {
     try {
       // Propiedades de la conexión
       Properties props = new Properties();

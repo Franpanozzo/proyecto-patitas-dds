@@ -70,4 +70,8 @@ public class Asociacion {
     public void aprobarPublicaciones() {
         listaDePublicaciones.forEach(publicacion -> publicacion.validar());
     }
+
+    public List<Publicacion> getListaDePublicaciones() {
+        return listaDePublicaciones;
+    }
 }
