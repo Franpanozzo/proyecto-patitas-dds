@@ -40,6 +40,7 @@ public class MascotaPerdida {
         return datosMascotaPerdida.getLugarDeEncuentro().distanciaA(direccion);
     }
 
+
     public void buscarDuenioCorrespondiente() {
         chapita.identificarDuenioEnAsociacion();
     }
