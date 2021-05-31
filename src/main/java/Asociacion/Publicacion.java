@@ -8,7 +8,8 @@ public class Publicacion {
   DatosMascotaPerdida datosMascotaPerdida;
   boolean validada = false;
 
-  public Publicacion() {
+  public Publicacion(DatosMascotaPerdida datosMascotaPerdida) {
+    this.datosMascotaPerdida = datosMascotaPerdida;
   }
 
   public void validar() {

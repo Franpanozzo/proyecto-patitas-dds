@@ -43,4 +43,8 @@ public class MascotaPerdida {
     public void buscarDuenioCorrespondiente() {
         chapita.identificarDuenioEnAsociacion();
     }
+
+    public DatosMascotaPerdida getDatosMascotaPerdida() {
+        return datosMascotaPerdida;
+    }
 }
