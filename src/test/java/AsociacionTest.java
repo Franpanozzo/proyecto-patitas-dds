@@ -145,7 +145,7 @@ public class AsociacionTest {
         */
         
     }
-/*
+
     @Test
     public void publicacionesDeLasMascotasPerdidasEnLosUltimos10Dias(){
         franB.informarMascotaEncontrada(wendy, new SinChapita());
@@ -153,10 +153,9 @@ public class AsociacionTest {
         facu.informarMascotaEncontrada(millo, new SinChapita());
         facu.informarMascotaEncontrada(milton, new SinChapita());
         sofi.aprobarPublicaciones();
-        masCercanaALasMascotas = repositorioDeAsociaciones.masCercanaA(wendy);
-        assertEquals(Arrays.asList(wendy, murri, milton), masCercanaALasMascotas.obtenerPublicacionDeLosUltimosDias());
+        assertEquals(Arrays.asList(wendy, murri, milton), patitas.obtenerPublicacionDeLosUltimosDias());
     }
-*/
+
     @Test
     public void crearUsuarioContraseniasErroneas() {
         assertThrows(ContraseniaInvalidaException.class, () -> new UsuarioAdministrador("franpano", "12345", patitas));
