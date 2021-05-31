@@ -29,11 +29,11 @@ public class AsociacionTest {
     Asociacion garritas = new Asociacion(new Coordenadas(12.5578234,9.086421783546927));
     Asociacion colitas = new Asociacion(new Coordenadas(90.62036402,2.362539475273947));
     RepositorioUsuarios repoUsuarios = patitas.getUsuariosRegistrados();
-    Asociacion masCercanaAOli;
-    Asociacion masCercanaALasMascotas;
-    //RepositorioAsociaciones repositorioDeAsociaciones = Arrays.asList(patitas, garritas, colitas);
-    UsuarioVoluntario sofi = new UsuarioVoluntario("sofiKpita","sofilamejR24",  masCercanaALasMascotas);
-    UsuarioVoluntario juli = new UsuarioVoluntario("juli","sofilamejR24",  masCercanaAOli);
+    //Asociacion masCercanaAOli;
+    //Asociacion masCercanaALasMascotas;
+    //RepositorioAsociaciones.getInstance().agregarAsociaciones(patitas,garritas,colitas);
+    UsuarioVoluntario sofi = new UsuarioVoluntario("sofiKpita","sofilamejR24",  patitas);
+    UsuarioVoluntario juli = new UsuarioVoluntario("juli","sofilamejR24",  patitas);
     Rescatista franB;
     Rescatista facu;
     MascotaPerdida wendy;

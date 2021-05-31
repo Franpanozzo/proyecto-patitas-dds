@@ -20,7 +20,7 @@ public class JavaMail {
    *
    * @param args Se ignoran.
    */
-  public static void enviarMail(Mail mailAEnviar) {
+  public void enviarMail(Mail mailAEnviar) {
     try {
       // Propiedades de la conexión
       Properties props = new Properties();
