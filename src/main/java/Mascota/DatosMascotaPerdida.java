@@ -10,13 +10,15 @@ import java.util.List;
 
 public class DatosMascotaPerdida {
   Rescatista rescatista;
+  Animal animal;
+  Tamanio tamanio;
   String foto;
   List<String> descripcionEstado;
   Coordenadas lugarDeEncuentro;
   LocalDate fechaEncuentro;
   List<String> descripcionesPosibles = Arrays.asList("Manso","Delgado","Amistoso");
 
-  public DatosMascotaPerdida(Rescatista rescatista, String foto, String descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro) {
+  public DatosMascotaPerdida(Rescatista rescatista, String foto, List<String> descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro, Animal animal, Tamanio tamanio) {
     this.rescatista = rescatista;
     this.foto = foto;
     this.descripcionesValidas(descripcionEstado);

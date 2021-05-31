@@ -65,11 +65,7 @@ public class AsociacionTest {
 
     @Test
     public void probarAPI() throws IOException {
-        ServicioHogares servicio = ServicioHogares.getInstance();
 
-        ListaDeHogares listaDeHogares = servicio.listadoDeHogares(1);
-
-        listaDeHogares.getHogares();
     }
 
 
