@@ -25,7 +25,25 @@ public class DatosMascotaPerdida {
     this.descripcionEstado = descripcionEstado;
     this.lugarDeEncuentro = lugarDeEncuentro;
     this.fechaEncuentro = fechaEncuentro;
+    this.tamanio = tamanio;
+    this.animal = animal;
   }
+
+  private void descripcionesValidas(List<String> descripcionEstado) {
+    if(!descripcionEstado.stream().allMatch(descrip -> descripcionesPosibles.contains(descrip))) {
+      throw new DescripcionInvalidaException("Solo me interesan estas 3 caracteristicas: Manso|Delgado|Amistoso ");
+    }
+  }
+
+  public List<String> getDescripcionEstado(){
+    return descripcionEstado;
+  }
+
+  public Animal getAnimal(){
+    return animal;
+  }
+
+  public Tamanio getTamanio(){return tamanio;}
 
   public Coordenadas getLugarDeEncuentro() {
     return lugarDeEncuentro;

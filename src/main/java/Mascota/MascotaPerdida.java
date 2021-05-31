@@ -4,7 +4,7 @@ import Asociacion.Asociacion;
 import EntidadesExternas.Rescatista;
 import FormasDeEncuentro.FormaDeEncuentro;
 //import jdk.vm.ci.meta.Local;
-
+import Mascota.*;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
@@ -15,8 +15,8 @@ public class MascotaPerdida {
     Chapita chapita;
     DatosMascotaPerdida datosMascotaPerdida;
 
-    public MascotaPerdida(Rescatista rescatista, String foto, String descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro) {
-        datosMascotaPerdida = new DatosMascotaPerdida(rescatista,foto,descripcionEstado,lugarDeEncuentro,fechaEncuentro);
+    public MascotaPerdida(Rescatista rescatista, String foto, String descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro, Animal animal, Tamanio tamanio) {
+        datosMascotaPerdida = new DatosMascotaPerdida(rescatista,foto,descripcionEstado,lugarDeEncuentro,fechaEncuentro, animal, tamanio);
     }
 
     /*public MascotaPerdida(Rescatista rescatista, String foto, String descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro, Optional<Chapita> chapita) {

@@ -1,7 +1,7 @@
 package Mascota;
 
 import Asociacion.Asociacion;
-
+import Mascota.*;
 import java.util.*;
 
 public class Mascota {
