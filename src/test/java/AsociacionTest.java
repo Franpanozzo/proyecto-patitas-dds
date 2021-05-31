@@ -5,6 +5,8 @@ import FormasDeEncuentro.*;
 import Mailer.JavaMail;
 import Repositorios.RepositorioAsociaciones;
 import Repositorios.RepositorioUsuarios;
+import Servicios.Hogares.ListaDeHogares;
+import Servicios.Hogares.ServicioHogares;
 import Usuario.*;
 import Mascota.*;
 import EntidadesExternas.*;
@@ -13,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import java.util.*;
@@ -58,6 +61,15 @@ public class AsociacionTest {
         this.publiMilton = new Publicacion(new DatosMascotaPerdida(facu,"foto", "perra perdida",new Coordenadas(52.5244444, 13.410555555555556), fechaActual));
         this.publiMillo = new Publicacion(new DatosMascotaPerdida(facu,"foto", "perra perdida",new Coordenadas(52.5244444, 13.410555555555556), fechaUnMesAtras));
 
+    }
+
+    @Test
+    public void probarAPI() throws IOException {
+        ServicioHogares servicio = ServicioHogares.getInstance();
+
+        ListaDeHogares listaDeHogares = servicio.listadoDeHogares(1);
+
+        listaDeHogares.getHogares();
     }
 
 

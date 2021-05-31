@@ -6,7 +6,11 @@ import java.util.List;
 public class ListaDeHogares {
   Integer total;
   Integer offset;
-  List<Hogares> listaDeHogares = new ArrayList<>();
+  List<Hogares> hogares = new ArrayList<>();
+
+  public void getHogares() {
+    System.out.println(hogares.toString());
+  }
 
 
 }

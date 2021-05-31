@@ -1,5 +1,13 @@
 package Servicios.Hogares;
 
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.io.IOException;
+
 public class ServicioHogares {
   private static ServicioHogares instancia = null;
   private static final String urlAPI = "https://api.refugiosdds.com.ar/api/";
@@ -19,9 +27,9 @@ public class ServicioHogares {
     return instancia;
   }
 
-  public ListaDeHogares listadoDeHogares(){
+  public ListaDeHogares listadoDeHogares(int offset) throws IOException {
     ServicioDeHogares servicioDeHogares = this.retrofit.create(ServicioDeHogares.class);
-    Call<ListaDeHogares> requestHogares = servicioDeHogares.hogares(1);
+    Call<ListaDeHogares> requestHogares = servicioDeHogares.hogares(offset);
     Response<ListaDeHogares> responseHogares = requestHogares.execute();
     return responseHogares.body();
   }
