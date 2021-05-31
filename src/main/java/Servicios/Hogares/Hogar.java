@@ -3,7 +3,7 @@ package Servicios.Hogares;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hogares {
+public class Hogar {
   String id;
   String nombre;
   Ubicacion ubicacion;

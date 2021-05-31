@@ -6,7 +6,6 @@ import okhttp3.Response;
 
 import java.io.IOException;
 
-
 public class TokenInterceptor implements Interceptor {
 
   @Override
@@ -17,5 +16,9 @@ public class TokenInterceptor implements Interceptor {
 
     return chain.proceed(newRequest);
   }
-
 }
+
+
+
+
+
