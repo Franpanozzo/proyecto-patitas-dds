@@ -29,7 +29,7 @@ public class RepositorioUsuarios {
   }
 
   private void notificarPorMail(Usuario usuario) {
-    JavaMail.enviarMail(new Mail(usuario.getMailContacto(),"AVISO DE ENCUENTRO DE MASCOTA",
+    new JavaMail().enviarMail(new Mail(usuario.getMailContacto(),"AVISO DE ENCUENTRO DE MASCOTA",
         "Buenos dias, encontramos a la mascota que perdio tu familiar"));
   }
 }

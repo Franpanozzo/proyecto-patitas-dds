@@ -26,8 +26,8 @@ public class AsociacionTest {
     LocalDate fechaAntigua = LocalDate.of(1999, 05, 23);
     LocalDate fechaActual = LocalDate.now();
     Asociacion patitas = new Asociacion(new Coordenadas(52.5244444,13.410555555555552));
-    Asociacion garritas = new Asociacion(new Coordenadas(12.5578234,9.086421783546927));
-    Asociacion colitas = new Asociacion(new Coordenadas(90.62036402,2.362539475273947));
+    //Asociacion garritas = new Asociacion(new Coordenadas(12.5578234,9.086421783546927));
+    //Asociacion colitas = new Asociacion(new Coordenadas(90.62036402,2.362539475273947));
     RepositorioUsuarios repoUsuarios = patitas.getUsuariosRegistrados();
     //Asociacion masCercanaAOli;
     //Asociacion masCercanaALasMascotas;
@@ -59,12 +59,7 @@ public class AsociacionTest {
         this.publiMillo = new Publicacion(new DatosMascotaPerdida(facu,"foto", "perra perdida",new Coordenadas(52.5244444, 13.410555555555556), fechaUnMesAtras));
 
     }
-    /*@BeforeAll
-    public void iniciar() {
-        Rescatista franB = usuariosRescatista("franB");
-        MascotaPerdida wendy = new MascotaPerdida(franB, "foto.png", "Pelo largo",new Coordenadas(42.5244444,12.410555555555552), fechaActual);
-        wendy.setChapita(new Chapita("1234", patitas));
-    }*/
+
 
     @Test
     public void personaPuedeInformarUnPerroPerdidoConChapita() {
@@ -85,19 +80,18 @@ public class AsociacionTest {
         franB.informarMascotaEncontrada(wendy, new ConChapita());
         Mockito.verify(mailFalso, Mockito.only()).enviarMail(Mockito.any());
     }
-/*
+
     @Test
     public void personaPuedeInformarUnPerroPerdidoSinChapita() {
         Rescatista franB = usuariosRescatista("franB");
         MascotaPerdida oli = new MascotaPerdida(franB, "foto.png", "Pelo largo",new Coordenadas(42.5244444,12.410555555555552), fechaActual);
         franB.informarMascotaEncontrada(oli, new SinChapita());
-        masCercanaAOli = repositorioDeAsociaciones.masCercanaA(oli);
         Publicacion publicacionDeOli = new Publicacion(new DatosMascotaPerdida(franB,"foto.png", "Pelo largo",new Coordenadas(42.5244444,12.410555555555552), fechaActual));
         juli.aprobarPublicaciones();
-        assertTrue(masCercanaAOli.getListaDePublicaciones().contains(publicacionDeOli));
+        assertTrue(patitas.getListaDePublicaciones().contains(publicacionDeOli));
 
     }
-*/
+
 
     @Test
     public void crearUnUsuarioYRegistrarDosMascotas() {
