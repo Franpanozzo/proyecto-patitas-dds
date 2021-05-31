@@ -14,9 +14,16 @@ public class ServicioHogares {
   private Retrofit retrofit;
 
   private ServicioHogares(){
+    TokenInterceptor interceptor = new TokenInterceptor();
+
+    OkHttpClient client = new OkHttpClient.Builder().
+        addInterceptor(interceptor).
+        build();
+
     this.retrofit = new Retrofit.Builder()
+        .client(client)
         .baseUrl(urlAPI)
-        .addConverterFactory(GsonConvertorFactory.create())
+        .addConverterFactory(GsonConverterFactory.create())
         .build();
   }
 
