@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioUsuarios {
-
+  JavaMail mail = new JavaMail();
   List<Usuario> listaDeUsuarios = new ArrayList<>();
 
   public void cargarNuevoUsuario(Usuario usuarioNuevo) {
@@ -28,9 +28,15 @@ public class RepositorioUsuarios {
     this.notificarPorMail(usuario);
   }
 
+//Set para mockear
+  public void setMail(JavaMail mail) {
+    this.mail = mail;
+  }
+
   private void notificarPorMail(Usuario usuario) {
-    new JavaMail().enviarMail(new Mail(usuario.getMailContacto(),"AVISO DE ENCUENTRO DE MASCOTA",
-        "Buenos dias, encontramos a la mascota que perdio tu familiar"));
+    mail.enviarMail(new Mail(usuario.getMailContacto(),"AVISO DE ENCUENTRO DE MASCOTA",
+        "Buenos dias, encontramos a la mascota que perdio tu familiar" + usuario.getNombreUsuario()
+                + "\nContactanos lo antes posible para acordar el punto de entrega"));
   }
 }
 

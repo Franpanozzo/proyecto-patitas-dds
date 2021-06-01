@@ -16,7 +16,7 @@ public class Publicacion {
     validada = true;
   }
 
-  DatosMascotaPerdida getDatosMascotaPerdida() {
+  public DatosMascotaPerdida getDatosMascotaPerdida() {
     return datosMascotaPerdida;
   }
 

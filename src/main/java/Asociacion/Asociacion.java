@@ -1,5 +1,6 @@
 package Asociacion;
 
+import Mailer.JavaMail;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
 import Repositorios.RepositorioUsuarios;
@@ -14,19 +15,29 @@ import java.util.stream.Collectors;
 public class Asociacion {
     List<String> caracteristicasPosibles = new ArrayList<>();
     List<Publicacion> listaDePublicaciones = new ArrayList<>();
-    RepositorioUsuarios usuariosRegistrados;
+    RepositorioUsuarios repoUsuariosRegistrados;
     Coordenadas direccion;
+
+    public Asociacion(Coordenadas direccion) {
+        this.repoUsuariosRegistrados = new RepositorioUsuarios();
+        this.direccion = direccion;
+    }
+
+    //Metodo para implementar MOCKITO
+    public void cambiarMail(JavaMail mail) {
+        repoUsuariosRegistrados.setMail(mail);
+    }
 
     public void agregarCarateristica(String caracteristica) {
         caracteristicasPosibles.add(caracteristica);
     }
 
-    public RepositorioUsuarios getUsuariosRegistrados() {
-        return usuariosRegistrados;
+    public RepositorioUsuarios getRepoUsuariosRegistrados() {
+        return repoUsuariosRegistrados;
     }
 
     public void registrarUsuario(Usuario usuarioNuevo) {
-        usuariosRegistrados.cargarNuevoUsuario(usuarioNuevo);
+        repoUsuariosRegistrados.cargarNuevoUsuario(usuarioNuevo);
     }
 
     public List<String> getCaracteristicasPosibles() {
@@ -39,16 +50,11 @@ public class Asociacion {
     }
     */
 
-    public List<Publicacion> obtenerPublicacionDeLosUltimosDias() {
+    public List<Publicacion> obtenerPublicacionesDeLosUltimosDias() {
         LocalDate fechaMin = LocalDate.now().minusDays(10);
         return this.publicacionesValidadas().stream().
             filter(publi -> publi.encontradaDespuesDe(fechaMin)).
             collect(Collectors.toList());
-    }
-
-    public Asociacion(Coordenadas direccion) {
-        this.usuariosRegistrados = new RepositorioUsuarios();
-        this.direccion = direccion;
     }
 
     public double distanciaALugarDeEncuentro(MascotaPerdida mascotaPerdida) {
@@ -56,7 +62,7 @@ public class Asociacion {
     }
 
     public void buscarDuenioYNotificar(String codigoQR) {
-        usuariosRegistrados.buscarDuenioYNotificar(codigoQR);
+        repoUsuariosRegistrados.buscarDuenioYNotificar(codigoQR);
     }
 
     public void registrarPublicacion(Publicacion publicacion) {

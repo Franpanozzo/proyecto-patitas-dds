@@ -1,32 +1,15 @@
 import Asociacion.*;
 
-import Exceptions.*;
-import FormasDeEncuentro.*;
-import Mailer.JavaMail;
-import Repositorios.RepositorioAsociaciones;
 import Repositorios.RepositorioUsuarios;
-import Usuario.*;
-import Mascota.*;
-import EntidadesExternas.*;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.time.LocalDate;
-
-import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import Asociacion.Asociacion;
 import EntidadesExternas.Rescatista;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
-import Repositorios.RepositorioUsuarios;
 import Usuario.UsuarioVoluntario;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,7 +21,7 @@ public class DefinicionesGlobales {
   Asociacion patitas = new Asociacion(new Coordenadas(52.5244444,13.410555555555552));
   //Asociacion garritas = new Asociacion(new Coordenadas(12.5578234,9.086421783546927));
   //Asociacion colitas = new Asociacion(new Coordenadas(90.62036402,2.362539475273947));
-  RepositorioUsuarios repoUsuarios = patitas.getUsuariosRegistrados();
+  RepositorioUsuarios repoUsuarios = patitas.getRepoUsuariosRegistrados();
   //Asociacion masCercanaAOli;
   //Asociacion masCercanaALasMascotas;
   //RepositorioAsociaciones.getInstance().agregarAsociaciones(patitas,garritas,colitas);

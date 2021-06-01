@@ -30,9 +30,13 @@ public class DatosMascotaPerdida {
   }
 
   private void descripcionesValidas(List<String> descripcionEstado) {
-    if(!descripcionEstado.stream().allMatch(descrip -> descripcionesPosibles.contains(descrip))) {
+    if(!descripcionesPosibles.containsAll(descripcionEstado)) {
       throw new DescripcionInvalidaException("Solo me interesan estas 3 caracteristicas: Manso|Delgado|Amistoso ");
     }
+  }
+
+  public String getFoto() {
+    return foto;
   }
 
   public List<String> getDescripcionEstado(){
