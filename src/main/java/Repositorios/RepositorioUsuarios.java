@@ -35,7 +35,7 @@ public class RepositorioUsuarios {
 
   private void notificarPorMail(Usuario usuario) {
     mail.enviarMail(new Mail(usuario.getMailContacto(),"AVISO DE ENCUENTRO DE MASCOTA",
-        "Buenos dias, encontramos a la mascota que perdio tu familiar" + usuario.getNombreUsuario()
+        "Buenos dias, encontramos a la mascota que perdio tu familiar " + usuario.getNombreUsuario()
                 + "\nContactanos lo antes posible para acordar el punto de entrega"));
   }
 }
