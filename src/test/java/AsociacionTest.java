@@ -52,14 +52,14 @@ public class AsociacionTest {
     public void iniciar(){
         this.franB = usuariosRescatista("franB");
         this.facu = usuariosRescatista("facu");
-        this.wendy = mascotaPerdida("Sola, asustada", fechaActual, franB);
-        this.murri = mascotaPerdida("perra perdida", fechaActual, franB);
-        this.milton = mascotaPerdida("perra perdida", fechaActual, facu);
-        this.millo = mascotaPerdida("perra perdida", fechaUnMesAtras, facu);
-        this.publiWendy = new Publicacion(new DatosMascotaPerdida(franB,"foto", "Sola, asustada",new Coordenadas(52.5244444, 13.410555555555556), fechaActual));
-        this.publiMurri = new Publicacion(new DatosMascotaPerdida(franB,"foto", "perra perdida",new Coordenadas(52.5244444, 13.410555555555556), fechaActual));
-        this.publiMilton = new Publicacion(new DatosMascotaPerdida(facu,"foto", "perra perdida",new Coordenadas(52.5244444, 13.410555555555556), fechaActual));
-        this.publiMillo = new Publicacion(new DatosMascotaPerdida(facu,"foto", "perra perdida",new Coordenadas(52.5244444, 13.410555555555556), fechaUnMesAtras));
+        this.wendy = mascotaPerdida(Collections.singletonList("Sola, asustada"), fechaActual, franB, Animal.PERRO, Tamanio.MEDIANA);
+        this.murri = mascotaPerdida(Collections.singletonList("perra perdida"), fechaActual, franB, Animal.PERRO, Tamanio.CHICA);
+        this.milton = mascotaPerdida(Collections.singletonList("perra perdida"), fechaActual, facu, Animal.PERRO, Tamanio.CHICA);
+        this.millo = mascotaPerdida(Collections.singletonList("perra perdida"), fechaUnMesAtras, , Animal.PERRO, Tamanio.GRANDE);
+        this.publiWendy = new Publicacion(new DatosMascotaPerdida(franB,"foto", Collections.singletonList("Sola, asustada"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.MEDIANA));
+        this.publiMurri = new Publicacion(new DatosMascotaPerdida(franB,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.CHICA));
+        this.publiMilton = new Publicacion(new DatosMascotaPerdida(facu,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.CHICA));
+        this.publiMillo = new Publicacion(new DatosMascotaPerdida(facu,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaUnMesAtras, Animal.PERRO, Tamanio.GRANDE));
 
     }
 
@@ -72,7 +72,7 @@ public class AsociacionTest {
     @Test
     public void personaPuedeInformarUnPerroPerdidoConChapita() {
         Rescatista franB = usuariosRescatista("franB");
-        MascotaPerdida wendy = new MascotaPerdida(franB, "foto.png", "Pelo largo",new Coordenadas(42.5244444,12.410555555555552), fechaActual);
+        MascotaPerdida wendy = new MascotaPerdida(franB, "foto.png", Collections.singletonList("Pelo largo"),new Coordenadas(42.5244444,12.410555555555552), fechaActual, Animal.PERRO, Tamanio.MEDIANA);
         wendy.setChapita(new Chapita("1234", patitas));
         UsuarioDuenio usuarioX = duenioConDosMascotas();
         franB.informarMascotaEncontrada(wendy, new ConChapita());
@@ -82,7 +82,7 @@ public class AsociacionTest {
     public void personaPuedeInformarUnPerroPerdidoConChapitaConMailMockito() {
         JavaMail mailFalso = Mockito.mock(JavaMail.class);
         Rescatista franB = usuariosRescatista("franB");
-        MascotaPerdida wendy = new MascotaPerdida(franB, "foto.png", "Pelo largo",new Coordenadas(42.5244444,12.410555555555552), fechaActual);
+        MascotaPerdida wendy = new MascotaPerdida(franB, "foto.png", Collections.singletonList("Pelo largo"),new Coordenadas(42.5244444,12.410555555555552), fechaActual, Animal.PERRO, Tamanio.MEDIANA);
         wendy.setChapita(new Chapita("1234", patitas));
         UsuarioDuenio usuarioX = duenioConDosMascotas();
         franB.informarMascotaEncontrada(wendy, new ConChapita());
@@ -92,9 +92,9 @@ public class AsociacionTest {
     @Test
     public void personaPuedeInformarUnPerroPerdidoSinChapita() {
         Rescatista franB = usuariosRescatista("franB");
-        MascotaPerdida oli = new MascotaPerdida(franB, "foto.png", "Pelo largo",new Coordenadas(42.5244444,12.410555555555552), fechaActual);
+        MascotaPerdida oli = new MascotaPerdida(franB, "foto.png", Collections.singletonList("Pelo largo"),new Coordenadas(42.5244444,12.410555555555552), fechaActual, Animal.GATO, Tamanio.CHICA);
         franB.informarMascotaEncontrada(oli, new SinChapita());
-        Publicacion publicacionDeOli = new Publicacion(new DatosMascotaPerdida(franB,"foto.png", "Pelo largo",new Coordenadas(42.5244444,12.410555555555552), fechaActual));
+        Publicacion publicacionDeOli = new Publicacion(new DatosMascotaPerdida(franB,"foto.png", Collections.singletonList("Pelo largo"),new Coordenadas(42.5244444,12.410555555555552), fechaActual, Animal.GATO, Tamanio.CHICA));
         juli.aprobarPublicaciones();
         assertTrue(patitas.getListaDePublicaciones().contains(publicacionDeOli));
 
@@ -161,7 +161,7 @@ public class AsociacionTest {
         facu.informarMascotaEncontrada(millo, new SinChapita());
         facu.informarMascotaEncontrada(milton, new SinChapita());
         sofi.aprobarPublicaciones();
-        assertEquals(Arrays.asList(wendy, murri, milton), patitas.obtenerPublicacionDeLosUltimosDias());
+        assertEquals(Arrays.asList(publiWendy, publiMurri, publiMilton), patitas.obtenerPublicacionDeLosUltimosDias());
     }
 
     @Test
@@ -176,8 +176,8 @@ public class AsociacionTest {
         */
     }
 
-    private MascotaPerdida mascotaPerdida(String descripcion, LocalDate fecha, Rescatista rescatista) {
-        return new MascotaPerdida(rescatista, "foto", descripcion, new Coordenadas(52.5244444, 13.410555555555556), fecha);
+    private MascotaPerdida mascotaPerdida(List<String> descripcion, LocalDate fecha, Rescatista rescatista, Animal animal, Tamanio tamanio) {
+        return new MascotaPerdida(rescatista, "foto", descripcion, new Coordenadas(52.5244444, 13.410555555555556), fecha, animal, tamanio);
     }
 
     private Rescatista usuariosRescatista(String nombre) {
