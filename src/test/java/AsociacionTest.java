@@ -55,7 +55,7 @@ public class AsociacionTest {
         this.wendy = mascotaPerdida(Collections.singletonList("Sola, asustada"), fechaActual, franB, Animal.PERRO, Tamanio.MEDIANA);
         this.murri = mascotaPerdida(Collections.singletonList("perra perdida"), fechaActual, franB, Animal.PERRO, Tamanio.CHICA);
         this.milton = mascotaPerdida(Collections.singletonList("perra perdida"), fechaActual, facu, Animal.PERRO, Tamanio.CHICA);
-        this.millo = mascotaPerdida(Collections.singletonList("perra perdida"), fechaUnMesAtras, , Animal.PERRO, Tamanio.GRANDE);
+        this.millo = mascotaPerdida(Collections.singletonList("perra perdida"), fechaUnMesAtras, facu , Animal.PERRO, Tamanio.GRANDE);
         this.publiWendy = new Publicacion(new DatosMascotaPerdida(franB,"foto", Collections.singletonList("Sola, asustada"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.MEDIANA));
         this.publiMurri = new Publicacion(new DatosMascotaPerdida(franB,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.CHICA));
         this.publiMilton = new Publicacion(new DatosMascotaPerdida(facu,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.CHICA));
