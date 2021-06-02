@@ -1,12 +1,15 @@
 package EntidadesExternas;
 
-import Asociacion.Asociacion;
+import FormasDeEncuentro.FormaDeEncuentro;
+import Servicios.Hogares.Hogar;
+import Servicios.Hogares.ListaDeHogares;
+import Servicios.Hogares.ObtenedorServicio;
 import Usuario.DatoDeContacto;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
 import Usuario.DatosPersonales;
 
-import java.time.LocalDate;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +17,7 @@ public class Rescatista {
     DatosPersonales datosPersonales;
     Coordenadas direccion;
     List<DatoDeContacto> contacto = new ArrayList<DatoDeContacto>();
+    MascotaPerdida mascotaPerdida;
 
     public Rescatista(DatosPersonales datosPersonales, Coordenadas direccion, List<DatoDeContacto> contacto) {
         this.datosPersonales = datosPersonales;
@@ -21,7 +25,20 @@ public class Rescatista {
         this.contacto = contacto;
     }
 
-    public void informarMascotaEncontrada(MascotaPerdida mascota,Asociacion asociacion) {
-        asociacion.cargarMascota(mascota);
+    public void informarMascotaEncontrada(MascotaPerdida mascota, FormaDeEncuentro formaDeEncuentro) {
+       formaDeEncuentro.ejecutarAccion(mascota);
+       mascotaPerdida = mascota;
+    }
+
+    public List<Hogar> buscarHogares(double radio) throws IOException {
+        return ObtenedorServicio.hogaresQueCumplan(radio,mascotaPerdida.getDatosMascotaPerdida());
     }
 }
+
+
+
+
+
+
+
+

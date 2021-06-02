@@ -1,6 +1,9 @@
 package Asociacion;
 
+import Mailer.JavaMail;
+import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
+import Repositorios.RepositorioUsuarios;
 import Usuario.Usuario;
 //import jdk.vm.ci.meta.Local;
 
@@ -10,52 +13,71 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Asociacion {
-    List<MascotaPerdida> mascotasEncontradasEnCalleList = new ArrayList<>();
     List<String> caracteristicasPosibles = new ArrayList<>();
-    RepositorioUsuarios usuariosRegistrados;
+    List<Publicacion> listaDePublicaciones = new ArrayList<>();
+    RepositorioUsuarios repoUsuariosRegistrados;
+    Coordenadas direccion;
 
-    public void cargarMascota(MascotaPerdida mascota) {
-        mascotasEncontradasEnCalleList.add(mascota);
+    public Asociacion(Coordenadas direccion) {
+        this.repoUsuariosRegistrados = new RepositorioUsuarios();
+        this.direccion = direccion;
+    }
+
+    //Metodo para implementar MOCKITO
+    public void cambiarMail(JavaMail mail) {
+        repoUsuariosRegistrados.setMail(mail);
     }
 
     public void agregarCarateristica(String caracteristica) {
         caracteristicasPosibles.add(caracteristica);
     }
 
-    public RepositorioUsuarios getUsuariosRegistrados() {
-        return usuariosRegistrados;
+    public RepositorioUsuarios getRepoUsuariosRegistrados() {
+        return repoUsuariosRegistrados;
     }
 
     public void registrarUsuario(Usuario usuarioNuevo) {
-        usuariosRegistrados.cargarNuevoUsuario(usuarioNuevo);
+        repoUsuariosRegistrados.cargarNuevoUsuario(usuarioNuevo);
     }
 
     public List<String> getCaracteristicasPosibles() {
         return caracteristicasPosibles;
     }
 
-    public List<MascotaPerdida> getMascotasEncontradasEnCalleList() {
-        return mascotasEncontradasEnCalleList;
+    /*
+    public void quitarPublicacion(Publicacion publicacion) {
+       listaDePublicaciones.remove(publicacion);
     }
+    */
 
-    public void quitarMascota(MascotaPerdida mascotaPerdida) {
-        mascotasEncontradasEnCalleList.remove(mascotaPerdida);
-    }
-
-    public List<MascotaPerdida> obtenerMascotasDeLosUltimosDias() {
+    public List<Publicacion> obtenerPublicacionesDeLosUltimosDias() {
         LocalDate fechaMin = LocalDate.now().minusDays(10);
-        return mascotasEncontradasEnCalleList.stream().
-                filter(mascota -> mascota.encontradaDespuesDe(fechaMin)).
-                collect(Collectors.toList());
+        return this.publicacionesValidadas().stream().
+            filter(publi -> publi.encontradaDespuesDe(fechaMin)).
+            collect(Collectors.toList());
     }
 
-    public boolean esCaractPosible(String caracteristica) {
-        return caracteristicasPosibles.contains(caracteristica);
+    public double distanciaALugarDeEncuentro(MascotaPerdida mascotaPerdida) {
+        return mascotaPerdida.distanciaAEncuentro(direccion);
     }
 
-    public Asociacion() {
-        this.usuariosRegistrados = new RepositorioUsuarios();
+    public void buscarDuenioYNotificar(String codigoQR) {
+        repoUsuariosRegistrados.buscarDuenioYNotificar(codigoQR);
     }
 
+    public void registrarPublicacion(Publicacion publicacion) {
+        listaDePublicaciones.add(publicacion);
+    }
 
+    public List<Publicacion> publicacionesValidadas() {
+        return listaDePublicaciones.stream().filter(publicacion -> publicacion.validada()).collect(Collectors.toList());
+    }
+
+    public void aprobarPublicaciones() {
+        listaDePublicaciones.forEach(publicacion -> publicacion.validar());
+    }
+
+    public List<Publicacion> getListaDePublicaciones() {
+        return listaDePublicaciones;
+    }
 }

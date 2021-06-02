@@ -18,6 +18,13 @@ public abstract class Usuario {
     asociacion.registrarUsuario(this);
   }
 
+  public String getNombreUsuario() {
+    return nombreUsuario;
+  }
+
+  public abstract boolean mismoCodigoQR(String codigoQR);
+
+  public abstract String getMailContacto();
 }
 
 
