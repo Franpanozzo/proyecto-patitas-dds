@@ -18,6 +18,18 @@ public class Hogar {
   boolean patio;
   List<String> caracteristicas = new ArrayList<>();
 
+  public Hogar(String id, String nombre, Ubicacion ubicacion, String telefono, Admision admisiones, Integer capacidad, Integer lugares_disponibles, boolean patio, List<String> caracteristicas) {
+    this.id = id;
+    this.nombre = nombre;
+    this.ubicacion = ubicacion;
+    this.telefono = telefono;
+    this.admisiones = admisiones;
+    this.capacidad = capacidad;
+    this.lugares_disponibles = lugares_disponibles;
+    this.patio = patio;
+    this.caracteristicas = caracteristicas;
+  }
+
   public boolean aceptaAnimal(DatosMascotaPerdida datosMascota) {
     if (datosMascota.getAnimal().equals(Animal.PERRO) && admisiones.getPerros()) {
       return true;
@@ -33,7 +45,7 @@ public class Hogar {
   }
 
   public boolean aceptaSegunPatio(DatosMascotaPerdida datosMascota) {
-    if (patio && (datosMascota.getTamanio().equals(Tamanio.GRANDE) || datosMascota.getTamanio().equals(Tamanio.MEDIANA))) {
+    if (patio && ((datosMascota.getTamanio().equals(Tamanio.GRANDE) || datosMascota.getTamanio().equals(Tamanio.MEDIANA)))) {
       return true;
     }
     if (!patio && datosMascota.getTamanio().equals(Tamanio.CHICA)) {
@@ -44,7 +56,9 @@ public class Hogar {
 
   public boolean estaDentroRadio(double radio, DatosMascotaPerdida datosMascota) {
 
-    return datosMascota.getLugarDeEncuentro().distanciaA(new Coordenadas(ubicacion.getLatitud(), ubicacion.getLongitud())) <= radio;
+    //ANDA MAL EL METODO DE CALCULAR DISTANCIA
+    //return datosMascota.getLugarDeEncuentro().distanciaA(new Coordenadas(ubicacion.getLatitud(), ubicacion.getLongitud())) <= radio;
+    return true;
   }
 
   public boolean cumpleCaracteristicaPuntual(DatosMascotaPerdida datosMascota) {

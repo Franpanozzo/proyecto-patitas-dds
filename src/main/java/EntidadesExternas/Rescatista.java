@@ -3,6 +3,7 @@ package EntidadesExternas;
 import FormasDeEncuentro.FormaDeEncuentro;
 import Servicios.Hogares.Hogar;
 import Servicios.Hogares.ListaDeHogares;
+import Servicios.Hogares.ObtenedorServicio;
 import Usuario.DatoDeContacto;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
@@ -25,13 +26,12 @@ public class Rescatista {
     }
 
     public void informarMascotaEncontrada(MascotaPerdida mascota, FormaDeEncuentro formaDeEncuentro) {
-        System.out.println(mascota.getChapita());
        formaDeEncuentro.ejecutarAccion(mascota);
        mascotaPerdida = mascota;
     }
 
     public List<Hogar> buscarHogares(double radio) throws IOException {
-        return ListaDeHogares.hogaresQueCumplan(radio,mascotaPerdida.getDatosMascotaPerdida());
+        return ObtenedorServicio.hogaresQueCumplan(radio,mascotaPerdida.getDatosMascotaPerdida());
     }
 }
 

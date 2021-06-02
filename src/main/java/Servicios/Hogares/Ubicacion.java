@@ -11,10 +11,12 @@ public class Ubicacion {
   private Double longitud;
 
   public Double getLatitud() {
+    if(lat == null) { return 0.0; }
     return lat;
   }
 
   public Double getLongitud() {
+    if(longitud == null) { return 0.0; }
     return longitud;
   }
 

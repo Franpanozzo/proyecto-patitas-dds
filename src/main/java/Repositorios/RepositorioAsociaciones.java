@@ -27,4 +27,8 @@ public class RepositorioAsociaciones {
          .min(Comparator.comparing(asociacion -> asociacion.distanciaALugarDeEncuentro(mascota)))
          .get();
   }
+
+  public void sacarAsociacion(Asociacion patitas) {
+    listaAsociaciones.remove(patitas);
+  }
 }
