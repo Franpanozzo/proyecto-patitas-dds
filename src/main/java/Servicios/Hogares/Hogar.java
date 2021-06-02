@@ -7,7 +7,7 @@ import Mascota.DatosMascotaPerdida;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hogar {
+public class Hogares {
   String id;
   String nombre;
   Ubicacion ubicacion;
@@ -51,4 +51,7 @@ public class Hogar {
     return caracteristicas.stream().allMatch(unaCarac -> datosMascota.getDescripcionEstado().contains(unaCarac));
   }
 
+  public String getNombre() {
+    return nombre;
+  }
 }
