@@ -7,7 +7,7 @@ import Mascota.DatosMascotaPerdida;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hogares {
+public class Hogar {
   String id;
   String nombre;
   Ubicacion ubicacion;

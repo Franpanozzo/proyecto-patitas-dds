@@ -5,6 +5,8 @@ import FormasDeEncuentro.*;
 import Mailer.JavaMail;
 import Repositorios.RepositorioAsociaciones;
 import Repositorios.RepositorioUsuarios;
+import Servicios.Hogares.ListaDeHogares;
+import Servicios.Hogares.ServicioHogares;
 import Usuario.*;
 import Mascota.*;
 import EntidadesExternas.*;
@@ -68,7 +70,9 @@ public class AsociacionTest {
 
     @Test
     public void probarAPI() throws IOException {
-
+        ServicioHogares ServicioHogaresFalso = Mockito.mock(ServicioHogares.class);
+        Mockito.when(ServicioHogaresFalso.listadoDeHogares())
+        ListaDeHogares.setAllHogares();
     }
 
 

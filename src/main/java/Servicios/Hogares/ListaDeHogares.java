@@ -1,7 +1,6 @@
 package Servicios.Hogares;
 
 import Mascota.DatosMascotaPerdida;
-import Mascota.MascotaPerdida;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,17 +12,32 @@ public class ListaDeHogares {
   Integer offset;
   static List<Hogar> hogares = new ArrayList<>();
   static List<Hogar> listaPosta = new ArrayList<>();
+  static ServicioHogares servicio = ServicioHogares.getInstance();
 
   public static void setAllHogares() throws IOException {
     ServicioHogares servicio = ServicioHogares.getInstance();
 
     for(int i=1;i<=4;i++) {
+      ListaDeHogares listaVariable = servicio.listadoDeHogares(i);
+      //System.out.println(listaVariable.getTotal().toString() + listaVariable.getOffset().toString() + listaVariable.getListaHogares().toString());
       agregarHogares(servicio.listadoDeHogares(i).getListaHogares());
     }
   }
 
+  public void cambiarServicio(ServicioHogares nuevoServ) {
+    servicio = nuevoServ;
+  }
+
   public List<Hogar> getListaHogares() {
     return hogares;
+  }
+
+  public Integer getTotal() {
+    return total;
+  }
+
+  public Integer getOffset() {
+    return offset;
   }
 
   public static void agregarHogares(List<Hogar> listaHogares) {
