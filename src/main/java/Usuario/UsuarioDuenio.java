@@ -14,10 +14,6 @@ public class UsuarioDuenio extends Usuario {
     List<Mascota> mascotasList = new ArrayList<>();
     String codigoQR;
 
-    /*public UsuarioDuenio(String pepe12, String ahz1e38dJmnp, Asociacion.Asociacion patitas, LocalDate fechaAntigua, Usuario.tipoDocumento dni, int i, List<Usuario.DatoDeContacto> asList) {
-        super();
-    }*/
-
     public void registrarMascota(Mascota mascotaNueva, Map<String, String> caracteristicas) {
         mascotaNueva.inicializarCarcteristicas(asociacion, caracteristicas);
         mascotasList.add(mascotaNueva);
