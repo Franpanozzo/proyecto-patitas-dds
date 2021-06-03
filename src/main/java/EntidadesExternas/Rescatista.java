@@ -2,8 +2,7 @@ package EntidadesExternas;
 
 import FormasDeEncuentro.FormaDeEncuentro;
 import Servicios.Hogares.Hogar;
-import Servicios.Hogares.ListaDeHogares;
-import Servicios.Hogares.ObtenedorServicio;
+import Servicios.Hogares.ObtenedorServicioHogares;
 import Usuario.DatoDeContacto;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
@@ -31,7 +30,9 @@ public class Rescatista {
     }
 
     public List<Hogar> buscarHogares(double radio) throws IOException {
-        return ObtenedorServicio.hogaresQueCumplan(radio,mascotaPerdida.getDatosMascotaPerdida());
+        //List<Hogar> listaDeHogares = ObtenedorServicioHogares.hogaresQueCumplan(radio,mascotaPerdida.getDatosMascotaPerdida());
+        //System.out.println(listaDeHogares.stream().map(hogar -> hogar.getNombre()).collect(Collectors.toList()).toString());
+        return ObtenedorServicioHogares.hogaresQueCumplan(radio,mascotaPerdida.getDatosMascotaPerdida());
     }
 
     public List<DatoDeContacto> getContacto() {

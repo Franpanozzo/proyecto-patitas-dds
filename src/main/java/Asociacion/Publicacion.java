@@ -10,6 +10,7 @@ import java.util.List;
 public class Publicacion {
   DatosMascotaPerdida datosMascotaPerdida;
   boolean validada = false;
+  //Esto no se muestra en interfaz grafica
   List<DatoDeContacto> datoDeContactoDelRescatista = new ArrayList<>();
 
   public Publicacion(DatosMascotaPerdida datosMascotaPerdida, List<DatoDeContacto> datoDeContactoList) {

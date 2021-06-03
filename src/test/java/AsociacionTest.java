@@ -74,7 +74,7 @@ public class AsociacionTest {
         lista4 = new ListaDeHogares(Collections.singletonList(hogarSantaMonica));
 
         ServicioHogares ServicioHogaresFalso = Mockito.mock(ServicioHogares.class);
-        ObtenedorServicio.cambiarServicio(ServicioHogaresFalso);
+        ObtenedorServicioHogares.cambiarServicio(ServicioHogaresFalso);
         Mockito.when(ServicioHogaresFalso.listadoDeHogares(1)).thenReturn(lista1);
         Mockito.when(ServicioHogaresFalso.listadoDeHogares(2)).thenReturn(lista2);
         Mockito.when(ServicioHogaresFalso.listadoDeHogares(3)).thenReturn(lista3);
@@ -86,7 +86,7 @@ public class AsociacionTest {
     public void iniciarPreTest(){
         DatosPersonales datosPersonales = new DatosPersonales("FranPanozzo", fechaAntigua, TipoDocumento.DNI, 40122287);
         patitas = new Asociacion("Patitas",new Coordenadas(52.5244444,13.410555555555552));
-        repoUsuarios = patitas.getRepoUsuariosRegistrados();
+        repoUsuarios = patitas.getGestorDeAsociacion();
         RepositorioAsociaciones.getInstance().agregarAsociacion(patitas);
         mailFalso = Mockito.mock(JavaMail.class);
         patitas.cambiarMail(mailFalso);
@@ -200,13 +200,6 @@ public class AsociacionTest {
     public void crearUsuarioContraseniasErroneas() {
         DatosPersonales datosPersonales = new DatosPersonales("FranPanozzo", fechaAntigua, TipoDocumento.DNI, 40122287);
         assertThrows(ContraseniaInvalidaException.class, () -> new UsuarioAdministrador("franpano", "12345", patitas, datosPersonales));
-        /*UsuarioAdministrador usuarioNist1 = new UsuarioAdministrador().crearUsuario("usuarioNist1","as","Usuario Nist1", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);
-        UsuarioAdministrador usuarioNist2 = new UsuarioAdministrador().crearUsuario("usuarioNist2","usuarioNist2","Usuario Nist2", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);;
-        UsuarioAdministrador usuarioNist3 = new UsuarioAdministrador().crearUsuario("usuarioNist3","AAAAAAAAAA","Usuario Nist3", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);
-        UsuarioAdministrador usuarioNist4 = new UsuarioAdministrador().crearUsuario("usuarioNist4","123456789","Usuario Nist4", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);;
-        UsuarioAdministrador usuarioNist5 = new UsuarioAdministrador().crearUsuario("usuarioNist5","987654321","Usuario Nist5", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);;
-        UsuarioAdministrador usuarioNist6 = new UsuarioAdministrador().crearUsuario("usuarioNist6","aspoweqrrs","Usuario Nist6", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);;
-        */
     }
 
     private MascotaPerdida mascotaPerdida(String foto,List<String> descripcion, LocalDate fecha, Rescatista rescatista, Animal animal, Tamanio tamanio) {

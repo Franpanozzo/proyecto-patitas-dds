@@ -17,30 +17,30 @@ public class Asociacion {
     String nombreAsociacion;
     List<String> caracteristicasPosibles = new ArrayList<>();
     List<Publicacion> listaDePublicaciones = new ArrayList<>();
-    GestorDeAsociacion repoUsuariosRegistrados;
+    GestorDeAsociacion GestorDeAsociacion;
     Coordenadas direccion;
 
     public Asociacion(String nombreAsociacion, Coordenadas direccion) {
         this.nombreAsociacion = nombreAsociacion;
-        this.repoUsuariosRegistrados = new GestorDeAsociacion();
+        this.GestorDeAsociacion = new GestorDeAsociacion();
         this.direccion = direccion;
     }
 
     //Metodo para implementar MOCKITO
     public void cambiarMail(JavaMail mail) {
-        repoUsuariosRegistrados.setMail(mail);
+        GestorDeAsociacion.setMail(mail);
     }
 
     public void agregarCarateristica(String caracteristica) {
         caracteristicasPosibles.add(caracteristica);
     }
 
-    public GestorDeAsociacion getRepoUsuariosRegistrados() {
-        return repoUsuariosRegistrados;
+    public GestorDeAsociacion getGestorDeAsociacion() {
+        return GestorDeAsociacion;
     }
 
     public void registrarUsuario(Usuario usuarioNuevo) {
-        repoUsuariosRegistrados.cargarNuevoUsuario(usuarioNuevo);
+        GestorDeAsociacion.cargarNuevoUsuario(usuarioNuevo);
     }
 
     public List<String> getCaracteristicasPosibles() {
@@ -63,7 +63,7 @@ public class Asociacion {
     }
 
     public void buscarDuenioYNotificar(String codigoQR) {
-        repoUsuariosRegistrados.buscarDuenioYNotificar(codigoQR, nombreAsociacion);
+        GestorDeAsociacion.buscarDuenioYNotificar(codigoQR, nombreAsociacion);
     }
 
     public void registrarPublicacion(Publicacion publicacion) {
@@ -87,11 +87,8 @@ public class Asociacion {
         DatoDeContacto algunContactoDelRescatista = datosDeContRescatista.stream().findAny().get();
 
         this.quitarPublicacion(publicacionElegida);
-        repoUsuariosRegistrados.notificarRescatista(algunContactoDelRescatista.getEmail(), emailSupuestoDuenio);
-
+        GestorDeAsociacion.notificarRescatista(algunContactoDelRescatista.getEmail(), emailSupuestoDuenio);
         // Coordina entrega con el siguiente mail: tataa
-
-
     }
 
 

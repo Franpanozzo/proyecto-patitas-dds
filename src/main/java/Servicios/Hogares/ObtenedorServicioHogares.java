@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ObtenedorServicio {
+public class ObtenedorServicioHogares {
   static List<Hogar> listaHogares = new ArrayList<>();
   static ServicioHogares servicio = ServicioHogares.getInstance();
   //List<ListaDeHogares> ListaDeListaDeHogares = new ArrayList<>();
@@ -26,7 +26,7 @@ public class ObtenedorServicio {
   }
 
   public static void agregarHogares(List<Hogar> listaHogares) {
-    ObtenedorServicio.listaHogares.addAll(listaHogares);
+    ObtenedorServicioHogares.listaHogares.addAll(listaHogares);
   }
 
   public static List<Hogar> hogaresQueCumplan(double radio, DatosMascotaPerdida datosMascota) throws IOException {
