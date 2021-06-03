@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ObtenedorServicio {
-  static List<Hogar> listaPosta = new ArrayList<>();
+  static List<Hogar> listaHogares = new ArrayList<>();
   static ServicioHogares servicio = ServicioHogares.getInstance();
   //List<ListaDeHogares> ListaDeListaDeHogares = new ArrayList<>();
 
@@ -26,12 +26,12 @@ public class ObtenedorServicio {
   }
 
   public static void agregarHogares(List<Hogar> listaHogares) {
-    listaPosta.addAll(listaHogares);
+    ObtenedorServicio.listaHogares.addAll(listaHogares);
   }
 
   public static List<Hogar> hogaresQueCumplan(double radio, DatosMascotaPerdida datosMascota) throws IOException {
     setAllHogares();
-    return listaPosta.stream()
+    return listaHogares.stream()
         .filter(h -> h.estaDentroRadio(radio, datosMascota))
         .filter(h -> h.tieneDisponibilidad())
         .filter(h -> h.aceptaAnimal(datosMascota))

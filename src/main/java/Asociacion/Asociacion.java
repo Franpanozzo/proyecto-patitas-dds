@@ -3,8 +3,9 @@ package Asociacion;
 import Mailer.JavaMail;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
-import Repositorios.RepositorioUsuarios;
-import Usuario.Usuario;
+import Repositorios.GestorDeAsociacion;
+import Usuario.*;
+import Usuario.DatoDeContacto;
 //import jdk.vm.ci.meta.Local;
 
 import java.time.LocalDate;
@@ -13,13 +14,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Asociacion {
+    String nombreAsociacion;
     List<String> caracteristicasPosibles = new ArrayList<>();
     List<Publicacion> listaDePublicaciones = new ArrayList<>();
-    RepositorioUsuarios repoUsuariosRegistrados;
+    GestorDeAsociacion repoUsuariosRegistrados;
     Coordenadas direccion;
 
-    public Asociacion(Coordenadas direccion) {
-        this.repoUsuariosRegistrados = new RepositorioUsuarios();
+    public Asociacion(String nombreAsociacion, Coordenadas direccion) {
+        this.nombreAsociacion = nombreAsociacion;
+        this.repoUsuariosRegistrados = new GestorDeAsociacion();
         this.direccion = direccion;
     }
 
@@ -32,7 +35,7 @@ public class Asociacion {
         caracteristicasPosibles.add(caracteristica);
     }
 
-    public RepositorioUsuarios getRepoUsuariosRegistrados() {
+    public GestorDeAsociacion getRepoUsuariosRegistrados() {
         return repoUsuariosRegistrados;
     }
 
@@ -44,11 +47,9 @@ public class Asociacion {
         return caracteristicasPosibles;
     }
 
-    /*
     public void quitarPublicacion(Publicacion publicacion) {
        listaDePublicaciones.remove(publicacion);
     }
-    */
 
     public List<Publicacion> obtenerPublicacionesDeLosUltimosDias() {
         LocalDate fechaMin = LocalDate.now().minusDays(10);
@@ -62,7 +63,7 @@ public class Asociacion {
     }
 
     public void buscarDuenioYNotificar(String codigoQR) {
-        repoUsuariosRegistrados.buscarDuenioYNotificar(codigoQR);
+        repoUsuariosRegistrados.buscarDuenioYNotificar(codigoQR, nombreAsociacion);
     }
 
     public void registrarPublicacion(Publicacion publicacion) {
@@ -80,4 +81,18 @@ public class Asociacion {
     public List<Publicacion> getListaDePublicaciones() {
         return listaDePublicaciones;
     }
+
+    public void encuentroDeMascotaEnPublicacion(Publicacion publicacionElegida, String emailSupuestoDuenio) {
+        List<DatoDeContacto> datosDeContRescatista = publicacionElegida.getDatoDeContactoDelRescatista();
+        DatoDeContacto algunContactoDelRescatista = datosDeContRescatista.stream().findAny().get();
+
+        this.quitarPublicacion(publicacionElegida);
+        repoUsuariosRegistrados.notificarRescatista(algunContactoDelRescatista.getEmail(), emailSupuestoDuenio);
+
+        // Coordina entrega con el siguiente mail: tataa
+
+
+    }
+
+
 }

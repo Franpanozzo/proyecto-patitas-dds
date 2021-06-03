@@ -18,7 +18,7 @@ public class DatoDeContacto {
         this.email = this.ValidarMail(email);
     }
 
-    public String ValidarMail(String email) {
+    public static String ValidarMail(String email) {
       // Patron para validar el email
       Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 

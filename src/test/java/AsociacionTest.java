@@ -1,11 +1,11 @@
 import Asociacion.*;
+import Repositorios.GestorDeAsociacion;
 import Servicios.Hogares.*;
 
 import Exceptions.*;
 import FormasDeEncuentro.*;
 import Mailer.JavaMail;
 import Repositorios.RepositorioAsociaciones;
-import Repositorios.RepositorioUsuarios;
 import Servicios.Hogares.Hogar;
 import Servicios.Hogares.ListaDeHogares;
 import Servicios.Hogares.ServicioHogares;
@@ -62,6 +62,8 @@ public class AsociacionTest {
     static ListaDeHogares lista2;
     static ListaDeHogares lista3;
     static ListaDeHogares lista4;
+    JavaMail mailFalso;
+
 
 
     @BeforeAll
@@ -85,6 +87,9 @@ public class AsociacionTest {
         patitas = new Asociacion(new Coordenadas(52.5244444,13.410555555555552));
         repoUsuarios = patitas.getRepoUsuariosRegistrados();
         RepositorioAsociaciones.getInstance().agregarAsociacion(patitas);
+        mailFalso = Mockito.mock(JavaMail.class);
+        patitas.cambiarMail(mailFalso);
+
         this.franB = usuariosRescatista("franB");
         this.facu = usuariosRescatista("facu");
         this.wendy = mascotaPerdida("fotoWendy.png", Collections.singletonList("Manso"), fechaActual, franB, Animal.GATO, Tamanio.MEDIANA);
@@ -107,7 +112,6 @@ public class AsociacionTest {
 
     @Test
     public void rescatistaEncuentraMascotaSinChapitaYBuscaRefugioParaElla() throws IOException {
-
         franB.informarMascotaEncontrada(wendy, new SinChapita());
         assertTrue(franB.buscarHogares(100).contains(hogarSantaAna));
     }
@@ -120,8 +124,6 @@ public class AsociacionTest {
 
     @Test
     public void personaPuedeInformarUnPerroPerdidoConChapitaConMailMockito() {
-        JavaMail mailFalso = Mockito.mock(JavaMail.class);
-        patitas.cambiarMail(mailFalso);
         Rescatista franB = usuariosRescatista("franB");
         MascotaPerdida wendy = new MascotaPerdida(franB, "foto.png", Collections.singletonList("Manso"),new Coordenadas(42.5244444,12.410555555555552), fechaActual, Animal.PERRO, Tamanio.MEDIANA);
         wendy.setChapita(new Chapita("1234", patitas));
@@ -131,12 +133,17 @@ public class AsociacionTest {
     }
 
     @Test
-    public void personaPuedeInformarUnPerroPerdidoSinChapita() {
+    public void rescatistaPuedeInformarUnPerroPerdidoSinChapita() {
         MascotaPerdida oli = new MascotaPerdida(franB, "fotoOli.png", Collections.singletonList("Manso"),new Coordenadas(42.5244444,12.410555555555552), fechaActual, Animal.GATO, Tamanio.CHICA);
         franB.informarMascotaEncontrada(oli, new SinChapita());
         juli.aprobarPublicaciones();
         assertEquals("fotoOli.png", patitas.obtenerPublicacionesDeLosUltimosDias().get(0).getDatosMascotaPerdida().getFoto());
+    }
 
+    @Test
+    public void personaEncuentraMascotaEnPubliYSistemaInformaRescatista() {
+        patitas.encuentroDeMascotaEnPublicacion(publiWendy, "guillermin.felipettin@gmail.com");
+        Mockito.verify(mailFalso, Mockito.only()).enviarMail(Mockito.any());
     }
 
 
@@ -201,11 +208,11 @@ public class AsociacionTest {
     }
 
     private MascotaPerdida mascotaPerdida(String foto,List<String> descripcion, LocalDate fecha, Rescatista rescatista, Animal animal, Tamanio tamanio) {
-        return new MascotaPerdida(rescatista, foto, descripcion, new Coordenadas(-33.44, -57.66), fecha, animal, tamanio);
+        return new MascotaPerdida(rescatista, foto, descripcion, new Coordenadas(-34.62072,-58.41820), fecha, animal, tamanio);
     }
 
     private Rescatista usuariosRescatista(String nombre) {
-        DatoDeContacto datoDeContacto = new DatoDeContacto("facundofacu", 1130550832, "facuelmejor@gmail.com");
+        DatoDeContacto datoDeContacto = new DatoDeContacto("facundofacu", 1130550832, "facundoivan10@gmail.com");
         DatosPersonales datosPersonales = new DatosPersonales(nombre, fechaAntigua, TipoDocumento.DNI, 40122287);
         return new Rescatista(datosPersonales, new Coordenadas(52.5244444, 13.410555555555556), Collections.singletonList(datoDeContacto));
     }
@@ -224,7 +231,7 @@ public class AsociacionTest {
 
     private UsuarioDuenio duenioConDosMascotas() {
         DatoDeContacto datosDeContactoPepe = new DatoDeContacto("juliaGonzales", 1140520843, "francisco.panozzosf@gmail.com");
-        DatosPersonales datosPersonalesPepe = new DatosPersonales("Pep", fechaAntigua, TipoDocumento.DNI, 20149687);
+        DatosPersonales datosPersonalesPepe = new DatosPersonales("Pepe Guardiola", fechaAntigua, TipoDocumento.DNI, 20149687);
         return new UsuarioDuenio("pepe12",
                 "ADr731xsqz",
                 patitas,

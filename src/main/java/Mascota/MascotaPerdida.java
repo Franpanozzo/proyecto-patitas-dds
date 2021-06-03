@@ -19,15 +19,6 @@ public class MascotaPerdida {
         datosMascotaPerdida = new DatosMascotaPerdida(rescatista,foto,descripcionEstado,lugarDeEncuentro,fechaEncuentro, animal, tamanio);
     }
 
-    /*public MascotaPerdida(Rescatista rescatista, String foto, String descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro, Optional<Chapita> chapita) {
-        this.rescatista = rescatista;
-        this.foto = foto;
-        this.descripcionEstado = descripcionEstado;
-        this.lugarDeEncuentro = lugarDeEncuentro;
-        this.fechaEncuentro = fechaEncuentro;
-        this.chapita = chapita.;
-    }*/
-
     public Chapita getChapita(){
         return chapita;
     }
@@ -39,7 +30,6 @@ public class MascotaPerdida {
     public double distanciaAEncuentro(Coordenadas direccion) {
         return datosMascotaPerdida.getLugarDeEncuentro().distanciaA(direccion);
     }
-
 
     public void buscarDuenioCorrespondiente() {
         chapita.identificarDuenioEnAsociacion();

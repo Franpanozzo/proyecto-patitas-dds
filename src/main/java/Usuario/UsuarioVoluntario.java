@@ -5,8 +5,8 @@ import Exceptions.UsuarioNoPerdioMascotaException;
 
 public class UsuarioVoluntario extends Usuario {
 
-  public UsuarioVoluntario(String nombreUsuario, String contrasenia, Asociacion asociacion) {
-    super(nombreUsuario, contrasenia, asociacion);
+  public UsuarioVoluntario(String nombreUsuario, String contrasenia, Asociacion asociacion, DatosPersonales datosPersonales) {
+    super(nombreUsuario, contrasenia, asociacion, datosPersonales);
   }
 
   public boolean mismoCodigoQR(String codigoQR) {

@@ -10,7 +10,6 @@ import Asociacion.Asociacion;
 import Mascota.Mascota;
 
 public class UsuarioDuenio extends Usuario {
-    DatosPersonales datosPersonales;
     List<DatoDeContacto> datoDeContactoList = new ArrayList<>();
     List<Mascota> mascotasList = new ArrayList<>();
     String codigoQR;
@@ -29,8 +28,7 @@ public class UsuarioDuenio extends Usuario {
     }
 
     public UsuarioDuenio(String nombreUsuario, String contrasenia, Asociacion asociacion,DatosPersonales datosPersonales, List<DatoDeContacto> datoDeContactoList, String codigoQR) {
-        super(nombreUsuario, contrasenia, asociacion);
-        this.datosPersonales = Objects.requireNonNull(datosPersonales, "Los datos personales no tienen que ser null");
+        super(nombreUsuario, contrasenia, asociacion, datosPersonales);
         this.datoDeContactoList = Objects.requireNonNull(datoDeContactoList, "El dato de contacto no tiene que ser null");
         this.codigoQR = Objects.requireNonNull(codigoQR, "El codigoQR no tiene que ser null");
     }

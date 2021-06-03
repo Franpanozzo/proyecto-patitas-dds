@@ -17,4 +17,8 @@ public class DatosPersonales {
     this.tipoDocumento = tipoDocumento;
     this.numeroDocumento = numeroDocumento;
   }
+
+  public String getNombreYApellidos() {
+    return nombreApellido;
+  }
 }
