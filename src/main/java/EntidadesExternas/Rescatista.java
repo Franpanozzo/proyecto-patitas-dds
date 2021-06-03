@@ -26,14 +26,19 @@ public class Rescatista {
     }
 
     public void informarMascotaEncontrada(MascotaPerdida mascota, FormaDeEncuentro formaDeEncuentro) {
-       formaDeEncuentro.ejecutarAccion(mascota);
+       formaDeEncuentro.ejecutarAccion(mascota,contacto);
        mascotaPerdida = mascota;
     }
 
     public List<Hogar> buscarHogares(double radio) throws IOException {
         return ObtenedorServicio.hogaresQueCumplan(radio,mascotaPerdida.getDatosMascotaPerdida());
     }
+
+    public List<DatoDeContacto> getContacto() {
+        return contacto;
+    }
 }
+
 
 
 

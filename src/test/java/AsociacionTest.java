@@ -1,11 +1,11 @@
 import Asociacion.*;
+import Repositorios.GestorDeAsociacion;
 import Servicios.Hogares.*;
 
 import Exceptions.*;
 import FormasDeEncuentro.*;
 import Mailer.JavaMail;
 import Repositorios.RepositorioAsociaciones;
-import Repositorios.RepositorioUsuarios;
 import Servicios.Hogares.Hogar;
 import Servicios.Hogares.ListaDeHogares;
 import Servicios.Hogares.ServicioHogares;
@@ -33,9 +33,9 @@ public class AsociacionTest {
     LocalDate fechaAntigua = LocalDate.of(1999, 05, 23);
     LocalDate fechaActual = LocalDate.now();
     Asociacion patitas;
-    static Asociacion garritas = new Asociacion(new Coordenadas(12.5578234,9.086421783546927));
-    static Asociacion colitas = new Asociacion(new Coordenadas(90.62036402,2.362539475273947));
-    RepositorioUsuarios repoUsuarios;
+    static Asociacion garritas = new Asociacion("Garritas",new Coordenadas(12.5578234,9.086421783546927));
+    static Asociacion colitas = new Asociacion("Colitas", new Coordenadas(90.62036402,2.362539475273947));
+    GestorDeAsociacion repoUsuarios;
     //Asociacion masCercanaAOli;
     //Asociacion masCercanaALasMascotas;
     UsuarioVoluntario sofi;
@@ -62,6 +62,8 @@ public class AsociacionTest {
     static ListaDeHogares lista2;
     static ListaDeHogares lista3;
     static ListaDeHogares lista4;
+    JavaMail mailFalso;
+
 
 
     @BeforeAll
@@ -82,18 +84,22 @@ public class AsociacionTest {
 
     @BeforeEach
     public void iniciarPreTest(){
-        patitas = new Asociacion(new Coordenadas(52.5244444,13.410555555555552));
+        DatosPersonales datosPersonales = new DatosPersonales("FranPanozzo", fechaAntigua, TipoDocumento.DNI, 40122287);
+        patitas = new Asociacion("Patitas",new Coordenadas(52.5244444,13.410555555555552));
         repoUsuarios = patitas.getRepoUsuariosRegistrados();
         RepositorioAsociaciones.getInstance().agregarAsociacion(patitas);
+        mailFalso = Mockito.mock(JavaMail.class);
+        patitas.cambiarMail(mailFalso);
+
         this.franB = usuariosRescatista("franB");
         this.facu = usuariosRescatista("facu");
         this.wendy = mascotaPerdida("fotoWendy.png", Collections.singletonList("Manso"), fechaActual, franB, Animal.GATO, Tamanio.MEDIANA);
         this.murri = mascotaPerdida("fotoMurri.png", Collections.singletonList("Tranquilo"), fechaActual, franB, Animal.PERRO, Tamanio.CHICA);
         this.milton = mascotaPerdida("fotoMilton.png", Collections.singletonList("Amistoso"), fechaActual, facu, Animal.PERRO, Tamanio.CHICA);
         this.millo = mascotaPerdida("fotoMillo.png", Collections.singletonList("Manso"), fechaUnMesAtras, facu , Animal.PERRO, Tamanio.GRANDE);
-        sofi = new UsuarioVoluntario("sofiKpita","sofilamejR24",  patitas);
-        juli = new UsuarioVoluntario("juli","sofilamejR24",  patitas);
-        //this.publiWendy = new Publicacion(new DatosMascotaPerdida(franB,"foto", Collections.singletonList("Sola, asustada"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.MEDIANA));
+        sofi = new UsuarioVoluntario("sofiKpita","sofilamejR24",  patitas, datosPersonales);
+        juli = new UsuarioVoluntario("juli","sofilamejR24",  patitas, datosPersonales);
+        this.publiWendy = new Publicacion( wendy.getDatosMascotaPerdida(), franB.getContacto());
         //this.publiMurri = new Publicacion(new DatosMascotaPerdida(franB,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.CHICA));
         //this.publiMilton = new Publicacion(new DatosMascotaPerdida(facu,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.CHICA));
         //this.publiMillo = new Publicacion(new DatosMascotaPerdida(facu,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaUnMesAtras, Animal.PERRO, Tamanio.GRANDE));
@@ -107,7 +113,6 @@ public class AsociacionTest {
 
     @Test
     public void rescatistaEncuentraMascotaSinChapitaYBuscaRefugioParaElla() throws IOException {
-
         franB.informarMascotaEncontrada(wendy, new SinChapita());
         assertTrue(franB.buscarHogares(100).contains(hogarSantaAna));
     }
@@ -120,8 +125,6 @@ public class AsociacionTest {
 
     @Test
     public void personaPuedeInformarUnPerroPerdidoConChapitaConMailMockito() {
-        JavaMail mailFalso = Mockito.mock(JavaMail.class);
-        patitas.cambiarMail(mailFalso);
         Rescatista franB = usuariosRescatista("franB");
         MascotaPerdida wendy = new MascotaPerdida(franB, "foto.png", Collections.singletonList("Manso"),new Coordenadas(42.5244444,12.410555555555552), fechaActual, Animal.PERRO, Tamanio.MEDIANA);
         wendy.setChapita(new Chapita("1234", patitas));
@@ -131,12 +134,17 @@ public class AsociacionTest {
     }
 
     @Test
-    public void personaPuedeInformarUnPerroPerdidoSinChapita() {
+    public void rescatistaPuedeInformarUnPerroPerdidoSinChapita() {
         MascotaPerdida oli = new MascotaPerdida(franB, "fotoOli.png", Collections.singletonList("Manso"),new Coordenadas(42.5244444,12.410555555555552), fechaActual, Animal.GATO, Tamanio.CHICA);
         franB.informarMascotaEncontrada(oli, new SinChapita());
         juli.aprobarPublicaciones();
         assertEquals("fotoOli.png", patitas.obtenerPublicacionesDeLosUltimosDias().get(0).getDatosMascotaPerdida().getFoto());
+    }
 
+    @Test
+    public void personaEncuentraMascotaEnPubliYSistemaInformaRescatista() {
+        patitas.encuentroDeMascotaEnPublicacion(publiWendy, "guillermin.felipettin@gmail.com");
+        Mockito.verify(mailFalso, Mockito.only()).enviarMail(Mockito.any());
     }
 
 
@@ -190,7 +198,8 @@ public class AsociacionTest {
 
     @Test
     public void crearUsuarioContraseniasErroneas() {
-        assertThrows(ContraseniaInvalidaException.class, () -> new UsuarioAdministrador("franpano", "12345", patitas));
+        DatosPersonales datosPersonales = new DatosPersonales("FranPanozzo", fechaAntigua, TipoDocumento.DNI, 40122287);
+        assertThrows(ContraseniaInvalidaException.class, () -> new UsuarioAdministrador("franpano", "12345", patitas, datosPersonales));
         /*UsuarioAdministrador usuarioNist1 = new UsuarioAdministrador().crearUsuario("usuarioNist1","as","Usuario Nist1", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);
         UsuarioAdministrador usuarioNist2 = new UsuarioAdministrador().crearUsuario("usuarioNist2","usuarioNist2","Usuario Nist2", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);;
         UsuarioAdministrador usuarioNist3 = new UsuarioAdministrador().crearUsuario("usuarioNist3","AAAAAAAAAA","Usuario Nist3", fechaAntigua, tipoDocumento.DNI,42842567, Collections.singletonList(datoFran("pepeGonzales",1140520743, "pepitogonzales@gmail.com")), patitas);
@@ -201,17 +210,18 @@ public class AsociacionTest {
     }
 
     private MascotaPerdida mascotaPerdida(String foto,List<String> descripcion, LocalDate fecha, Rescatista rescatista, Animal animal, Tamanio tamanio) {
-        return new MascotaPerdida(rescatista, foto, descripcion, new Coordenadas(-33.44, -57.66), fecha, animal, tamanio);
+        return new MascotaPerdida(rescatista, foto, descripcion, new Coordenadas(-34.62072,-58.41820), fecha, animal, tamanio);
     }
 
     private Rescatista usuariosRescatista(String nombre) {
-        DatoDeContacto datoDeContacto = new DatoDeContacto("facundofacu", 1130550832, "facuelmejor@gmail.com");
+        DatoDeContacto datoDeContacto = new DatoDeContacto("facundofacu", 1130550832, "facundoivan10@gmail.com");
         DatosPersonales datosPersonales = new DatosPersonales(nombre, fechaAntigua, TipoDocumento.DNI, 40122287);
         return new Rescatista(datosPersonales, new Coordenadas(52.5244444, 13.410555555555556), Collections.singletonList(datoDeContacto));
     }
 
     private UsuarioAdministrador usuarioAdmin() {
-        return new UsuarioAdministrador("franpano", "sofilamejR24", patitas);
+        DatosPersonales datosPersonales = new DatosPersonales("FranPanozzo", fechaAntigua, TipoDocumento.DNI, 40122287);
+        return new UsuarioAdministrador("franpano", "sofilamejR24", patitas, datosPersonales);
     }
 
     private Mascota oli() {
@@ -224,7 +234,7 @@ public class AsociacionTest {
 
     private UsuarioDuenio duenioConDosMascotas() {
         DatoDeContacto datosDeContactoPepe = new DatoDeContacto("juliaGonzales", 1140520843, "francisco.panozzosf@gmail.com");
-        DatosPersonales datosPersonalesPepe = new DatosPersonales("Pep", fechaAntigua, TipoDocumento.DNI, 20149687);
+        DatosPersonales datosPersonalesPepe = new DatosPersonales("Pepe Guardiola", fechaAntigua, TipoDocumento.DNI, 20149687);
         return new UsuarioDuenio("pepe12",
                 "ADr731xsqz",
                 patitas,
@@ -234,4 +244,3 @@ public class AsociacionTest {
     }
 
 }
-

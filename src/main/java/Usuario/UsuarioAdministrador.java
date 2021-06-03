@@ -8,8 +8,8 @@ import java.util.Objects;
 public class UsuarioAdministrador extends Usuario {
     Asociacion asociacionDondeTrabaja;
 
-    public UsuarioAdministrador(String nombreUsuario, String contrasenia, Asociacion asociacionDondeTrabaja) {
-        super(nombreUsuario, contrasenia, asociacionDondeTrabaja);
+    public UsuarioAdministrador(String nombreUsuario, String contrasenia, Asociacion asociacionDondeTrabaja, DatosPersonales datosPersonales) {
+        super(nombreUsuario, contrasenia, asociacionDondeTrabaja, datosPersonales);
         this.asociacionDondeTrabaja = Objects.requireNonNull(asociacionDondeTrabaja,"La asociacion donde trabaja no tiene que ser nula");
     }
 

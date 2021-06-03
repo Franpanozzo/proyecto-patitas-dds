@@ -1,15 +1,24 @@
 package Asociacion;
 
 import Mascota.DatosMascotaPerdida;
+import Usuario.DatoDeContacto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Publicacion {
   DatosMascotaPerdida datosMascotaPerdida;
   boolean validada = false;
+  List<DatoDeContacto> datoDeContactoDelRescatista = new ArrayList<>();
 
-  public Publicacion(DatosMascotaPerdida datosMascotaPerdida) {
+  public Publicacion(DatosMascotaPerdida datosMascotaPerdida, List<DatoDeContacto> datoDeContactoList) {
     this.datosMascotaPerdida = datosMascotaPerdida;
+    this.datoDeContactoDelRescatista = datoDeContactoList;
+  }
+
+  public List<DatoDeContacto> getDatoDeContactoDelRescatista() {
+    return datoDeContactoDelRescatista;
   }
 
   public void validar() {

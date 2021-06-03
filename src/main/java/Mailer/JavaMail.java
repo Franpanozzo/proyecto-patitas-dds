@@ -27,7 +27,7 @@ public class JavaMail {
       props.setProperty("mail.smtp.host", "smtp.gmail.com");
       props.setProperty("mail.smtp.starttls.enable", "true");
       props.setProperty("mail.smtp.port", "587");
-      props.setProperty("mail.smtp.user", "asociacion.patitas.dds@gmail.com");
+      props.setProperty("mail.smtp.user", "proyecto.patitas.dds@gmail.com");
       props.setProperty("mail.smtp.auth", "true");
       props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 
@@ -36,7 +36,7 @@ public class JavaMail {
 
       // Construimos el mensaje
       MimeMessage message = new MimeMessage(session);
-      message.setFrom(new InternetAddress("asociacion.patitas.dds@gmail.com"));
+      message.setFrom(new InternetAddress("proyecto.patitas.dds@gmail.com"));
       message.addRecipient(
           Message.RecipientType.TO,
           new InternetAddress(mailAEnviar.getMail()));
@@ -46,7 +46,7 @@ public class JavaMail {
 
       // Lo enviamos.
       Transport t = session.getTransport("smtp");
-      t.connect("asociacion.patitas.dds@gmail.com", "patitas123");
+      t.connect("proyecto.patitas.dds@gmail.com", "patitas1234");
       t.sendMessage(message, message.getAllRecipients());
 
       // Cierre.

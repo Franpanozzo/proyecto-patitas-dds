@@ -57,8 +57,8 @@ public class Hogar {
   public boolean estaDentroRadio(double radio, DatosMascotaPerdida datosMascota) {
 
     //ANDA MAL EL METODO DE CALCULAR DISTANCIA
-    //return datosMascota.getLugarDeEncuentro().distanciaA(new Coordenadas(ubicacion.getLatitud(), ubicacion.getLongitud())) <= radio;
-    return true;
+    return datosMascota.getLugarDeEncuentro().distanciaA(new Coordenadas(ubicacion.getLatitud(), ubicacion.getLongitud())) <= radio;
+    //return true;
   }
 
   public boolean cumpleCaracteristicaPuntual(DatosMascotaPerdida datosMascota) {
