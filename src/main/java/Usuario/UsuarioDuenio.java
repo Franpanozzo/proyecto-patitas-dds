@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import Asociacion.Asociacion;
-import Mascota.Mascota;
+import Mascota.*;
 
 public class UsuarioDuenio extends Usuario {
     List<DatoDeContacto> datoDeContactoList = new ArrayList<>();
@@ -43,9 +43,6 @@ public class UsuarioDuenio extends Usuario {
         return datoDeContactoList.stream().findAny().get().getEmail();
     }
 
-    public void buscarMascota() {
-
-    }
 }
 
 

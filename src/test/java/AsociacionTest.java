@@ -33,9 +33,9 @@ public class AsociacionTest {
     LocalDate fechaAntigua = LocalDate.of(1999, 05, 23);
     LocalDate fechaActual = LocalDate.now();
     Asociacion patitas;
-    static Asociacion garritas = new Asociacion(new Coordenadas(12.5578234,9.086421783546927));
-    static Asociacion colitas = new Asociacion(new Coordenadas(90.62036402,2.362539475273947));
-    RepositorioUsuarios repoUsuarios;
+    static Asociacion garritas = new Asociacion("Garritas",new Coordenadas(12.5578234,9.086421783546927));
+    static Asociacion colitas = new Asociacion("Colitas", new Coordenadas(90.62036402,2.362539475273947));
+    GestorDeAsociacion repoUsuarios;
     //Asociacion masCercanaAOli;
     //Asociacion masCercanaALasMascotas;
     UsuarioVoluntario sofi;
