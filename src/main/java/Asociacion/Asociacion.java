@@ -3,6 +3,8 @@ package Asociacion;
 import Mailer.JavaMail;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
+import Notificacion.FormaDeNotificar;
+import Notificacion.NotificarPorJavaMail;
 import Repositorios.GestorDeAsociacion;
 import Usuario.*;
 import Usuario.DatoDeContacto;
@@ -27,8 +29,8 @@ public class Asociacion {
     }
 
     //Metodo para implementar MOCKITO
-    public void cambiarMail(JavaMail mail) {
-        GestorDeAsociacion.setMail(mail);
+    public void cambiarMail(FormaDeNotificar mail) {
+        GestorDeAsociacion.setformaDeNotificar(mail);
     }
 
     public void agregarCarateristica(String caracteristica) {
@@ -87,7 +89,7 @@ public class Asociacion {
         DatoDeContacto algunContactoDelRescatista = datosDeContRescatista.stream().findAny().get();
 
         this.quitarPublicacion(publicacionElegida);
-        GestorDeAsociacion.notificarRescatista(algunContactoDelRescatista.getEmail(), emailSupuestoDuenio);
+        GestorDeAsociacion.notificarRescatista(algunContactoDelRescatista, emailSupuestoDuenio);
         // Coordina entrega con el siguiente mail: tataa
     }
 

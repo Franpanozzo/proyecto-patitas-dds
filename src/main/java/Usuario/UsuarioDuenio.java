@@ -39,6 +39,10 @@ public class UsuarioDuenio extends Usuario {
         return datoDeContactoList.stream().findAny().get().getEmail();
     }
 
+    @Override
+    public List<DatoDeContacto> getDatoDeContactoList() {
+        return datoDeContactoList;
+    }
 }
 
 

@@ -1,8 +1,9 @@
 package Usuario;
 
 import Asociacion.Asociacion;
-import Exceptions.UsuarioNoPerdioMascotaException;
+import Exceptions.*;
 
+import java.util.List;
 import java.util.Objects;
 
 public class UsuarioAdministrador extends Usuario {
@@ -21,6 +22,11 @@ public class UsuarioAdministrador extends Usuario {
     @Override
     public String getMailContacto() {
         throw new UsuarioNoPerdioMascotaException("Los usuarios administradores no pierden mascotas, por lo tanto no se los notifica");
+    }
+
+    @Override
+    public List<DatoDeContacto> getDatoDeContactoList() {
+        throw new UsuarioNoTieneDatoDeContacto("Los usuarios administradores no tienen dato de contacto");
     }
 
     public void agregarCaracteristica(String nuevaCaract) {

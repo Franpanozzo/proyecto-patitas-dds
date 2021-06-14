@@ -31,6 +31,8 @@ public abstract class Usuario {
   public String getNombreYApellido(){
     return datosPersonales.getNombreYApellidos();
   }
+
+  public abstract List<DatoDeContacto> getDatoDeContactoList();
 }
 
 

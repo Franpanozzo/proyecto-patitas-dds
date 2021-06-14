@@ -1,5 +1,5 @@
-package Mailer;
-
+package Notificacion;
+import Mailer.Mail;
 import Usuario.DatoDeContacto;
 
 import java.util.Properties;
@@ -16,7 +16,7 @@ import javax.mail.internet.MimeMessage;
  *
  * @author Chuidiang
  */
-public class JavaMail {
+public class NotificarPorJavaMail implements FormaDeNotificar{
   /**
    * main de prueba
    *

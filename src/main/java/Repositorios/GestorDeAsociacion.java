@@ -2,14 +2,15 @@ package Repositorios;
 
 import Mailer.JavaMail;
 import Mailer.Mail;
-import Usuario.Usuario;
+import Notificacion.FormaDeNotificar;
+import Usuario.*;
 
 import java.time.chrono.JapaneseChronology;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GestorDeAsociacion {
-  JavaMail mail = new JavaMail();
+  FormaDeNotificar formaDeNotificar;
   List<Usuario> listaDeUsuarios = new ArrayList<>();
 
   public void cargarNuevoUsuario(Usuario usuarioNuevo) {
@@ -25,25 +26,26 @@ public class GestorDeAsociacion {
       .stream()
       .filter(unUsuario -> unUsuario.mismoCodigoQR(codigoQR))
       .findAny().get();
-    this.notificarPorMail(usuario, nombreAsociacion);
+    this.notificar(usuario, nombreAsociacion);
   }
 
 //Set para mockear
-  public void setMail(JavaMail mail) {
-    this.mail = mail;
+  public void setformaDeNotificar(FormaDeNotificar formaDeNotificar) {
+    this.formaDeNotificar = formaDeNotificar;
   }
 
-  private void notificarPorMail(Usuario usuario, String nombreAsociacion) {
-    mail.enviarMail(new Mail(usuario.getMailContacto(),"AVISO DE ENCUENTRO DE MASCOTA",
+  private void notificar(Usuario usuario, String nombreAsociacion) {
+    DatoDeContacto algunContactoDelUsuario = usuario.getDatoDeContactoList().stream().findAny().get();
+    formaDeNotificar.enviarNotificacion(algunContactoDelUsuario,"AVISO DE ENCUENTRO DE MASCOTA",
         "Buenos dias, encontramos a la mascota que perdio tu familiar " + usuario.getNombreYApellido()
-                + ""
-                + "\nContactanos lo antes posible para acordar el punto de entrega" ));
+            + ""
+            + "\nContactanos lo antes posible para acordar el punto de entrega" );
   }
 
-  public void notificarRescatista(String mailRescatista, String mailDuenioNoRegistrado) {
-    mail.enviarMail(new Mail(mailRescatista,"AVISO DE ENCUENTRO DE MASCOTA",
+  public void notificarRescatista(DatoDeContacto mailRescatista, String mailDuenioNoRegistrado) {
+    formaDeNotificar.enviarNotificacion(mailRescatista,"AVISO DE ENCUENTRO DE MASCOTA",
         "Buenos dias, el dueño de la mascota que encontraste quiere coordinar un punto de encuentro."
-            + "\nContactate con el lo antes posible: " + mailDuenioNoRegistrado ));
+            + "\nContactate con el lo antes posible: " + mailDuenioNoRegistrado );
   }
 
 

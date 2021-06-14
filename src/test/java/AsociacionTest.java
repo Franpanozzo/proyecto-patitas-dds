@@ -1,4 +1,6 @@
 import Asociacion.*;
+import Notificacion.FormaDeNotificar;
+import Notificacion.NotificarPorJavaMail;
 import Repositorios.GestorDeAsociacion;
 import Servicios.Hogares.*;
 
@@ -62,7 +64,7 @@ public class AsociacionTest {
     static ListaDeHogares lista2;
     static ListaDeHogares lista3;
     static ListaDeHogares lista4;
-    JavaMail mailFalso;
+    NotificarPorJavaMail mailFalso;
 
 
 
@@ -88,7 +90,7 @@ public class AsociacionTest {
         patitas = new Asociacion("Patitas",new Coordenadas(52.5244444,13.410555555555552));
         repoUsuarios = patitas.getGestorDeAsociacion();
         RepositorioAsociaciones.getInstance().agregarAsociacion(patitas);
-        mailFalso = Mockito.mock(JavaMail.class);
+        mailFalso = Mockito.mock(NotificarPorJavaMail.class);
         patitas.cambiarMail(mailFalso);
 
         this.franB = usuariosRescatista("franB");
