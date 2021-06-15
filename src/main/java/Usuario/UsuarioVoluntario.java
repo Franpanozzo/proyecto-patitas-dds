@@ -15,8 +15,8 @@ public class UsuarioVoluntario extends Usuario {
     return false;
   }
 
-  public void aprobarPublicaciones() {
-    asociacion.aprobarPublicaciones();
+  public void aprobarPublicaciones(List<Publicacion> publicaciones) {
+    asociacion.aprobarPublicacion(publicaciones);
   }
 
   @Override

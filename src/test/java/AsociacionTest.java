@@ -143,7 +143,7 @@ public class AsociacionTest {
     @Test
     public void personaEncuentraMascotaEnPubliYSistemaInformaRescatista() {
         patitas.encuentroDeMascotaEnPublicacion(publiWendy, "guillermin.felipettin@gmail.com");
-        Mockito.verify(mailFalso, Mockito.only()).enviarMail(Mockito.any());
+        Mockito.verify(notificacionFalsa, Mockito.only()).enviarNotificacion(Mockito.any(),Mockito.anyString(),Mockito.anyString());
     }
 
 

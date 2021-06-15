@@ -28,18 +28,17 @@ public class Mascota {
         return caracteristicas;
     }
 
-    public void inicializarCarcteristicas(Asociacion asociacion, Map<String, String> caracteristicasNuevas) {
+    public void inicializarCaracteristicas(Asociacion asociacion, Map<String, String> caracteristicasNuevas) {
         List<String> listaCaracteristicas = asociacion.getCaracteristicasPosibles();
         for (String caracteristica : listaCaracteristicas) {
             caracteristicas.put(caracteristica, null);
         }
-        Set<String> keyscaracteristicasUsuario = caracteristicasNuevas.keySet();
-        for ( String key : keyscaracteristicasUsuario) {
-            if (caracteristicas.containsKey(key)){
-                caracteristicas.put(key, caracteristicasNuevas.get(key));
+        caracteristicasNuevas.forEach((k,v) -> {
+            if(caracteristicas.containsKey(k))  {
+                caracteristicas.put(k, v);
             }
-        };
-
+        });
+    }
 
 }
 
