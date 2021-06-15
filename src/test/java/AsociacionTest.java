@@ -68,10 +68,10 @@ public class AsociacionTest {
 
     @BeforeAll
     static void iniciarPreTodo() throws IOException {
-        lista1 = new ListaDeHogares(Collections.singletonList(hogarSantaAna));
-        lista2 = new ListaDeHogares(Collections.singletonList(laPataLoca));
-        lista3 = new ListaDeHogares(Collections.singletonList(hogarSantaTeresita));
-        lista4 = new ListaDeHogares(Collections.singletonList(hogarSantaMonica));
+        lista1 = new ListaDeHogares(40,Collections.singletonList(hogarSantaAna));
+        lista2 = new ListaDeHogares(40,Collections.singletonList(laPataLoca));
+        lista3 = new ListaDeHogares(40,Collections.singletonList(hogarSantaTeresita));
+        lista4 = new ListaDeHogares(40,Collections.singletonList(hogarSantaMonica));
 
         ServicioHogares ServicioHogaresFalso = Mockito.mock(ServicioHogares.class);
         ObtenedorServicioHogares.cambiarServicio(ServicioHogaresFalso);
