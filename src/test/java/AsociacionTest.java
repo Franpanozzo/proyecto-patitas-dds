@@ -1,12 +1,11 @@
 import Asociacion.*;
 import Notificacion.FormaDeNotificar;
 import Notificacion.NotificarPorJavaMail;
-import Repositorios.GestorDeAsociacion;
+import Repositorios.RepositorioUsuarios;
 import Servicios.Hogares.*;
 
 import Exceptions.*;
 import FormasDeEncuentro.*;
-import Mailer.JavaMail;
 import Repositorios.RepositorioAsociaciones;
 import Servicios.Hogares.Hogar;
 import Servicios.Hogares.ListaDeHogares;
@@ -37,7 +36,7 @@ public class AsociacionTest {
     Asociacion patitas;
     static Asociacion garritas = new Asociacion("Garritas",new Coordenadas(12.5578234,9.086421783546927));
     static Asociacion colitas = new Asociacion("Colitas", new Coordenadas(90.62036402,2.362539475273947));
-    GestorDeAsociacion repoUsuarios;
+    RepositorioUsuarios repoUsuarios;
     //Asociacion masCercanaAOli;
     //Asociacion masCercanaALasMascotas;
     UsuarioVoluntario sofi;
@@ -64,7 +63,7 @@ public class AsociacionTest {
     static ListaDeHogares lista2;
     static ListaDeHogares lista3;
     static ListaDeHogares lista4;
-    NotificarPorJavaMail mailFalso;
+    FormaDeNotificar notificacionFalsa;
 
 
 
@@ -90,8 +89,8 @@ public class AsociacionTest {
         patitas = new Asociacion("Patitas",new Coordenadas(52.5244444,13.410555555555552));
         repoUsuarios = patitas.getGestorDeAsociacion();
         RepositorioAsociaciones.getInstance().agregarAsociacion(patitas);
-        mailFalso = Mockito.mock(NotificarPorJavaMail.class);
-        patitas.cambiarMail(mailFalso);
+        notificacionFalsa = Mockito.mock(FormaDeNotificar.class);
+        patitas.cambiarFormaDeNotificar(notificacionFalsa);
 
         this.franB = usuariosRescatista("franB");
         this.facu = usuariosRescatista("facu");
@@ -132,15 +131,13 @@ public class AsociacionTest {
         wendy.setChapita(new Chapita("1234", patitas));
         UsuarioDuenio usuarioX = duenioConDosMascotas();
         franB.informarMascotaEncontrada(wendy, new ConChapita());
-        Mockito.verify(mailFalso, Mockito.only()).enviarMail(Mockito.any());
+        Mockito.verify(notificacionFalsa, Mockito.only()).enviarNotificacion(Mockito.any(),Mockito.anyString(),Mockito.anyString());
     }
 
     @Test
     public void rescatistaPuedeInformarUnPerroPerdidoSinChapita() {
-        MascotaPerdida oli = new MascotaPerdida(franB, "fotoOli.png", Collections.singletonList("Manso"),new Coordenadas(42.5244444,12.410555555555552), fechaActual, Animal.GATO, Tamanio.CHICA);
-        franB.informarMascotaEncontrada(oli, new SinChapita());
-        juli.aprobarPublicaciones();
-        assertEquals("fotoOli.png", patitas.obtenerPublicacionesDeLosUltimosDias().get(0).getDatosMascotaPerdida().getFoto());
+        franB.informarMascotaEncontrada(wendy, new SinChapita());
+        assertEquals("fotoWendy.png", patitas.getListaDePublicaciones().get(0).getDatosMascotaPerdida().getFoto());
     }
 
     @Test
@@ -184,18 +181,21 @@ public class AsociacionTest {
     }
 
 
+    //publicacionesDeLasMascotasPerdidasEnLosUltimos10Dias
+
     @Test
-    public void publicacionesDeLasMascotasPerdidasEnLosUltimos10Dias(){
+    public void usuarioPuedeAprobarPublicacionesDeUnasCuantas(){
         franB.informarMascotaEncontrada(wendy, new SinChapita());
         franB.informarMascotaEncontrada(murri, new SinChapita());
         facu.informarMascotaEncontrada(millo, new SinChapita());
         facu.informarMascotaEncontrada(milton, new SinChapita());
-        sofi.aprobarPublicaciones();
+
+        //Estas dos lineas se harian directamente en la UI
+        List<Publicacion> publicacionesASeleccionadar = patitas.getListaDePublicaciones();
+        publicacionesASeleccionadar.stream().filter(publicacion -> publicacion.getDatosMascotaPerdida().getFoto().equals("fotoWendy.png"));
+
+        sofi.aprobarPublicaciones(publicacionesASeleccionadar);
         assertEquals("fotoWendy.png", patitas.obtenerPublicacionesDeLosUltimosDias().get(0).getDatosMascotaPerdida().getFoto());
-        assertEquals("fotoMurri.png", patitas.obtenerPublicacionesDeLosUltimosDias().get(1).getDatosMascotaPerdida().getFoto());
-        assertEquals("fotoMilton.png", patitas.obtenerPublicacionesDeLosUltimosDias().get(2).getDatosMascotaPerdida().getFoto());
-        assertFalse(patitas.obtenerPublicacionesDeLosUltimosDias().stream().map(publi -> publi.getDatosMascotaPerdida().getFoto()).
-            collect(Collectors.toList()).contains("fotoMillo.png"));
     }
 
     @Test

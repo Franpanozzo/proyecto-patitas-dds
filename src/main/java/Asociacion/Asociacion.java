@@ -1,11 +1,9 @@
 package Asociacion;
 
-import Mailer.JavaMail;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
 import Notificacion.FormaDeNotificar;
-import Notificacion.NotificarPorJavaMail;
-import Repositorios.GestorDeAsociacion;
+import Repositorios.RepositorioUsuarios;
 import Usuario.*;
 import Usuario.DatoDeContacto;
 //import jdk.vm.ci.meta.Local;
@@ -19,30 +17,30 @@ public class Asociacion {
     String nombreAsociacion;
     List<String> caracteristicasPosibles = new ArrayList<>();
     List<Publicacion> listaDePublicaciones = new ArrayList<>();
-    GestorDeAsociacion GestorDeAsociacion;
+    RepositorioUsuarios RepositorioUsuarios;
     Coordenadas direccion;
 
     public Asociacion(String nombreAsociacion, Coordenadas direccion) {
         this.nombreAsociacion = nombreAsociacion;
-        this.GestorDeAsociacion = new GestorDeAsociacion();
+        this.RepositorioUsuarios = new RepositorioUsuarios();
         this.direccion = direccion;
     }
 
     //Metodo para implementar MOCKITO
-    public void cambiarMail(FormaDeNotificar mail) {
-        GestorDeAsociacion.setformaDeNotificar(mail);
+    public void cambiarFormaDeNotificar(FormaDeNotificar mail) {
+        RepositorioUsuarios.setformaDeNotificar(mail);
     }
 
     public void agregarCarateristica(String caracteristica) {
         caracteristicasPosibles.add(caracteristica);
     }
 
-    public GestorDeAsociacion getGestorDeAsociacion() {
-        return GestorDeAsociacion;
+    public RepositorioUsuarios getGestorDeAsociacion() {
+        return RepositorioUsuarios;
     }
 
     public void registrarUsuario(Usuario usuarioNuevo) {
-        GestorDeAsociacion.cargarNuevoUsuario(usuarioNuevo);
+        RepositorioUsuarios.cargarNuevoUsuario(usuarioNuevo);
     }
 
     public List<String> getCaracteristicasPosibles() {
@@ -65,7 +63,7 @@ public class Asociacion {
     }
 
     public void buscarDuenioYNotificar(String codigoQR) {
-        GestorDeAsociacion.buscarDuenioYNotificar(codigoQR, nombreAsociacion);
+        RepositorioUsuarios.buscarDuenioYNotificar(codigoQR, nombreAsociacion);
     }
 
     public void registrarPublicacion(Publicacion publicacion) {
@@ -76,7 +74,8 @@ public class Asociacion {
         return listaDePublicaciones.stream().filter(publicacion -> publicacion.validada()).collect(Collectors.toList());
     }
 
-    public void aprobarPublicaciones() {
+    //
+    public void aprobarPublicacion(List<Publicacion> listaDePublicaciones) {
         listaDePublicaciones.forEach(publicacion -> publicacion.validar());
     }
 
@@ -89,7 +88,7 @@ public class Asociacion {
         DatoDeContacto algunContactoDelRescatista = datosDeContRescatista.stream().findAny().get();
 
         this.quitarPublicacion(publicacionElegida);
-        GestorDeAsociacion.notificarRescatista(algunContactoDelRescatista, emailSupuestoDuenio);
+        RepositorioUsuarios.notificarRescatista(algunContactoDelRescatista, emailSupuestoDuenio);
         // Coordina entrega con el siguiente mail: tataa
     }
 

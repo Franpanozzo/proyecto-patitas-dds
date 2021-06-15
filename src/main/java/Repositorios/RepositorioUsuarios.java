@@ -9,7 +9,7 @@ import java.time.chrono.JapaneseChronology;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestorDeAsociacion {
+public class RepositorioUsuarios {
   FormaDeNotificar formaDeNotificar;
   List<Usuario> listaDeUsuarios = new ArrayList<>();
 

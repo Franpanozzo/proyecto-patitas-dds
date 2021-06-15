@@ -1,6 +1,6 @@
 package Usuario;
 
-import Asociacion.Asociacion;
+import Asociacion.*;
 import Exceptions.*;
 
 import java.util.List;
