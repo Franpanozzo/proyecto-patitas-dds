@@ -13,10 +13,16 @@ public class ObtenedorServicioHogares {
   //List<ListaDeHogares> ListaDeListaDeHogares = new ArrayList<>();
 
   public static void setAllHogares() throws IOException {
+    ListaDeHogares listaVariable = servicio.listadoDeHogares(1);
 
-    for(int i=1;i<=4;i++) {
-      ListaDeHogares listaVariable = servicio.listadoDeHogares(i);
-      //System.out.println(listaVariable.getTotal().toString() + listaVariable.getOffset().toString() + listaVariable.getListaHogares().get(0).getNombre());
+    agregarHogares(listaVariable.getListaHogares());
+
+    //System.out.println(listaVariable.getTotal().toString() + listaVariable.getOffset().toString() + listaVariable.getListaHogares().toString());
+
+    int paginasRestantes = listaVariable.getTotal() / 10;
+
+    for(int i=2;i<=paginasRestantes;i++) {
+      //System.out.println(listaVariable.getTotal().toString() + listaVariable.getOffset().toString() + listaVariable.getListaHogares().toString());
       agregarHogares(servicio.listadoDeHogares(i).getListaHogares());
     }
   }

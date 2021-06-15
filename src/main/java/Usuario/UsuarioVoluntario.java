@@ -1,7 +1,9 @@
 package Usuario;
 
-import Asociacion.Asociacion;
-import Exceptions.UsuarioNoPerdioMascotaException;
+import Asociacion.*;
+import Exceptions.*;
+
+import java.util.List;
 
 public class UsuarioVoluntario extends Usuario {
 
@@ -13,13 +15,17 @@ public class UsuarioVoluntario extends Usuario {
     return false;
   }
 
-  public void aprobarPublicaciones() {
-    asociacion.aprobarPublicaciones();
+  public void aprobarPublicaciones(List<Publicacion> publicaciones) {
+    asociacion.aprobarPublicacion(publicaciones);
   }
 
   @Override
   public String getMailContacto() {
     throw new UsuarioNoPerdioMascotaException("Los usuarios voluntarios no pierden mascotas, por lo tanto no se los notifica");
+  }
+  @Override
+  public List<DatoDeContacto> getDatoDeContactoList() {
+    throw new UsuarioNoTieneDatoDeContacto("Los usuarios voluntarios no tienen dato de contacto");
   }
 }
 

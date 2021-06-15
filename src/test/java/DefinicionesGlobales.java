@@ -7,7 +7,7 @@ public class DefinicionesGlobales {
   Asociacion patitas = new Asociacion(new Coordenadas(52.5244444,13.410555555555552));
   //Asociacion garritas = new Asociacion(new Coordenadas(12.5578234,9.086421783546927));
   //Asociacion colitas = new Asociacion(new Coordenadas(90.62036402,2.362539475273947));
-  GestorDeAsociacion repoUsuarios = patitas.getRepoUsuariosRegistrados();
+  RepositorioUsuarios repoUsuarios = patitas.getRepoUsuariosRegistrados();
   //Asociacion masCercanaAOli;
   //Asociacion masCercanaALasMascotas;
   //RepositorioAsociaciones.getInstance().agregarAsociaciones(patitas,garritas,colitas);

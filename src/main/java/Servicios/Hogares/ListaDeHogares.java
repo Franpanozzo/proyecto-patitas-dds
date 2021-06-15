@@ -12,7 +12,8 @@ public class ListaDeHogares {
   Integer offset;
   List<Hogar> hogares = new ArrayList<>();
 
-  public ListaDeHogares(List<Hogar> hogares) {
+  public ListaDeHogares(int total, List<Hogar> hogares) {
+    this.total = total;
     this.hogares = hogares;
   }
 

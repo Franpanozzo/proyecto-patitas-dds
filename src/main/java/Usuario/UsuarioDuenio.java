@@ -15,7 +15,7 @@ public class UsuarioDuenio extends Usuario {
     String codigoQR;
 
     public void registrarMascota(Mascota mascotaNueva, Map<String, String> caracteristicas) {
-        mascotaNueva.inicializarCarcteristicas(asociacion, caracteristicas);
+        mascotaNueva.inicializarCaracteristicas(asociacion, caracteristicas);
         mascotasList.add(mascotaNueva);
     }
 
@@ -39,6 +39,10 @@ public class UsuarioDuenio extends Usuario {
         return datoDeContactoList.stream().findAny().get().getEmail();
     }
 
+    @Override
+    public List<DatoDeContacto> getDatoDeContactoList() {
+        return datoDeContactoList;
+    }
 }
 
 
