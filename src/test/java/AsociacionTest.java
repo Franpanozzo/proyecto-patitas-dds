@@ -66,7 +66,6 @@ public class AsociacionTest {
     FormaDeNotificar notificacionFalsa;
 
 
-
     @BeforeAll
     static void iniciarPreTodo() throws IOException {
         lista1 = new ListaDeHogares(Collections.singletonList(hogarSantaAna));

@@ -1,11 +1,8 @@
 package Repositorios;
 
-import Mailer.JavaMail;
-import Mailer.Mail;
 import Notificacion.FormaDeNotificar;
 import Usuario.*;
 
-import java.time.chrono.JapaneseChronology;
 import java.util.ArrayList;
 import java.util.List;
 
