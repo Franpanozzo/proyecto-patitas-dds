@@ -17,19 +17,22 @@ import java.util.stream.Collectors;
 public class Asociacion {
     String nombreAsociacion;
     List<String> caracteristicasPosibles = new ArrayList<>();
-    List<Publicacion> listaDePublicaciones = new ArrayList<>();
-    RepositorioUsuarios RepositorioUsuarios;
+    List<PublicacionMascotaPerdida> listaDePublicaciones = new ArrayList<>();
+    List<Pregunta> listaDePreguntas = new ArrayList<>();
+    List<PublicacionAdopcionMascota> listaDePublicacionesParaAdoptar = new ArrayList<>();
+    List<PublicacionIntencionAdopcion> listaDePublicacionesIntencionAdopcion = new ArrayList<>();
+    RepositorioUsuarios repositorioUsuarios;
     Coordenadas direccion;
 
     public Asociacion(String nombreAsociacion, Coordenadas direccion) {
         this.nombreAsociacion = nombreAsociacion;
-        this.RepositorioUsuarios = new RepositorioUsuarios();
+        this.repositorioUsuarios = new RepositorioUsuarios();
         this.direccion = direccion;
     }
 
     //Metodo para implementar MOCKITO
     public void cambiarFormaDeNotificar(FormaDeNotificar mail) {
-        RepositorioUsuarios.setformaDeNotificar(mail);
+        repositorioUsuarios.setformaDeNotificar(mail);
     }
 
     public void agregarCarateristica(String caracteristica) {
@@ -37,11 +40,11 @@ public class Asociacion {
     }
 
     public RepositorioUsuarios getGestorDeAsociacion() {
-        return RepositorioUsuarios;
+        return repositorioUsuarios;
     }
 
     public void registrarUsuario(Usuario usuarioNuevo) {
-        RepositorioUsuarios.cargarNuevoUsuario(usuarioNuevo);
+        repositorioUsuarios.cargarNuevoUsuario(usuarioNuevo);
     }
 
     public List<String> getCaracteristicasPosibles() {
@@ -64,7 +67,7 @@ public class Asociacion {
     }
 
     public void buscarDuenioYNotificar(String codigoQR) {
-        RepositorioUsuarios.buscarDuenioYNotificar(codigoQR, nombreAsociacion);
+        repositorioUsuarios.buscarDuenioYNotificar(codigoQR, nombreAsociacion);
     }
 
     public void registrarPublicacion(PublicacionMascotaPerdida publicacionMascotaPerdida) {
@@ -92,6 +95,46 @@ public class Asociacion {
         repositorioUsuarios.notificarRescatista(algunContactoDelRescatista, emailSupuestoDuenio);
         // Coordina entrega con el siguiente mail: tataa
     }
+    
+    public void agregarPregunta(Pregunta preguntaNueva){
+        listaDePreguntas.add(preguntaNueva);
+    }
 
+    //Este metodo se llamaria cuando se presiona el boton de generar publicacion en la UI y genera el formulario con las preguntas
+    public List<Pregunta> getListaDePreguntas(){
+        return listaDePreguntas;
+    }
+
+    public void generarPublicacionParaAdopcion(List<Pregunta> preguntasRespondidas, DatoDeContacto contacto) {
+        this.chequearRespuestas(preguntasRespondidas);
+        PublicacionAdopcionMascota publicacionAdopcionMascota = new PublicacionAdopcionMascota(preguntasRespondidas, contacto);
+        listaDePublicacionesParaAdoptar.add(publicacionAdopcionMascota);
+    }
+
+    // En el codigo de la UI hacemos un try catch marcando en rojo las que faltan por responder
+    public void chequearRespuestas(List<Pregunta> preguntasRespondidas) {
+        if(!this.todasLasPreguntasRespondidas(preguntasRespondidas)) {
+            throw new NoTodasLasPreguntasFueronRespondidas("Faltan preguntas por responder");
+        }
+    }
+
+    private boolean todasLasPreguntasRespondidas(List<Pregunta> preguntasRespondidas) {
+        return preguntasRespondidas.stream().filter(Pregunta::getRequerida).allMatch(Pregunta::tieneRespuesta);
+    }
+
+    public void adoptarMascotaPublicada(PublicacionAdopcionMascota publicacionAdopcionMascota, String mailDeAdoptador) {
+        listaDePublicacionesParaAdoptar.remove(publicacionAdopcionMascota);
+        repositorioUsuarios.notificarDuenioActual(publicacionAdopcionMascota.getDatoDeContacto(), mailDeAdoptador);
+    }
+
+    public void generarPublicacionIntencionAdopcion(Preferencia preferencia, DatoDeContacto datoDeContacto) {
+        PublicacionIntencionAdopcion publicacionIntencionAdopcion = new PublicacionIntencionAdopcion(datoDeContacto,preferencia);
+        listaDePublicacionesIntencionAdopcion.add(publicacionIntencionAdopcion);
+        repositorioUsuarios.notificarPublicacionCreada(datoDeContacto);
+    }
+
+    public void deshacerPublicacionIntencionAdopcion(PublicacionIntencionAdopcion publicacionIntencionAdopcion) {
+        listaDePublicacionesIntencionAdopcion.remove(publicacionIntencionAdopcion);
+    }
 
 }

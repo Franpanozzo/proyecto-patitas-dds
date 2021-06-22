@@ -2,6 +2,8 @@ package Usuario;
 
 import Asociacion.*;
 import Exceptions.*;
+import Utils.Pregunta;
+import Publicaciones.PublicacionMascotaPerdida;
 
 import java.util.List;
 
@@ -17,6 +19,10 @@ public class UsuarioVoluntario extends Usuario {
 
   public void aprobarPublicaciones(List<PublicacionMascotaPerdida> publicaciones) {
     asociacion.aprobarPublicacion(publicaciones);
+  }
+
+  public void agregarPreguntaParaAdopcion(Pregunta preguntaNueva) {
+    asociacion.agregarPregunta(preguntaNueva);
   }
 
   @Override

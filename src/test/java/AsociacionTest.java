@@ -27,7 +27,6 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AsociacionTest {
-
     List<String> caracteristicasBombon = Arrays.asList("marron", "grande");
     LocalDate fechaUnMesAtras = LocalDate.now().minusDays(29);
     LocalDate fechaAntigua = LocalDate.of(1999, 05, 23);
