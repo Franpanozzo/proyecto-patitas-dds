@@ -4,6 +4,8 @@ import Exceptions.NoTodasLasPreguntasFueronRespondidas;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
 import Notificacion.FormaDeNotificar;
+import Utils.*;
+import Publicaciones.*;
 import Repositorios.RepositorioUsuarios;
 import Usuario.*;
 import Usuario.DatoDeContacto;
