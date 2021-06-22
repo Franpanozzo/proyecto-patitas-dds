@@ -19,10 +19,10 @@ public class DefinicionesGlobales {
   MascotaPerdida murri;
   MascotaPerdida milton;
   MascotaPerdida millo;
-  Publicacion publiWendy;
-  Publicacion publiMurri;
-  Publicacion publiMilton;
-  Publicacion publiMillo;
+  PublicacionMascotaPerdida publiWendy;
+  PublicacionMascotaPerdida publiMurri;
+  PublicacionMascotaPerdida publiMilton;
+  PublicacionMascotaPerdida publiMillo;
 }
 
  */

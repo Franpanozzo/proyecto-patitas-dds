@@ -1,5 +1,6 @@
 package Asociacion;
 
+import Exceptions.NoTodasLasPreguntasFueronRespondidas;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
 import Notificacion.FormaDeNotificar;
@@ -47,11 +48,11 @@ public class Asociacion {
         return caracteristicasPosibles;
     }
 
-    public void quitarPublicacion(Publicacion publicacion) {
-       listaDePublicaciones.remove(publicacion);
+    public void quitarPublicacion(PublicacionMascotaPerdida publicacionMascotaPerdida) {
+       listaDePublicaciones.remove(publicacionMascotaPerdida);
     }
 
-    public List<Publicacion> obtenerPublicacionesDeLosUltimosDias() {
+    public List<PublicacionMascotaPerdida> obtenerPublicacionesDeLosUltimosDias() {
         LocalDate fechaMin = LocalDate.now().minusDays(10);
         return this.publicacionesValidadas().stream().
             filter(publi -> publi.encontradaDespuesDe(fechaMin)).
@@ -66,29 +67,29 @@ public class Asociacion {
         RepositorioUsuarios.buscarDuenioYNotificar(codigoQR, nombreAsociacion);
     }
 
-    public void registrarPublicacion(Publicacion publicacion) {
-        listaDePublicaciones.add(publicacion);
+    public void registrarPublicacion(PublicacionMascotaPerdida publicacionMascotaPerdida) {
+        listaDePublicaciones.add(publicacionMascotaPerdida);
     }
 
-    public List<Publicacion> publicacionesValidadas() {
-        return listaDePublicaciones.stream().filter(publicacion -> publicacion.validada()).collect(Collectors.toList());
+    public List<PublicacionMascotaPerdida> publicacionesValidadas() {
+        return listaDePublicaciones.stream().filter(publicacionMascotaPerdida -> publicacionMascotaPerdida.validada()).collect(Collectors.toList());
     }
 
     //
-    public void aprobarPublicacion(List<Publicacion> listaDePublicaciones) {
-        listaDePublicaciones.forEach(publicacion -> publicacion.validar());
+    public void aprobarPublicacion(List<PublicacionMascotaPerdida> listaDePublicaciones) {
+        listaDePublicaciones.forEach(publicacionMascotaPerdida -> publicacionMascotaPerdida.validar());
     }
 
-    public List<Publicacion> getListaDePublicaciones() {
+    public List<PublicacionMascotaPerdida> getListaDePublicaciones() {
         return listaDePublicaciones;
     }
 
-    public void encuentroDeMascotaEnPublicacion(Publicacion publicacionElegida, String emailSupuestoDuenio) {
-        List<DatoDeContacto> datosDeContRescatista = publicacionElegida.getDatoDeContactoDelRescatista();
+    public void encuentroDeMascotaEnPublicacion(PublicacionMascotaPerdida publicacionMascotaPerdidaElegida, String emailSupuestoDuenio) {
+        List<DatoDeContacto> datosDeContRescatista = publicacionMascotaPerdidaElegida.getDatoDeContactoDelRescatista();
         DatoDeContacto algunContactoDelRescatista = datosDeContRescatista.stream().findAny().get();
 
-        this.quitarPublicacion(publicacionElegida);
-        RepositorioUsuarios.notificarRescatista(algunContactoDelRescatista, emailSupuestoDuenio);
+        this.quitarPublicacion(publicacionMascotaPerdidaElegida);
+        repositorioUsuarios.notificarRescatista(algunContactoDelRescatista, emailSupuestoDuenio);
         // Coordina entrega con el siguiente mail: tataa
     }
 

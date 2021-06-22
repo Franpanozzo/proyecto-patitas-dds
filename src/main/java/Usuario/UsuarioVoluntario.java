@@ -15,7 +15,7 @@ public class UsuarioVoluntario extends Usuario {
     return false;
   }
 
-  public void aprobarPublicaciones(List<Publicacion> publicaciones) {
+  public void aprobarPublicaciones(List<PublicacionMascotaPerdida> publicaciones) {
     asociacion.aprobarPublicacion(publicaciones);
   }
 

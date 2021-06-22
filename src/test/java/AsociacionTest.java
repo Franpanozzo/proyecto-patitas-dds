@@ -1,6 +1,6 @@
 import Asociacion.*;
 import Notificacion.FormaDeNotificar;
-import Notificacion.NotificarPorJavaMail;
+import Publicaciones.PublicacionMascotaPerdida;
 import Repositorios.RepositorioUsuarios;
 import Servicios.Hogares.*;
 
@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -47,10 +46,10 @@ public class AsociacionTest {
     MascotaPerdida murri;
     MascotaPerdida milton;
     MascotaPerdida millo;
-    Publicacion publiWendy;
-    Publicacion publiMurri;
-    Publicacion publiMilton;
-    Publicacion publiMillo;
+    PublicacionMascotaPerdida publiWendy;
+    PublicacionMascotaPerdida publiMurri;
+    PublicacionMascotaPerdida publiMilton;
+    PublicacionMascotaPerdida publiMillo;
     static Hogar hogarSantaAna = new Hogar("1","Santa Ana", new Ubicacion(), "42427652", new Admision(false, true),
         20, 2, Boolean.TRUE, Arrays.asList("Manso"));
     static Hogar hogarSantaTeresita = new Hogar("2","Santa Teresita", new Ubicacion(), "42427672", new Admision(false, false),
@@ -99,10 +98,10 @@ public class AsociacionTest {
         this.millo = mascotaPerdida("fotoMillo.png", Collections.singletonList("Manso"), fechaUnMesAtras, facu , Animal.PERRO, Tamanio.GRANDE);
         sofi = new UsuarioVoluntario("sofiKpita","sofilamejR24",  patitas, datosPersonales);
         juli = new UsuarioVoluntario("juli","sofilamejR24",  patitas, datosPersonales);
-        this.publiWendy = new Publicacion( wendy.getDatosMascotaPerdida(), franB.getContacto());
-        //this.publiMurri = new Publicacion(new DatosMascotaPerdida(franB,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.CHICA));
-        //this.publiMilton = new Publicacion(new DatosMascotaPerdida(facu,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.CHICA));
-        //this.publiMillo = new Publicacion(new DatosMascotaPerdida(facu,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaUnMesAtras, Animal.PERRO, Tamanio.GRANDE));
+        this.publiWendy = new PublicacionMascotaPerdida( wendy.getDatosMascotaPerdida(), franB.getContacto());
+        //this.publiMurri = new PublicacionMascotaPerdida(new DatosMascotaPerdida(franB,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.CHICA));
+        //this.publiMilton = new PublicacionMascotaPerdida(new DatosMascotaPerdida(facu,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.CHICA));
+        //this.publiMillo = new PublicacionMascotaPerdida(new DatosMascotaPerdida(facu,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaUnMesAtras, Animal.PERRO, Tamanio.GRANDE));
     }
 
     @AfterEach
@@ -190,8 +189,8 @@ public class AsociacionTest {
         facu.informarMascotaEncontrada(milton, new SinChapita());
 
         //Estas dos lineas se harian directamente en la UI
-        List<Publicacion> publicacionesASeleccionadar = patitas.getListaDePublicaciones();
-        publicacionesASeleccionadar.stream().filter(publicacion -> publicacion.getDatosMascotaPerdida().getFoto().equals("fotoWendy.png"));
+        List<PublicacionMascotaPerdida> publicacionesASeleccionadar = patitas.getListaDePublicaciones();
+        publicacionesASeleccionadar.stream().filter(publicacionMascotaPerdida -> publicacionMascotaPerdida.getDatosMascotaPerdida().getFoto().equals("fotoWendy.png"));
 
         sofi.aprobarPublicaciones(publicacionesASeleccionadar);
         assertEquals("fotoWendy.png", patitas.obtenerPublicacionesDeLosUltimosDias().get(0).getDatosMascotaPerdida().getFoto());

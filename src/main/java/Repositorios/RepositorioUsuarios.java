@@ -36,7 +36,7 @@ public class RepositorioUsuarios {
     formaDeNotificar.enviarNotificacion(algunContactoDelUsuario,"AVISO DE ENCUENTRO DE MASCOTA",
         "Buenos dias, encontramos a la mascota que perdio tu familiar " + usuario.getNombreYApellido()
             + ""
-            + "\nContactanos lo antes posible para acordar el punto de entrega" );
+            + "\nContactanos lo antes posible con la asociacion " + nombreAsociacion + " para acordar el punto de entrega" );
   }
 
   public void notificarRescatista(DatoDeContacto mailRescatista, String mailDuenioNoRegistrado) {
@@ -45,6 +45,16 @@ public class RepositorioUsuarios {
             + "\nContactate con el lo antes posible: " + mailDuenioNoRegistrado );
   }
 
+  public void notificarDuenioActual(DatoDeContacto duenioActual, String mailAdoptador) {
+    formaDeNotificar.enviarNotificacion(duenioActual,"AVISO DE ADOPCION",
+        "Buenos dias, alguien quiere adoptar tu mascota."
+            + "\nContactate con el lo antes posible: " + mailAdoptador);
+  }
+
+  public void notificarPublicacionCreada(DatoDeContacto futuroAdoptante){
+    formaDeNotificar.enviarNotificacion(futuroAdoptante,"SU PUBLICACION SE CREO CORRECTAMENTE",
+        "Buenos dias, su publicacion de intencion de adopcion fue creada con éxito \nPuede darla de baja haciendo click aquí https://patitas.com/dar_de_baja_publicacion");
+  }
 
 }
 

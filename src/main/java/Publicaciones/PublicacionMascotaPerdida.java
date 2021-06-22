@@ -1,4 +1,4 @@
-package Asociacion;
+package Publicaciones;
 
 import Mascota.DatosMascotaPerdida;
 import Usuario.DatoDeContacto;
@@ -7,13 +7,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Publicacion {
+public class PublicacionMascotaPerdida {
   DatosMascotaPerdida datosMascotaPerdida;
   boolean validada = false;
   //Esto no se muestra en interfaz grafica
   List<DatoDeContacto> datoDeContactoDelRescatista = new ArrayList<>();
 
-  public Publicacion(DatosMascotaPerdida datosMascotaPerdida, List<DatoDeContacto> datoDeContactoList) {
+  public PublicacionMascotaPerdida(DatosMascotaPerdida datosMascotaPerdida, List<DatoDeContacto> datoDeContactoList) {
     this.datosMascotaPerdida = datosMascotaPerdida;
     this.datoDeContactoDelRescatista = datoDeContactoList;
   }
@@ -38,3 +38,12 @@ public class Publicacion {
     return datosMascotaPerdida.encontradaDespuesDe(fechaMin);
   }
 }
+
+
+
+
+
+
+
+
+
