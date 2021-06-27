@@ -139,4 +139,28 @@ public class Asociacion {
         listaDePublicacionesIntencionAdopcion.remove(publicacionIntencionAdopcion);
     }
 
+    //ESTE METODO SE LLAMA SEMANALMENTE
+    public void enviarRecomendaciones() {
+        listaDePublicacionesIntencionAdopcion.forEach(this::filtrarYMandar);
+    }
+
+    public void filtrarYMandar(PublicacionIntencionAdopcion publicacionIntencionAdopcion) {
+        List<PublicacionAdopcionMascota> publicacionesQueCumplen = listaDePublicacionesParaAdoptar.stream().
+                                           filter(publicacion -> publicacion.cumpleRequisitos(publicacionIntencionAdopcion)).collect(Collectors.toList());
+
+        repositorioUsuarios.enviarRecomendacion(publicacionIntencionAdopcion.getDatoDeContactoInteresado(), publicacionesQueCumplen);
+    }
+
+
+
 }
+
+
+
+
+
+
+
+
+
+

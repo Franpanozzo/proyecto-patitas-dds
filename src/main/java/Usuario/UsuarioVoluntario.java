@@ -21,10 +21,6 @@ public class UsuarioVoluntario extends Usuario {
     asociacion.aprobarPublicacion(publicaciones);
   }
 
-  public void agregarPreguntaParaAdopcion(Pregunta preguntaNueva) {
-    asociacion.agregarPregunta(preguntaNueva);
-  }
-
   @Override
   public String getMailContacto() {
     throw new UsuarioNoPerdioMascotaException("Los usuarios voluntarios no pierden mascotas, por lo tanto no se los notifica");
