@@ -25,6 +25,6 @@ public class PublicacionIntencionAdopcion{
   }
 
   public boolean tieneComodidades(List<Comodidades> comodidadesPregunta) {
-
+    return true;
   }
 }
