@@ -9,6 +9,8 @@ public class PublicacionAdopcionMascota {
   private List<Pregunta> dataPublicacion;
   DatoDeContacto datoDeContacto;
   String link;
+  private DatosDeMascotaEnAdopcion datosDeMascotaEnAdopcion;
+
 
   public String getLink() {
     return link;

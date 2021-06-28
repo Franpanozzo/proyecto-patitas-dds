@@ -129,8 +129,8 @@ public class Asociacion {
         repositorioUsuarios.notificarDuenioActual(publicacionAdopcionMascota.getDatoDeContacto(), mailDeAdoptador);
     }
 
-    public void generarPublicacionIntencionAdopcion(Preferencia preferencia, DatoDeContacto datoDeContacto) {
-        PublicacionIntencionAdopcion publicacionIntencionAdopcion = new PublicacionIntencionAdopcion(datoDeContacto,preferencia);
+    public void generarPublicacionIntencionAdopcion(DatosDeMascotaEnAdopcion datosDeMascotaEnAdopcion, DatoDeContacto datoDeContacto) {
+        PublicacionIntencionAdopcion publicacionIntencionAdopcion = new PublicacionIntencionAdopcion(datoDeContacto, datosDeMascotaEnAdopcion);
         listaDePublicacionesIntencionAdopcion.add(publicacionIntencionAdopcion);
         repositorioUsuarios.notificarPublicacionCreada(datoDeContacto);
     }

@@ -2,26 +2,25 @@ package Publicaciones;
 
 import Usuario.DatoDeContacto;
 import Utils.Comodidades;
-import Utils.Preferencia;
+import Utils.DatosDeMascotaEnAdopcion;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PublicacionIntencionAdopcion{
   private DatoDeContacto datoDeContactoInteresado;
-  private Preferencia preferencia;
+  private DatosDeMascotaEnAdopcion preferenciasDeAdopcion;
 
   public DatoDeContacto getDatoDeContactoInteresado() {
     return datoDeContactoInteresado;
   }
 
-  public Preferencia getPreferencia() {
-    return preferencia;
+  public DatosDeMascotaEnAdopcion getPreferencia() {
+    return preferenciasDeAdopcion;
   }
 
-  public PublicacionIntencionAdopcion(DatoDeContacto datoDeContactoInteresado, Preferencia preferencia) {
+  public PublicacionIntencionAdopcion(DatoDeContacto datoDeContactoInteresado, DatosDeMascotaEnAdopcion datosDeMascotaEnAdopcion) {
     this.datoDeContactoInteresado = datoDeContactoInteresado;
-    this.preferencia = preferencia;
+    this.preferenciasDeAdopcion = datosDeMascotaEnAdopcion;
   }
 
   public boolean tieneComodidades(List<Comodidades> comodidadesPregunta) {

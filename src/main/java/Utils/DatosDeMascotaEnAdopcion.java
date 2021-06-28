@@ -7,7 +7,7 @@ public class Preferencia {
   List <Comodidades> comodidades;
   private List<String> preferencias = new ArrayList<>();
 
-  public Preferencia(List<String> preferencias, List <Comodidades> comodidades) {
+  public DatosDeMascotaEnAdopcion(List<String> preferencias, List <Comodidades> comodidades) {
     this.preferencias = preferencias;
     this.comodidades = comodidades;
   }
