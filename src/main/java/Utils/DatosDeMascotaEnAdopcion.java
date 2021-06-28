@@ -2,8 +2,14 @@ package Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import Mascota.Animal;
+import Mascota.Sexo;
+import Mascota.Tamanio;
 
-public class Preferencia {
+public class DatosDeMascotaEnAdopcion {
+  Animal tipoDeAnimal;
+  Sexo sexoDeAnimal;
+  Tamanio tamanioDeAnimal;
   List <Comodidades> comodidades;
   private List<String> preferencias = new ArrayList<>();
 
