@@ -110,6 +110,10 @@ public class Asociacion {
         listaDePreguntas.add(preguntaNueva);
     }
 
+    public void quitarPregunta(Pregunta pregunta){
+        listaDePreguntas.remove(pregunta);
+    }
+
     //Este metodo se llamaria cuando se presiona el boton de generar publicacion en la UI y genera el formulario con las preguntas
     public List<Pregunta> getListaDePreguntas(){
         return listaDePreguntas;
@@ -120,6 +124,10 @@ public class Asociacion {
         this.chequearRespuestas(preguntasRespondidas);
         PublicacionAdopcionMascota publicacionAdopcionMascota = new PublicacionAdopcionMascota(preguntasRespondidas, contacto);
         listaDePublicacionesParaAdoptar.add(publicacionAdopcionMascota);
+    }
+
+    public List<PublicacionAdopcionMascota> getListaDePublicacionesParaAdoptar(){
+        return listaDePublicacionesParaAdoptar;
     }
 
     // En el codigo de la UI hacemos un try catch marcando en rojo las que faltan por responder

@@ -34,6 +34,10 @@ public class UsuarioAdministrador extends Usuario {
         asociacionDondeTrabaja.agregarCarateristica(nuevaCaract.toUpperCase());
     }
 
+    public void quitarPreguntaParaAdopcion(Pregunta pregunta){
+        asociacion.quitarPregunta(pregunta);
+    }
+
     public void agregarPreguntaParaAdopcion(Pregunta preguntaNueva) {
         asociacion.agregarPregunta(preguntaNueva);
     }
