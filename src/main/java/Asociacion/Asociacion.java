@@ -53,6 +53,10 @@ public class Asociacion {
         return caracteristicasPosibles;
     }
 
+    public List<PublicacionIntencionAdopcion> getListaDePublicacionesIntencionAdopcion() {
+        return listaDePublicacionesIntencionAdopcion;
+    }
+
     public void quitarPublicacion(PublicacionMascotaPerdida publicacionMascotaPerdida) {
        listaDePublicaciones.remove(publicacionMascotaPerdida);
     }
@@ -107,7 +111,8 @@ public class Asociacion {
         return listaDePreguntas;
     }
 
-    public void generarPublicacionParaAdopcion(List<Pregunta> preguntasRespondidas, DatoDeContacto contacto) {
+
+    public void generarPublicacionParaAdopcion(Map<String, String> preguntasRespondidas, DatoDeContacto contacto) {
         this.chequearRespuestas(preguntasRespondidas);
         PublicacionAdopcionMascota publicacionAdopcionMascota = new PublicacionAdopcionMascota(preguntasRespondidas, contacto);
         listaDePublicacionesParaAdoptar.add(publicacionAdopcionMascota);
@@ -120,8 +125,17 @@ public class Asociacion {
         }
     }
 
-    private boolean todasLasPreguntasRespondidas(List<Pregunta> preguntasRespondidas) {
-        return preguntasRespondidas.stream().filter(Pregunta::getRequerida).allMatch(Pregunta::tieneRespuesta);
+    public void chequearConSuPregunta(String tipoResp, String resp) {
+        Optional<Pregunta> pregunta = this.preguntasRequeridas().stream().filter(preguntaReq -> preguntaReq.mismoTipo(tipoResp) ).findAny();
+        if(pregunta.isPresent()) {
+            if(resp.equals("NULL")){
+                throw new NoTodasLasPreguntasFueronRespondidas("No todas las preguntas fueron respondidas, vuelve a chequear");
+            }
+        }
+    }
+
+    public List<Pregunta> preguntasRequeridas() {
+        return listaDePreguntas.stream().filter(Pregunta::getRequerida).collect(Collectors.toList());
     }
 
     public void adoptarMascotaPublicada(PublicacionAdopcionMascota publicacionAdopcionMascota, String mailDeAdoptador) {
@@ -146,12 +160,14 @@ public class Asociacion {
 
     public void filtrarYMandar(PublicacionIntencionAdopcion publicacionIntencionAdopcion) {
         List<PublicacionAdopcionMascota> publicacionesQueCumplen = listaDePublicacionesParaAdoptar.stream().
-                                           filter(publicacion -> publicacion.cumpleRequisitos(publicacionIntencionAdopcion)).collect(Collectors.toList());
-
+                                           filter(publicacion -> publicacion.cumpleRequisitos(publicacionIntencionAdopcion, this.keysDePreguntasReq()))
+                                               .collect(Collectors.toList());
         repositorioUsuarios.enviarRecomendacion(publicacionIntencionAdopcion.getDatoDeContactoInteresado(), publicacionesQueCumplen);
     }
 
-
+    public List<String> keysDePreguntasReq() {
+        return this.preguntasRequeridas().stream().map(Pregunta::getTipo).collect(Collectors.toList());
+    }
 
 }
 

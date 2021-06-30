@@ -1,6 +1,7 @@
 package Repositorios;
 
 import Notificacion.FormaDeNotificar;
+import Notificacion.NotificarPorJavaMail;
 import Publicaciones.PublicacionAdopcionMascota;
 import Usuario.*;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RepositorioUsuarios {
-  FormaDeNotificar formaDeNotificar;
+  FormaDeNotificar formaDeNotificar = new NotificarPorJavaMail();
   List<Usuario> listaDeUsuarios = new ArrayList<>();
 
   public void cargarNuevoUsuario(Usuario usuarioNuevo) {

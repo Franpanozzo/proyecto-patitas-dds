@@ -8,19 +8,14 @@ import java.util.List;
 
 public class PublicacionIntencionAdopcion{
   private DatoDeContacto datoDeContactoInteresado;
-  private DatosDeMascotaEnAdopcion preferenciasDeAdopcion;
 
   public DatoDeContacto getDatoDeContactoInteresado() {
     return datoDeContactoInteresado;
   }
 
-  public DatosDeMascotaEnAdopcion getPreferencia() {
-    return preferenciasDeAdopcion;
-  }
-
-  public PublicacionIntencionAdopcion(DatoDeContacto datoDeContactoInteresado, DatosDeMascotaEnAdopcion datosDeMascotaEnAdopcion) {
+  public PublicacionIntencionAdopcion(Map<String, String> dataPublicacion, DatoDeContacto datoDeContactoInteresado) {
+    this.dataPublicacion = dataPublicacion;
     this.datoDeContactoInteresado = datoDeContactoInteresado;
-    this.preferenciasDeAdopcion = datosDeMascotaEnAdopcion;
   }
 
   public boolean tieneComodidades(List<Comodidades> comodidadesPregunta) {
