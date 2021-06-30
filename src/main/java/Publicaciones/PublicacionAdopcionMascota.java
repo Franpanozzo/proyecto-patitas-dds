@@ -2,12 +2,14 @@ package Publicaciones;
 import Utils.*;
 import Usuario.DatoDeContacto;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class PublicacionAdopcionMascota {
-  private List<Pregunta> dataPublicacion;
+  private Map<String, String> dataPublicacion = new HashMap<>();
   DatoDeContacto datoDeContacto;
   String link;
 
@@ -15,7 +17,7 @@ public class PublicacionAdopcionMascota {
     return link;
   }
 
-  public PublicacionAdopcionMascota(List<Pregunta> dataPublicacion, DatoDeContacto datoDeContacto) {
+  public PublicacionAdopcionMascota(Map<String, String> dataPublicacion, DatoDeContacto datoDeContacto) {
     this.dataPublicacion = dataPublicacion;
     this.datoDeContacto = datoDeContacto;
   }

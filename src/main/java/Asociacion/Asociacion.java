@@ -14,15 +14,19 @@ import Usuario.DatoDeContacto;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Asociacion {
     String nombreAsociacion;
     List<String> caracteristicasPosibles = new ArrayList<>();
+    //Listas de Publicaciones
     List<PublicacionMascotaPerdida> listaDePublicaciones = new ArrayList<>();
-    List<Pregunta> listaDePreguntas = new ArrayList<>();
     List<PublicacionAdopcionMascota> listaDePublicacionesParaAdoptar = new ArrayList<>();
     List<PublicacionIntencionAdopcion> listaDePublicacionesIntencionAdopcion = new ArrayList<>();
+    //Lista de Preguntas para crear Publicacion
+    List<Pregunta> listaDePreguntas = new ArrayList<>();
     RepositorioUsuarios repositorioUsuarios;
     Coordenadas direccion;
 
@@ -119,10 +123,8 @@ public class Asociacion {
     }
 
     // En el codigo de la UI hacemos un try catch marcando en rojo las que faltan por responder
-    public void chequearRespuestas(List<Pregunta> preguntasRespondidas) {
-        if(!this.todasLasPreguntasRespondidas(preguntasRespondidas)) {
-            throw new NoTodasLasPreguntasFueronRespondidas("Faltan preguntas por responder");
-        }
+    public void chequearRespuestas(Map<String, String> preguntasRespondidas) {
+        preguntasRespondidas.forEach(this::chequearConSuPregunta);
     }
 
     public void chequearConSuPregunta(String tipoResp, String resp) {
@@ -143,8 +145,8 @@ public class Asociacion {
         repositorioUsuarios.notificarDuenioActual(publicacionAdopcionMascota.getDatoDeContacto(), mailDeAdoptador);
     }
 
-    public void generarPublicacionIntencionAdopcion(DatosDeMascotaEnAdopcion datosDeMascotaEnAdopcion, DatoDeContacto datoDeContacto) {
-        PublicacionIntencionAdopcion publicacionIntencionAdopcion = new PublicacionIntencionAdopcion(datoDeContacto, datosDeMascotaEnAdopcion);
+    public void generarPublicacionIntencionAdopcion(Map<String, String> preguntasRespondidas, DatoDeContacto datoDeContacto) {
+        PublicacionIntencionAdopcion publicacionIntencionAdopcion = new PublicacionIntencionAdopcion(preguntasRespondidas, datoDeContacto);
         listaDePublicacionesIntencionAdopcion.add(publicacionIntencionAdopcion);
         repositorioUsuarios.notificarPublicacionCreada(datoDeContacto);
     }
