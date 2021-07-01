@@ -30,9 +30,8 @@ public class Mascota {
 
     public void inicializarCaracteristicas(Asociacion asociacion, Map<String, String> caracteristicasNuevas) {
         List<String> listaCaracteristicas = asociacion.getCaracteristicasPosibles();
-        for (String caracteristica : listaCaracteristicas) {
-            caracteristicas.put(caracteristica, null);
-        }
+        listaCaracteristicas.forEach(caracteristica ->  caracteristicas.put(caracteristica, null));
+
         caracteristicasNuevas.forEach((k,v) -> {
             if(caracteristicas.containsKey(k))  {
                 caracteristicas.put(k, v);

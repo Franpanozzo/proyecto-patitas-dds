@@ -1,8 +1,11 @@
 package Asociacion;
 
+import Exceptions.NoTodasLasPreguntasFueronRespondidas;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
 import Notificacion.FormaDeNotificar;
+import Utils.*;
+import Publicaciones.*;
 import Repositorios.RepositorioUsuarios;
 import Usuario.*;
 import Usuario.DatoDeContacto;
@@ -11,24 +14,31 @@ import Usuario.DatoDeContacto;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Asociacion {
     String nombreAsociacion;
     List<String> caracteristicasPosibles = new ArrayList<>();
-    List<Publicacion> listaDePublicaciones = new ArrayList<>();
-    RepositorioUsuarios RepositorioUsuarios;
+    //Listas de Publicaciones
+    List<PublicacionMascotaPerdida> listaDePublicaciones = new ArrayList<>();
+    List<PublicacionAdopcionMascota> listaDePublicacionesParaAdoptar = new ArrayList<>();
+    List<PublicacionIntencionAdopcion> listaDePublicacionesIntencionAdopcion = new ArrayList<>();
+    //Lista de Preguntas para crear Publicacion
+    List<Pregunta> listaDePreguntas = new ArrayList<>();
+    RepositorioUsuarios repositorioUsuarios;
     Coordenadas direccion;
 
     public Asociacion(String nombreAsociacion, Coordenadas direccion) {
         this.nombreAsociacion = nombreAsociacion;
-        this.RepositorioUsuarios = new RepositorioUsuarios();
+        this.repositorioUsuarios = new RepositorioUsuarios();
         this.direccion = direccion;
     }
 
     //Metodo para implementar MOCKITO
     public void cambiarFormaDeNotificar(FormaDeNotificar mail) {
-        RepositorioUsuarios.setformaDeNotificar(mail);
+        repositorioUsuarios.setformaDeNotificar(mail);
     }
 
     public void agregarCarateristica(String caracteristica) {
@@ -36,22 +46,26 @@ public class Asociacion {
     }
 
     public RepositorioUsuarios getGestorDeAsociacion() {
-        return RepositorioUsuarios;
+        return repositorioUsuarios;
     }
 
     public void registrarUsuario(Usuario usuarioNuevo) {
-        RepositorioUsuarios.cargarNuevoUsuario(usuarioNuevo);
+        repositorioUsuarios.cargarNuevoUsuario(usuarioNuevo);
     }
 
     public List<String> getCaracteristicasPosibles() {
         return caracteristicasPosibles;
     }
 
-    public void quitarPublicacion(Publicacion publicacion) {
-       listaDePublicaciones.remove(publicacion);
+    public List<PublicacionIntencionAdopcion> getListaDePublicacionesIntencionAdopcion() {
+        return listaDePublicacionesIntencionAdopcion;
     }
 
-    public List<Publicacion> obtenerPublicacionesDeLosUltimosDias() {
+    public void quitarPublicacion(PublicacionMascotaPerdida publicacionMascotaPerdida) {
+       listaDePublicaciones.remove(publicacionMascotaPerdida);
+    }
+
+    public List<PublicacionMascotaPerdida> obtenerPublicacionesDeLosUltimosDias() {
         LocalDate fechaMin = LocalDate.now().minusDays(10);
         return this.publicacionesValidadas().stream().
             filter(publi -> publi.encontradaDespuesDe(fechaMin)).
@@ -63,34 +77,116 @@ public class Asociacion {
     }
 
     public void buscarDuenioYNotificar(String codigoQR) {
-        RepositorioUsuarios.buscarDuenioYNotificar(codigoQR, nombreAsociacion);
+        repositorioUsuarios.buscarDuenioYNotificar(codigoQR, nombreAsociacion);
     }
 
-    public void registrarPublicacion(Publicacion publicacion) {
-        listaDePublicaciones.add(publicacion);
+    public void registrarPublicacion(PublicacionMascotaPerdida publicacionMascotaPerdida) {
+        listaDePublicaciones.add(publicacionMascotaPerdida);
     }
 
-    public List<Publicacion> publicacionesValidadas() {
-        return listaDePublicaciones.stream().filter(publicacion -> publicacion.validada()).collect(Collectors.toList());
+    public List<PublicacionMascotaPerdida> publicacionesValidadas() {
+        return listaDePublicaciones.stream().filter(publicacionMascotaPerdida -> publicacionMascotaPerdida.validada()).collect(Collectors.toList());
     }
 
     //
-    public void aprobarPublicacion(List<Publicacion> listaDePublicaciones) {
-        listaDePublicaciones.forEach(publicacion -> publicacion.validar());
+    public void aprobarPublicacion(List<PublicacionMascotaPerdida> listaDePublicaciones) {
+        listaDePublicaciones.forEach(publicacionMascotaPerdida -> publicacionMascotaPerdida.validar());
     }
 
-    public List<Publicacion> getListaDePublicaciones() {
+    public List<PublicacionMascotaPerdida> getListaDePublicaciones() {
         return listaDePublicaciones;
     }
 
-    public void encuentroDeMascotaEnPublicacion(Publicacion publicacionElegida, String emailSupuestoDuenio) {
-        List<DatoDeContacto> datosDeContRescatista = publicacionElegida.getDatoDeContactoDelRescatista();
+    public void encuentroDeMascotaEnPublicacion(PublicacionMascotaPerdida publicacionMascotaPerdidaElegida, String emailSupuestoDuenio) {
+        List<DatoDeContacto> datosDeContRescatista = publicacionMascotaPerdidaElegida.getDatoDeContactoDelRescatista();
         DatoDeContacto algunContactoDelRescatista = datosDeContRescatista.stream().findAny().get();
 
-        this.quitarPublicacion(publicacionElegida);
-        RepositorioUsuarios.notificarRescatista(algunContactoDelRescatista, emailSupuestoDuenio);
+        this.quitarPublicacion(publicacionMascotaPerdidaElegida);
+        repositorioUsuarios.notificarRescatista(algunContactoDelRescatista, emailSupuestoDuenio);
         // Coordina entrega con el siguiente mail: tataa
+    }
+    
+    public void agregarPregunta(Pregunta preguntaNueva){
+        listaDePreguntas.add(preguntaNueva);
+    }
+
+    public void quitarPregunta(Pregunta pregunta){
+        listaDePreguntas.remove(pregunta);
+    }
+
+    //Este metodo se llamaria cuando se presiona el boton de generar publicacion en la UI y genera el formulario con las preguntas
+    public List<Pregunta> getListaDePreguntas(){
+        return listaDePreguntas;
     }
 
 
+    public void generarPublicacionParaAdopcion(Map<String, String> preguntasRespondidas, DatoDeContacto contacto) {
+        this.chequearRespuestas(preguntasRespondidas);
+        PublicacionAdopcionMascota publicacionAdopcionMascota = new PublicacionAdopcionMascota(preguntasRespondidas, contacto);
+        listaDePublicacionesParaAdoptar.add(publicacionAdopcionMascota);
+    }
+
+    public List<PublicacionAdopcionMascota> getListaDePublicacionesParaAdoptar(){
+        return listaDePublicacionesParaAdoptar;
+    }
+
+    // En el codigo de la UI hacemos un try catch marcando en rojo las que faltan por responder
+    public void chequearRespuestas(Map<String, String> preguntasRespondidas) {
+        preguntasRespondidas.forEach(this::chequearConSuPregunta);
+    }
+
+    public void chequearConSuPregunta(String tipoResp, String resp) {
+        Optional<Pregunta> pregunta = this.preguntasRequeridas().stream().filter(preguntaReq -> preguntaReq.mismoTipo(tipoResp) ).findAny();
+        if(pregunta.isPresent()) {
+            if(resp.equals("NULL")){
+                throw new NoTodasLasPreguntasFueronRespondidas("No todas las preguntas fueron respondidas, vuelve a chequear");
+            }
+        }
+    }
+
+    public List<Pregunta> preguntasRequeridas() {
+        return listaDePreguntas.stream().filter(Pregunta::getRequerida).collect(Collectors.toList());
+    }
+
+    public void adoptarMascotaPublicada(PublicacionAdopcionMascota publicacionAdopcionMascota, String mailDeAdoptador) {
+        listaDePublicacionesParaAdoptar.remove(publicacionAdopcionMascota);
+        repositorioUsuarios.notificarDuenioActual(publicacionAdopcionMascota.getDatoDeContacto(), mailDeAdoptador);
+    }
+
+    public void generarPublicacionIntencionAdopcion(Map<String, String> preguntasRespondidas, DatoDeContacto datoDeContacto) {
+        PublicacionIntencionAdopcion publicacionIntencionAdopcion = new PublicacionIntencionAdopcion(preguntasRespondidas, datoDeContacto);
+        listaDePublicacionesIntencionAdopcion.add(publicacionIntencionAdopcion);
+        repositorioUsuarios.notificarPublicacionCreada(datoDeContacto);
+    }
+
+    public void deshacerPublicacionIntencionAdopcion(PublicacionIntencionAdopcion publicacionIntencionAdopcion) {
+        listaDePublicacionesIntencionAdopcion.remove(publicacionIntencionAdopcion);
+    }
+
+    //ESTE METODO SE LLAMA SEMANALMENTE
+    public void enviarRecomendaciones() {
+        listaDePublicacionesIntencionAdopcion.forEach(this::filtrarYMandar);
+    }
+
+    public void filtrarYMandar(PublicacionIntencionAdopcion publicacionIntencionAdopcion) {
+        List<PublicacionAdopcionMascota> publicacionesQueCumplen = listaDePublicacionesParaAdoptar.stream().
+                                           filter(publicacion -> publicacion.cumpleRequisitos(publicacionIntencionAdopcion, this.keysDePreguntasReq()))
+                                               .collect(Collectors.toList());
+        repositorioUsuarios.enviarRecomendacion(publicacionIntencionAdopcion.getDatoDeContactoInteresado(), publicacionesQueCumplen);
+    }
+
+    public List<String> keysDePreguntasReq() {
+        return this.preguntasRequeridas().stream().map(Pregunta::getTipo).collect(Collectors.toList());
+    }
+
 }
+
+
+
+
+
+
+
+
+
+

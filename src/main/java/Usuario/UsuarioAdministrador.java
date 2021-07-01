@@ -2,6 +2,7 @@ package Usuario;
 
 import Asociacion.Asociacion;
 import Exceptions.*;
+import Utils.Pregunta;
 
 import java.util.List;
 import java.util.Objects;
@@ -32,5 +33,14 @@ public class UsuarioAdministrador extends Usuario {
     public void agregarCaracteristica(String nuevaCaract) {
         asociacionDondeTrabaja.agregarCarateristica(nuevaCaract.toUpperCase());
     }
+
+    public void quitarPreguntaParaAdopcion(Pregunta pregunta){
+        asociacion.quitarPregunta(pregunta);
+    }
+
+    public void agregarPreguntaParaAdopcion(Pregunta preguntaNueva) {
+        asociacion.agregarPregunta(preguntaNueva);
+    }
+
 
 }
