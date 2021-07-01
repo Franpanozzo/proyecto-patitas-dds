@@ -2,6 +2,8 @@ import Asociacion.Asociacion;
 import EntidadesExternas.Rescatista;
 import Mascota.*;
 import Notificacion.FormaDeNotificar;
+import Publicaciones.PublicacionAdopcionMascota;
+import Publicaciones.PublicacionIntencionAdopcion;
 import Publicaciones.PublicacionMascotaPerdida;
 import Repositorios.RepositorioAsociaciones;
 import Repositorios.RepositorioUsuarios;
@@ -58,7 +60,8 @@ public class BaseTest {
   static ListaDeHogares lista3;
   static ListaDeHogares lista4;
   FormaDeNotificar notificacionFalsa;
-  static DatoDeContacto datosHarry = new DatoDeContacto("HarryPotter", 1130558832, "pepeRodriguez@gmail.com");
+  static DatoDeContacto datosHarry = new DatoDeContacto("HarryPotter", 1130558832, "harryRodriguez@gmail.com");
+  static DatoDeContacto datosPepe = new DatoDeContacto("Pepe", 1138658832, "pepeRodriguez@gmail.com");
   static Map<String, String> datosPublicacion1 = new HashMap<String, String>(){{
       put("ANIMAL", "PERRO");
       put("TAMANIO", "CHICO");
@@ -156,6 +159,13 @@ public class BaseTest {
         "1234");
   }
 
+  public PublicacionAdopcionMascota generarPublicacionAdopcionSimple(Map<String,String> datosPublicacion, DatoDeContacto contacto) {
+    return new PublicacionAdopcionMascota(datosPublicacion,contacto);
+  }
+
+  public PublicacionIntencionAdopcion generarPublicacionIntencionAdopcionSimple(Map<String,String> datosPublicacion, DatoDeContacto contacto) {
+    return new PublicacionIntencionAdopcion(datosPublicacion,contacto);
+  }
 }
 
 

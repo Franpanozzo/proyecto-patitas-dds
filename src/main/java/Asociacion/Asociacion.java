@@ -165,7 +165,10 @@ public class Asociacion {
 
     //ESTE METODO SE LLAMA SEMANALMENTE
     public void enviarRecomendaciones() {
-        listaDePublicacionesIntencionAdopcion.forEach(this::filtrarYMandar);
+        listaDePublicacionesIntencionAdopcion.forEach(publicacionInteresado -> {
+            List<PublicacionAdopcionMascota> publicacionFiltrada = this.filtrarPublicacionesInteresadosAdopcion(publicacionInteresado);
+            this.mandarRecomendaciones(publicacionInteresado.getDatoDeContactoInteresado(),publicacionFiltrada);
+        });
     }
 
     public void filtrarYMandar(PublicacionIntencionAdopcion publicacionIntencionAdopcion) {
@@ -173,6 +176,10 @@ public class Asociacion {
                                            filter(publicacion -> publicacion.cumpleRequisitos(publicacionIntencionAdopcion, this.keysDePreguntasReq()))
                                                .collect(Collectors.toList());
         repositorioUsuarios.enviarRecomendacion(publicacionIntencionAdopcion.getDatoDeContactoInteresado(), publicacionesQueCumplen);
+    }
+
+    public void mandarRecomendaciones(DatoDeContacto contactoInteresado, List<PublicacionAdopcionMascota> publicacionesQueCumplen) {
+        repositorioUsuarios.enviarRecomendacion(contactoInteresado, publicacionesQueCumplen);
     }
 
     public List<String> keysDePreguntasReq() {

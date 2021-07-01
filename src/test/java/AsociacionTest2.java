@@ -61,11 +61,53 @@ public class AsociacionTest2 extends BaseTest{
     assertTrue(dato.contains(datosHarry));
   }
 
-
 @Test
   public void seLeEnviaRecomendacionSemanales() {
 
+  PublicacionIntencionAdopcion publicacionIntension = generarPublicacionIntencionAdopcionSimple(
+      datosPublicacion1,
+      datosHarry
+  );
+  PublicacionAdopcionMascota publicacionAdopcionNoCoincidente = generarPublicacionAdopcionSimple(
+      datosPublicacion3,
+      datosPepe
+  );
+  PublicacionAdopcionMascota publicacionAdopcionCoincidente = generarPublicacionAdopcionSimple(
+      datosPublicacion1,
+      datosPepe
+  );
+
+  patitas.generarPublicacionIntencionAdopcion(publicacionIntension);
+  patitas.generarPublicacionParaAdopcion(publicacionAdopcionCoincidente);
+  patitas.generarPublicacionParaAdopcion(publicacionAdopcionNoCoincidente);
+  patitas.enviarRecomendaciones();
+
+  Mockito.verify(notificacionFalsa, Mockito.only()).enviarNotificacion(datosHarry,Mockito.anyString(),Mockito.anyString());
 }
+
+@Test
+  public void filtraLasPublicacionesSegunPreferencias() {
+    PublicacionIntencionAdopcion publicacionIntension = generarPublicacionIntencionAdopcionSimple(
+        datosPublicacion1,
+        datosHarry
+    );
+    PublicacionAdopcionMascota publicacionAdopcionNoCoincidente = generarPublicacionAdopcionSimple(
+        datosPublicacion3,
+        datosPepe
+    );
+    PublicacionAdopcionMascota publicacionAdopcionCoincidente = generarPublicacionAdopcionSimple(
+        datosPublicacion1,
+        datosPepe
+    );
+
+    patitas.generarPublicacionIntencionAdopcion(publicacionIntension);
+    patitas.generarPublicacionParaAdopcion(publicacionAdopcionCoincidente);
+    patitas.generarPublicacionParaAdopcion(publicacionAdopcionNoCoincidente);
+
+    List<PublicacionAdopcionMascota> listaPublicacionesFiltradas = patitas.filtrarPublicacionesInteresadosAdopcion(publicacionIntension);
+
+    assertTrue(listaPublicacionesFiltradas.contains(publicacionAdopcionCoincidente));
+  }
 }
 
 
