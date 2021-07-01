@@ -79,7 +79,7 @@ public class AsociacionTest2 extends BaseTest{
   patitas.generarPublicacionParaAdopcion(publicacionAdopcionNoCoincidente);
   patitas.enviarRecomendaciones();
 
-  Mockito.verify(notificacionFalsa, Mockito.only()).enviarNotificacion(datosHarry,Mockito.anyString(),Mockito.anyString());
+  Mockito.verify(notificacionFalsa, Mockito.times(2)).enviarNotificacion(Mockito.any(),Mockito.anyString(),Mockito.anyString());
 }
 
 @Test
