@@ -108,5 +108,4 @@ public class AsociacionTest extends BaseTest{
         assertThrows(ContraseniaInvalidaException.class, () -> new UsuarioAdministrador("franpano", "12345", patitas, datosPersonales));
     }
 
-
 }

@@ -62,7 +62,7 @@ public class BaseTest {
   static Map<String, String> datosPublicacion1 = new HashMap<String, String>(){{
       put("ANIMAL", "PERRO");
       put("TAMANIO", "CHICO");
-      put("PATIO", "GRANDE");
+      put("PATIO", "NO");
     }};
   static Map<String, String> datosPublicacion2 = new HashMap<String, String>(){{
     put("ANIMAL", "GATO");

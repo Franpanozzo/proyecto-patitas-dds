@@ -18,6 +18,10 @@ public class RepositorioAsociaciones {
     return instance;
   }
 
+  public List<Asociacion> getListaAsociaciones() {
+    return listaAsociaciones;
+  }
+
   public void agregarAsociacion(Asociacion asociacion) {
     listaAsociaciones.add(asociacion);
   }

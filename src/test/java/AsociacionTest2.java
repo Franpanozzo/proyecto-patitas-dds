@@ -51,7 +51,7 @@ public class AsociacionTest2 extends BaseTest{
 
 
 @Test
-  public void generarPublicacionIntencionDeAdopcion(){
+  public void generarPublicacionIntencionDeAdopcion() {
     patitas.generarPublicacionIntencionAdopcion(
         datosPublicacion1,
         datosHarry
@@ -61,6 +61,11 @@ public class AsociacionTest2 extends BaseTest{
     assertTrue(dato.contains(datosHarry));
   }
 
+
+@Test
+  public void seLeEnviaRecomendacionSemanales() {
+
+}
 }
 
 
