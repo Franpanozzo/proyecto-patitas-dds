@@ -9,3 +9,8 @@ public class RecomendacionSemanal {
     RepositorioAsociaciones.getInstance().getListaAsociaciones().forEach(Asociacion::enviarRecomendaciones);
   }
 }
+
+
+
+
+

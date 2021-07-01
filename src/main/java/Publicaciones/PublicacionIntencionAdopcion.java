@@ -1,11 +1,8 @@
 package Publicaciones;
 
 import Usuario.DatoDeContacto;
-import Utils.Comodidades;
-import Utils.DatosDeMascotaEnAdopcion;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PublicacionIntencionAdopcion{

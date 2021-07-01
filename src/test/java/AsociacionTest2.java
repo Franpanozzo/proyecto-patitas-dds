@@ -58,6 +58,7 @@ public class AsociacionTest2 extends BaseTest{
     assertTrue(dato.contains(datosHarry));
   }
 
+
 @Test
   public void seLeEnviaRecomendacionSemanales() {
 
@@ -73,7 +74,6 @@ public class AsociacionTest2 extends BaseTest{
       datosPublicacion1,
       datosPepe
   );
-
   patitas.generarPublicacionIntencionAdopcion(publicacionIntension);
   patitas.generarPublicacionParaAdopcion(publicacionAdopcionCoincidente);
   patitas.generarPublicacionParaAdopcion(publicacionAdopcionNoCoincidente);
@@ -81,6 +81,7 @@ public class AsociacionTest2 extends BaseTest{
 
   Mockito.verify(notificacionFalsa, Mockito.times(2)).enviarNotificacion(Mockito.any(),Mockito.anyString(),Mockito.anyString());
 }
+
 
 @Test
   public void filtraLasPublicacionesSegunPreferencias() {
@@ -96,13 +97,10 @@ public class AsociacionTest2 extends BaseTest{
         datosPublicacion1,
         datosPepe
     );
-
     patitas.generarPublicacionIntencionAdopcion(publicacionIntension);
     patitas.generarPublicacionParaAdopcion(publicacionAdopcionCoincidente);
     patitas.generarPublicacionParaAdopcion(publicacionAdopcionNoCoincidente);
-
     List<PublicacionAdopcionMascota> listaPublicacionesFiltradas = patitas.filtrarPublicacionesInteresadosAdopcion(publicacionIntension);
-
     assertTrue(listaPublicacionesFiltradas.contains(publicacionAdopcionCoincidente));
   }
 }

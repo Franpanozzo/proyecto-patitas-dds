@@ -17,8 +17,6 @@ public class ObtenedorServicioHogares {
 
     agregarHogares(listaVariable.getListaHogares());
 
-    //System.out.println(listaVariable.getTotal().toString() + listaVariable.getOffset().toString() + listaVariable.getListaHogares().toString());
-
     int paginasRestantes = listaVariable.getTotal() / 10;
 
     for(int i=2;i<=paginasRestantes;i++) {

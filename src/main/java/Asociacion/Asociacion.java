@@ -19,6 +19,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Asociacion {
+
     String nombreAsociacion;
     List<String> caracteristicasPosibles = new ArrayList<>();
     //Listas de Publicaciones
@@ -89,8 +90,8 @@ public class Asociacion {
     }
 
     //
-    public void aprobarPublicacion(List<PublicacionMascotaPerdida> listaDePublicaciones) {
-        listaDePublicaciones.forEach(publicacionMascotaPerdida -> publicacionMascotaPerdida.validar());
+    public void aprobarPublicaciones(List<PublicacionMascotaPerdida> listaDePublicaciones) {
+        listaDePublicaciones.forEach(PublicacionMascotaPerdida::validar);
     }
 
     public List<PublicacionMascotaPerdida> getListaDePublicaciones() {
@@ -165,7 +166,7 @@ public class Asociacion {
     public void enviarRecomendaciones() {
         listaDePublicacionesIntencionAdopcion.forEach(publicacionInteresado -> {
             List<PublicacionAdopcionMascota> publicacionFiltrada = this.filtrarPublicacionesInteresadosAdopcion(publicacionInteresado);
-            this.mandarRecomendaciones(publicacionInteresado.getDatoDeContactoInteresado(),publicacionFiltrada);
+            repositorioUsuarios.enviarRecomendacion(publicacionInteresado.getDatoDeContactoInteresado(),publicacionFiltrada);
         });
     }
 
@@ -173,10 +174,6 @@ public class Asociacion {
         return listaDePublicacionesParaAdoptar.stream()
             .filter(publicacion -> publicacion.cumpleRequisitos(publicacionIntencionAdopcion, this.keysDePreguntasReq()))
             .collect(Collectors.toList());
-    }
-
-    public void mandarRecomendaciones(DatoDeContacto contactoInteresado, List<PublicacionAdopcionMascota> publicacionesQueCumplen) {
-        repositorioUsuarios.enviarRecomendacion(contactoInteresado, publicacionesQueCumplen);
     }
 
     public List<String> keysDePreguntasReq() {

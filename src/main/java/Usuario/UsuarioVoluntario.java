@@ -18,7 +18,7 @@ public class UsuarioVoluntario extends Usuario {
   }
 
   public void aprobarPublicaciones(List<PublicacionMascotaPerdida> publicaciones) {
-    asociacion.aprobarPublicacion(publicaciones);
+    asociacion.aprobarPublicaciones(publicaciones);
   }
 
   @Override
