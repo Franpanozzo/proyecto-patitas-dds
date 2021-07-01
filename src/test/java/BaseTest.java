@@ -73,6 +73,12 @@ public class BaseTest {
     put("PATIO", "SI");
   }};
 
+  static Map<String, String> datosPublicacion3 = new HashMap<String, String>(){{
+    put("ANIMAL", "GATO");
+    put("TAMANIO", "CHICO");
+    put("PATIO", "SI");
+  }};
+
   @BeforeAll
   public static void iniciarPreTodo() throws IOException {
 

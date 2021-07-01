@@ -22,6 +22,10 @@ public class PublicacionAdopcionMascota {
     this.datoDeContacto = datoDeContacto;
   }
 
+  public Map<String, String> getDataPublicacion(){
+    return dataPublicacion;
+  }
+
   public DatoDeContacto getDatoDeContacto(){
     return datoDeContacto;
   }

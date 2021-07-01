@@ -15,9 +15,8 @@ public class AsociacionTest2 extends BaseTest{
 
 @Test
   public void generarPublicacionParaDarEnAdopcionAUnaMascota(){
-  patitas.generarPublicacionParaAdopcion(datosPublicacion1,
-     datosHarry
-  );
+  PublicacionAdopcionMascota publicacionAdopcionMascota = new PublicacionAdopcionMascota(datosPublicacion1, datosHarry);
+  patitas.generarPublicacionParaAdopcion(publicacionAdopcionMascota);
   List<PublicacionAdopcionMascota> publicaciones = patitas.getListaDePublicacionesParaAdoptar();
   List<DatoDeContacto> dato = publicaciones.stream().map(PublicacionAdopcionMascota::getDatoDeContacto).collect(Collectors.toList());
   assertTrue(dato.contains(datosHarry));
@@ -26,9 +25,8 @@ public class AsociacionTest2 extends BaseTest{
 
 @Test
   public void generarPublicacionParaDarEnAdopcionAUnaMascotaErroneas() {
-   assertThrows(NoTodasLasPreguntasFueronRespondidas.class, () -> patitas.generarPublicacionParaAdopcion(
-      datosPublicacion2,
-      datosHarry));
+  PublicacionAdopcionMascota publicacionAdopcionMascota = new PublicacionAdopcionMascota(datosPublicacion2,datosHarry);
+   assertThrows(NoTodasLasPreguntasFueronRespondidas.class, () -> patitas.generarPublicacionParaAdopcion(publicacionAdopcionMascota));
 }
 
 
@@ -42,7 +40,8 @@ public class AsociacionTest2 extends BaseTest{
 
 @Test
   public void seEnviaNotificacionAlDuenioCuandoApareceAlgunInteresadoEnAdoptarla() {
-  patitas.generarPublicacionParaAdopcion(datosPublicacion1, datosHarry);
+  PublicacionAdopcionMascota publicacionAdopcionMascota = new PublicacionAdopcionMascota(datosPublicacion1, datosHarry);
+  patitas.generarPublicacionParaAdopcion(publicacionAdopcionMascota);
 
   PublicacionAdopcionMascota publicacionDesdeUI = patitas.getListaDePublicacionesParaAdoptar().get(0);
   patitas.adoptarMascotaPublicada(publicacionDesdeUI, "francisco.panozzosf@gmail.com");
@@ -52,10 +51,8 @@ public class AsociacionTest2 extends BaseTest{
 
 @Test
   public void generarPublicacionIntencionDeAdopcion() {
-    patitas.generarPublicacionIntencionAdopcion(
-        datosPublicacion1,
-        datosHarry
-    );
+  PublicacionIntencionAdopcion publicacionIntencionAdopcion = new PublicacionIntencionAdopcion(datosPublicacion1, datosHarry);
+    patitas.generarPublicacionIntencionAdopcion(publicacionIntencionAdopcion);
     List<PublicacionIntencionAdopcion> publicaciones = patitas.getListaDePublicacionesIntencionAdopcion();
     List<DatoDeContacto> dato = publicaciones.stream().map(PublicacionIntencionAdopcion::getDatoDeContactoInteresado).collect(Collectors.toList());
     assertTrue(dato.contains(datosHarry));

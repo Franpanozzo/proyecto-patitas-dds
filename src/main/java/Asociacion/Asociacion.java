@@ -120,9 +120,8 @@ public class Asociacion {
     }
 
 
-    public void generarPublicacionParaAdopcion(Map<String, String> preguntasRespondidas, DatoDeContacto contacto) {
-        this.chequearRespuestas(preguntasRespondidas);
-        PublicacionAdopcionMascota publicacionAdopcionMascota = new PublicacionAdopcionMascota(preguntasRespondidas, contacto);
+    public void generarPublicacionParaAdopcion(PublicacionAdopcionMascota publicacionAdopcionMascota) {
+        this.chequearRespuestas(publicacionAdopcionMascota.getDataPublicacion());
         listaDePublicacionesParaAdoptar.add(publicacionAdopcionMascota);
     }
 
@@ -153,10 +152,9 @@ public class Asociacion {
         repositorioUsuarios.notificarDuenioActual(publicacionAdopcionMascota.getDatoDeContacto(), mailDeAdoptador);
     }
 
-    public void generarPublicacionIntencionAdopcion(Map<String, String> preguntasRespondidas, DatoDeContacto datoDeContacto) {
-        PublicacionIntencionAdopcion publicacionIntencionAdopcion = new PublicacionIntencionAdopcion(preguntasRespondidas, datoDeContacto);
+    public void generarPublicacionIntencionAdopcion(PublicacionIntencionAdopcion publicacionIntencionAdopcion){
         listaDePublicacionesIntencionAdopcion.add(publicacionIntencionAdopcion);
-        repositorioUsuarios.notificarPublicacionCreada(datoDeContacto);
+        repositorioUsuarios.notificarPublicacionCreada(publicacionIntencionAdopcion.getDatoDeContactoInteresado());
     }
 
     public void deshacerPublicacionIntencionAdopcion(PublicacionIntencionAdopcion publicacionIntencionAdopcion) {
@@ -171,11 +169,10 @@ public class Asociacion {
         });
     }
 
-    public void filtrarYMandar(PublicacionIntencionAdopcion publicacionIntencionAdopcion) {
-        List<PublicacionAdopcionMascota> publicacionesQueCumplen = listaDePublicacionesParaAdoptar.stream().
-                                           filter(publicacion -> publicacion.cumpleRequisitos(publicacionIntencionAdopcion, this.keysDePreguntasReq()))
-                                               .collect(Collectors.toList());
-        repositorioUsuarios.enviarRecomendacion(publicacionIntencionAdopcion.getDatoDeContactoInteresado(), publicacionesQueCumplen);
+    public List<PublicacionAdopcionMascota> filtrarPublicacionesInteresadosAdopcion(PublicacionIntencionAdopcion publicacionIntencionAdopcion) {
+        return listaDePublicacionesParaAdoptar.stream()
+            .filter(publicacion -> publicacion.cumpleRequisitos(publicacionIntencionAdopcion, this.keysDePreguntasReq()))
+            .collect(Collectors.toList());
     }
 
     public void mandarRecomendaciones(DatoDeContacto contactoInteresado, List<PublicacionAdopcionMascota> publicacionesQueCumplen) {
@@ -185,6 +182,8 @@ public class Asociacion {
     public List<String> keysDePreguntasReq() {
         return this.preguntasRequeridas().stream().map(Pregunta::getTipo).collect(Collectors.toList());
     }
+
+
 
 }
 
