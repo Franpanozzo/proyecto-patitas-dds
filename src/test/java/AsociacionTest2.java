@@ -33,6 +33,7 @@ public class AsociacionTest2 extends BaseTest{
 @Test
   public void permitirEliminarUnaPreguntaParaAdoptarMascota(){
   franP.quitarPreguntaParaAdopcion(necesitaPatio);
+  assertFalse(patitas.getListaDePreguntas().contains(necesitaPatio));
   franP.agregarPreguntaParaAdopcion(necesitaPatio);
   assertTrue(patitas.getListaDePreguntas().contains(necesitaPatio));
 }
@@ -51,7 +52,7 @@ public class AsociacionTest2 extends BaseTest{
 
 @Test
   public void generarPublicacionIntencionDeAdopcion() {
-  PublicacionIntencionAdopcion publicacionIntencionAdopcion = new PublicacionIntencionAdopcion(datosPublicacion1, datosHarry);
+    PublicacionIntencionAdopcion publicacionIntencionAdopcion = new PublicacionIntencionAdopcion(datosPublicacion1, datosHarry);
     patitas.generarPublicacionIntencionAdopcion(publicacionIntencionAdopcion);
     List<PublicacionIntencionAdopcion> publicaciones = patitas.getListaDePublicacionesIntencionAdopcion();
     List<DatoDeContacto> dato = publicaciones.stream().map(PublicacionIntencionAdopcion::getDatoDeContactoInteresado).collect(Collectors.toList());
