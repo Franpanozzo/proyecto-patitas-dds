@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//No es un singleton
 public class RepositorioUsuarios {
   FormaDeNotificar formaDeNotificar = new NotificarPorJavaMail();
   List<Usuario> listaDeUsuarios = new ArrayList<>();

@@ -43,9 +43,9 @@ public class BaseTest {
   PublicacionMascotaPerdida publiMurri;
   PublicacionMascotaPerdida publiMilton;
   PublicacionMascotaPerdida publiMillo;
-  static Pregunta necesitaPatio = new Pregunta(false, "¿Nesecita patio la mascota?", "¿Tiene patio para la mascota?", "PATIO", Arrays.asList("SI", "NO", "GRANDE", "CHICO"));
-  static Pregunta tipoDeTamanio = new Pregunta(true, "¿Que tamanio tiene su mascota?", "¿Que tamanio le gustaria que tenga su mascota?", "TAMANIO", Arrays.asList("CHIC", "MEDIANO", "GRANDE"));
-  static Pregunta tipoAnimal = new Pregunta(true, "¿Que animal es el que quiere dar en adopcion?", "¿Que animal quiere adoptar?",
+  static Pregunta necesitaPatio = new Pregunta("¿Nesecita patio la mascota?", "¿Tiene patio para la mascota?", "PATIO", Arrays.asList("SI", "NO", "GRANDE", "CHICO"));
+  static Pregunta tipoDeTamanio = new Pregunta( "¿Que tamanio tiene su mascota?", "¿Que tamanio le gustaria que tenga su mascota?", "TAMANIO", Arrays.asList("CHIC", "MEDIANO", "GRANDE"));
+  static Pregunta tipoAnimal = new Pregunta("¿Que animal es el que quiere dar en adopcion?", "¿Que animal quiere adoptar?",
       "ANIMAL", Arrays.asList("PERRO","GATO"));
   static Hogar hogarSantaAna = new Hogar("1","Santa Ana", new Ubicacion(), "42427652", new Admision(false, true),
       20, 2, Boolean.TRUE, Arrays.asList("Manso"));

@@ -116,6 +116,7 @@ public class Asociacion {
     }
 
     //Este metodo se llamaria cuando se presiona el boton de generar publicacion en la UI y genera el formulario con las preguntas
+    //Anidar con las globales
     public List<Pregunta> getListaDePreguntas(){
         return listaDePreguntas;
     }
@@ -145,7 +146,7 @@ public class Asociacion {
     }
 
     public List<Pregunta> preguntasRequeridas() {
-        return listaDePreguntas.stream().filter(Pregunta::getRequerida).collect(Collectors.toList());
+        return RepositorioPreguntasGlobales.getInstance().getListaDePreguntasRequeridas();
     }
 
     public void adoptarMascotaPublicada(PublicacionAdopcionMascota publicacionAdopcionMascota, String mailDeAdoptador) {
