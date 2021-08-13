@@ -34,7 +34,8 @@ public class PublicacionAdopcionMascota {
     List<String> requisitosSolicitados = new ArrayList<>();
     List<String> requisitosIntencion = new ArrayList<>();
     tiposDePregRequeridas.stream().forEach(x -> armarListaDeValuesRequeridas(x, requisitosSolicitados));
-    tiposDePregRequeridas.stream().forEach(x -> armarListaDeValuesRequeridasIntencion(x,requisitosIntencion, publicacionIntencionAdopcion)); //Lista con las values que son iguales a la publicacion de adopcion
+    tiposDePregRequeridas.stream().forEach(x -> armarListaDeValuesRequeridasIntencion(x,requisitosIntencion, publicacionIntencionAdopcion));
+    //Lista con las values que son iguales a la publicacion de adopcion
     return requisitosSolicitados.equals(requisitosIntencion);
   }
 
