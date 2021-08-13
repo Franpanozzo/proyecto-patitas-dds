@@ -105,7 +105,7 @@ public class AsociacionTest extends BaseTest{
     @Test
     public void crearUsuarioContraseniasErroneas() {
         DatosPersonales datosPersonales = new DatosPersonales("FranPanozzo", fechaAntigua, TipoDocumento.DNI, 40122287);
-        assertThrows(ContraseniaInvalidaException.class, () -> new UsuarioAdministrador("franpano", "12345", patitas, datosPersonales));
+        assertThrows(ContraseniaInvalidaException.class, () -> new UsuarioAdministrador("franpano", "sssabado", patitas, datosPersonales));
     }
 
 

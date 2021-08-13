@@ -7,6 +7,7 @@ import Publicaciones.PublicacionIntencionAdopcion;
 import Publicaciones.PublicacionMascotaPerdida;
 import Repositorios.RepositorioAsociaciones;
 import Repositorios.RepositorioUsuarios;
+import Repositorios.RepositorioPreguntasGlobales;
 import Servicios.Hogares.*;
 import Usuario.*;
 import Utils.Pregunta;
@@ -116,8 +117,8 @@ public class BaseTest {
     juli = new UsuarioVoluntario("juli","sofilamejR24",  patitas, datosPersonales);
     this.publiWendy = new PublicacionMascotaPerdida( wendy.getDatosMascotaPerdida(), franB.getContacto());
     franP.agregarPreguntaParaAdopcion(necesitaPatio);
-    franP.agregarPreguntaParaAdopcion(tipoAnimal);
-    franP.agregarPreguntaParaAdopcion(tipoDeTamanio);
+    RepositorioPreguntasGlobales.getInstance().agregarPreguntaRequerida(tipoAnimal);
+    RepositorioPreguntasGlobales.getInstance().agregarPreguntaRequerida(tipoDeTamanio);
     //this.publiMurri = new PublicacionMascotaPerdida(new DatosMascotaPerdida(franB,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.CHICA));
     //this.publiMilton = new PublicacionMascotaPerdida(new DatosMascotaPerdida(facu,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaActual, Animal.PERRO, Tamanio.CHICA));
     //this.publiMillo = new PublicacionMascotaPerdida(new DatosMascotaPerdida(facu,"foto", Collections.singletonList("perra perdida"),new Coordenadas(52.5244444, 13.410555555555556), fechaUnMesAtras, Animal.PERRO, Tamanio.GRANDE));
@@ -127,8 +128,8 @@ public class BaseTest {
   public void despuesDeCada() {
     RepositorioAsociaciones.getInstance().sacarAsociacion(patitas);
     franP.quitarPreguntaParaAdopcion(necesitaPatio);
-    franP.quitarPreguntaParaAdopcion(tipoAnimal);
-    franP.quitarPreguntaParaAdopcion(tipoDeTamanio);
+    RepositorioPreguntasGlobales.getInstance().sacarPreguntaRequerida(tipoAnimal);
+    RepositorioPreguntasGlobales.getInstance().sacarPreguntaRequerida(tipoDeTamanio);
   }
 
   public MascotaPerdida mascotaPerdida(String foto,List<String> descripcion, LocalDate fecha, Rescatista rescatista, Animal animal, Tamanio tamanio) {

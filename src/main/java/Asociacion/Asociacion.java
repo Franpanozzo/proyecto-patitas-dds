@@ -4,6 +4,7 @@ import Exceptions.NoTodasLasPreguntasFueronRespondidas;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
 import Notificacion.FormaDeNotificar;
+import Repositorios.RepositorioPreguntasGlobales;
 import Utils.*;
 import Publicaciones.*;
 import Repositorios.RepositorioUsuarios;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Asociacion {
 
@@ -118,9 +120,9 @@ public class Asociacion {
     //Este metodo se llamaria cuando se presiona el boton de generar publicacion en la UI y genera el formulario con las preguntas
     //Anidar con las globales
     public List<Pregunta> getListaDePreguntas(){
-        return listaDePreguntas;
+        List<Pregunta> listaDePreguntasRequeridas = RepositorioPreguntasGlobales.getInstance().getListaDePreguntasRequeridas();
+        return Stream.concat(listaDePreguntasRequeridas.stream(), listaDePreguntas.stream()).collect(Collectors.toList());
     }
-
 
     public void generarPublicacionParaAdopcion(PublicacionAdopcionMascota publicacionAdopcionMascota) {
         this.chequearRespuestas(publicacionAdopcionMascota.getDataPublicacion());

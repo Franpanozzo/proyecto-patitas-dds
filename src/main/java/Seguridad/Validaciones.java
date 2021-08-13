@@ -10,11 +10,10 @@ import java.util.stream.Collectors;
 public class Validaciones {
     private static List<ValidacionContra> validacionesRecomendadas = Arrays.asList(new cumpleLargoNist(),
             new usuarioContraDistintoNist(), new esDecremental(), new esIncremental(), new mismoCaracterRepetido(),
-            new oswap(), new cumpleReglasSint());
+            new cumpleReglasSint());
 
     /*Si se quiere agregar otra nueva recomendacion para la contra solo se tiene que agregar a la lista y tiene que
       implementar el metodo validar respetando la interfazo de una ValidacionContra*/
-
     public static String validarContrasenia(String contrasenia, String nombreUsuario) {
         Objects.requireNonNull(contrasenia, "La contrasenia no puede ser nula. ");
         List<ValidacionContra> validacionIncumplidas = noCumpleValidaciones(contrasenia, nombreUsuario);
