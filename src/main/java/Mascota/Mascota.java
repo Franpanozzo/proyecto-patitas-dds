@@ -2,9 +2,20 @@ package Mascota;
 
 import Asociacion.Asociacion;
 import Mascota.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.*;
 
+@Entity
 public class Mascota {
+
+    @Id
+    @GeneratedValue
+    private long Id;
+
     Animal tipo;
     String nombre;
     String apodo;
@@ -12,6 +23,8 @@ public class Mascota {
     Sexo sexo;
     String descripcion;
     String foto;
+
+    @Transient
     Map<String, String> caracteristicas = new HashMap<String, String>();
 
     public Mascota(Animal tipo, String nombre, String apodo, Integer edadAprox, Sexo sexo, String descripcion, String foto) {
@@ -22,6 +35,10 @@ public class Mascota {
         this.sexo = sexo;
         this.descripcion = descripcion;
         this.foto = foto;
+    }
+
+    public Mascota() {
+
     }
 
     public Map<String, String> getCaracteristicas() {
