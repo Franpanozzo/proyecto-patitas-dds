@@ -8,7 +8,9 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class></class>
+        <class>Asociacion.Asociacion</class>
+        <class>Usuario.Usuario</class>
+        <class>Mascota.Mascota</class>
 
         <properties>
             <!--<property name="hibernate.archive.autodetection" value="class"/>-->
