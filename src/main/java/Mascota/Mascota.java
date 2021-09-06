@@ -55,7 +55,6 @@ public class Mascota {
     public Map<String, String> getCaracteristicas() {
         return caracteristicas;
     }
-
     public void inicializarCaracteristicas(Asociacion asociacion, Map<String, String> caracteristicasNuevas) {
         List<String> listaCaracteristicas = asociacion.getCaracteristicasPosibles();
         listaCaracteristicas.forEach(caracteristica ->  caracteristicas.put(caracteristica, null));

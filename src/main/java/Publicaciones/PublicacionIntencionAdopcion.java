@@ -22,8 +22,6 @@ public class PublicacionIntencionAdopcion{
     return dataPublicacion;
   }
 
-
-
  /*
   public boolean tieneComodidades(List<Comodidades> comodidadesPregunta) {
     return true;
