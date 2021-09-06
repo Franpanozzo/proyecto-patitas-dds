@@ -1,14 +1,25 @@
 package Usuario;
 
 import Asociacion.Asociacion;
+import ClasesPersistencia.EntidadPersistente;
 import Seguridad.Validaciones;
 
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@Table(name = "usuario")
 public abstract class Usuario {
+
+  @Id
+  @GeneratedValue
+  private long Id;
+
+  @Transient
   DatosPersonales datosPersonales;
   String nombreUsuario;
   String contrasenia;
+  @Transient
   Asociacion asociacion;
 
 
@@ -18,6 +29,10 @@ public abstract class Usuario {
     this.asociacion = Objects.requireNonNull(asociacion, "El usuario tiene que registrarse en una asociacion. ");
     this.datosPersonales = Objects.requireNonNull(datosPersonales, "Ingrese los datos personales. ");
     asociacion.registrarUsuario(this);
+  }
+
+  public Usuario() {
+
   }
 
   public String getNombreUsuario() {

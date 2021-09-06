@@ -2,6 +2,7 @@ package Publicaciones;
 import Utils.*;
 import Usuario.DatoDeContacto;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class PublicacionAdopcionMascota {
+
   private Map<String, String> dataPublicacion = new HashMap<>();
   DatoDeContacto datoDeContacto;
   String link;

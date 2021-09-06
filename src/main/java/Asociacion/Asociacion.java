@@ -120,7 +120,7 @@ public class Asociacion {
     //Este metodo se llamaria cuando se presiona el boton de generar publicacion en la UI y genera el formulario con las preguntas
     //Anidar con las globales
     public List<Pregunta> getListaDePreguntas(){
-        List<Pregunta> listaDePreguntasRequeridas = RepositorioPreguntasGlobales.getInstance().getListaDePreguntasRequeridas();
+        List<Pregunta> listaDePreguntasRequeridas = this.preguntasRequeridas();
         return Stream.concat(listaDePreguntasRequeridas.stream(), listaDePreguntas.stream()).collect(Collectors.toList());
     }
 

@@ -1,6 +1,7 @@
 package Mascota;
 
 import Asociacion.Asociacion;
+import ClasesPersistencia.EntidadPersistente;
 import Mascota.*;
 
 import javax.persistence.Entity;
@@ -16,12 +17,22 @@ public class Mascota {
     @GeneratedValue
     private long Id;
 
+    @Transient
     Animal tipo;
+
     String nombre;
+
     String apodo;
+
+    @Transient
     Integer edadAprox;
+
+    @Transient
     Sexo sexo;
+
     String descripcion;
+
+    @Transient
     String foto;
 
     @Transient

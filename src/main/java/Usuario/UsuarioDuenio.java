@@ -12,6 +12,7 @@ import Mascota.*;
 public class UsuarioDuenio extends Usuario {
     List<DatoDeContacto> datoDeContactoList = new ArrayList<>();
     List<Mascota> mascotasList = new ArrayList<>();
+
     String codigoQR;
 
     public void registrarMascota(Mascota mascotaNueva, Map<String, String> caracteristicas) {

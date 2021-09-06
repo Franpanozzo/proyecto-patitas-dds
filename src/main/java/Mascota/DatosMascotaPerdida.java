@@ -28,7 +28,6 @@ public class DatosMascotaPerdida {
     this.tamanio = tamanio;
     this.animal = animal;
   }
-
   private void descripcionesValidas(List<String> descripcionEstado) {
     if(!descripcionesPosibles.containsAll(descripcionEstado)) {
       throw new DescripcionInvalidaException("Solo me interesan estas 3 caracteristicas: Manso|Delgado|Amistoso|Pacifico|Tranquilo ");

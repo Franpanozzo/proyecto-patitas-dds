@@ -3,6 +3,8 @@ import Asociacion.*;
 import Usuario.*;
 
 public class Chapita {
+
+  //Foreign key a UsuarioDuenio
   private String codigoQR;
   private Asociacion asociacion;
 
