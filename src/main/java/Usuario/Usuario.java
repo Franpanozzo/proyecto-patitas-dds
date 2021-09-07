@@ -8,12 +8,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "usuario")
-public abstract class Usuario {
-
-  @Id
-  @GeneratedValue
-  private long Id;
+public abstract class Usuario extends EntidadPersistente{
 
   @Transient
   DatosPersonales datosPersonales;

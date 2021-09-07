@@ -11,11 +11,7 @@ import javax.persistence.Transient;
 import java.util.*;
 
 @Entity
-public class Mascota {
-
-    @Id
-    @GeneratedValue
-    private long Id;
+public class Mascota extends EntidadPersistente{
 
     @Transient
     Animal tipo;

@@ -2,8 +2,10 @@ package ClasesPersistencia;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-public class EntidadPersistente {
+@MappedSuperclass
+public abstract class EntidadPersistente {
 
   @Id
   @GeneratedValue
