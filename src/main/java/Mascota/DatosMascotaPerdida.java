@@ -14,7 +14,7 @@ public class DatosMascotaPerdida {
   Tamanio tamanio;
   String foto;
   List<String> descripcionEstado;
-  Coordenadas lugarDeEncuentro;
+  Coordenadas lugarDeEncuentro; //embedded
   LocalDate fechaEncuentro;
   List<String> descripcionesPosibles = Arrays.asList("Manso","Delgado","Amistoso","Pacifico","Tranquilo");
 

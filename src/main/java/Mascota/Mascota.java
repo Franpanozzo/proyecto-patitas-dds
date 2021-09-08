@@ -32,7 +32,7 @@ public class Mascota extends EntidadPersistente{
     String foto;
 
     @Transient
-    Map<String, String> caracteristicas = new HashMap<String, String>();
+    Map<String, String> caracteristicas = new HashMap<String, String>(); //Lo mapeamos como la pagina no?
 
     public Mascota(Animal tipo, String nombre, String apodo, Integer edadAprox, Sexo sexo, String descripcion, String foto) {
         this.tipo = tipo;

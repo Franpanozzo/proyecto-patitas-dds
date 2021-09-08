@@ -23,6 +23,12 @@ public class RepositorioUsuarios {
   }
 
   public void buscarDuenioYNotificar(String codigoQR, String nombreAsociacion) {
+
+    // JOIN a la tabla de usuarios y te traes al usuario directamente
+
+
+    // Agarras el QR de la mascotaPerdida y haces este filter
+
     Usuario usuario = listaDeUsuarios
         .stream()
         .filter(unUsuario -> unUsuario.mismoCodigoQR(codigoQR))
