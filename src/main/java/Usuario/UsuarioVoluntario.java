@@ -5,8 +5,12 @@ import Exceptions.*;
 import Utils.Pregunta;
 import Publicaciones.PublicacionMascotaPerdida;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.util.List;
 
+@Entity
+@DiscriminatorValue("V")
 public class UsuarioVoluntario extends Usuario {
 
   public UsuarioVoluntario(String nombreUsuario, String contrasenia, Asociacion asociacion, DatosPersonales datosPersonales) {

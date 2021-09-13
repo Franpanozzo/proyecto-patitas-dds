@@ -1,9 +1,17 @@
 package Usuario;
 
+import ClasesPersistencia.LocalDateConverter;
+
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Column;
+import javax.persistence.Enumerated;
 import java.time.LocalDate;
 
+@Embeddable
 public class DatosPersonales {
   String nombreApellido;
+  @Column(columnDefinition = "DATE")
   LocalDate fechaNacimiento;
   @Enumerated(EnumType.STRING)
   TipoDocumento tipoDocumento;

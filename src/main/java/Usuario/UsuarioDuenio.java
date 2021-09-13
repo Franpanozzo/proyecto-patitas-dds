@@ -9,7 +9,13 @@ import java.util.Objects;
 import Asociacion.Asociacion;
 import Mascota.*;
 
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue("D")
 public class UsuarioDuenio extends Usuario {
+
+    @OneToMany(mappedBy="usuario", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     List<DatoDeContacto> datoDeContactoList = new ArrayList<>();
 
     @OneToMany(mappedBy="usuario", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)

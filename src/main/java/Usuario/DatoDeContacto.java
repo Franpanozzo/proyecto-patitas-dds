@@ -2,11 +2,14 @@ package Usuario;
 
 import Exceptions.ContraseniaInvalidaException;
 import Exceptions.MailInvalidoException;
+import ClasesPersistencia.EntidadPersistente;
 
+import javax.persistence.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DatoDeContacto {
+@Entity
+public class DatoDeContacto extends EntidadPersistente {
     String nombreApellido;
     Integer telefono;
     String email;

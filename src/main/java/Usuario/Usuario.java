@@ -12,11 +12,11 @@ import java.util.*;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Usuario extends EntidadPersistente{
 
-  @Transient
+  @Embedded
   DatosPersonales datosPersonales;
   String nombreUsuario;
   String contrasenia;
-  @Transient
+  @ManyToOne
   Asociacion asociacion;
 
   public Usuario(String nombreUsuario, String contrasenia, Asociacion asociacion, DatosPersonales datosPersonales) {
