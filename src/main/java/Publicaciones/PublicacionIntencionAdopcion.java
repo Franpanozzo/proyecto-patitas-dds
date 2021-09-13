@@ -3,11 +3,18 @@ package Publicaciones;
 import ClasesPersistencia.EntidadPersistente;
 import Usuario.DatoDeContacto;
 
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PublicacionIntencionAdopcion{
+@Entity
+public class PublicacionIntencionAdopcion extends EntidadPersistente {
+
+  //@ElementCollection
+  @Transient
   private Map<String, String> dataPublicacion = new HashMap<>();
+
+  @ManyToOne
   private DatoDeContacto datoDeContactoInteresado;
 
   public DatoDeContacto getDatoDeContactoInteresado() {
