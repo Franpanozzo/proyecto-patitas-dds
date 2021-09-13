@@ -1,5 +1,6 @@
 package Publicaciones;
 
+import ClasesPersistencia.EntidadPersistente;
 import Usuario.DatoDeContacto;
 
 import java.util.HashMap;
@@ -20,6 +21,10 @@ public class PublicacionIntencionAdopcion{
 
   public Map<String, String> getDataPublicacion() {
     return dataPublicacion;
+  }
+
+  public PublicacionIntencionAdopcion() {
+
   }
 
  /*

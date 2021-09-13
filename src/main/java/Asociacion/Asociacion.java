@@ -25,16 +25,20 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Entity
+@Table(name = "asociacion")
 public class Asociacion extends EntidadPersistente {
 
     String nombreAsociacion;
     @ElementCollection
     List<String> caracteristicasPosibles = new ArrayList<>();
     //Listas de Publicaciones
+    //@OneToMany(mappedBy = "asociacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Transient
     List<PublicacionMascotaPerdida> listaDePublicaciones = new ArrayList<>();
+    //@OneToMany(mappedBy = "asociacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Transient
     List<PublicacionAdopcionMascota> listaDePublicacionesParaAdoptar = new ArrayList<>();
+    //@OneToMany(mappedBy = "asociacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Transient
     List<PublicacionIntencionAdopcion> listaDePublicacionesIntencionAdopcion = new ArrayList<>();
     //Lista de Preguntas para crear Publicacion

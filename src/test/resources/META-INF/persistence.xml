@@ -10,6 +10,13 @@
         <class>Asociacion.Asociacion</class>
         <class>Usuario.Usuario</class>
         <class>Mascota.Mascota</class>
+        <class>Usuario.UsuarioAdministrador</class>
+        <class>Usuario.DatoDeContacto</class>
+        <class>Publicaciones.PublicacionAdopcionMascota</class>
+        <class>Publicaciones.PublicacionIntencionAdopcion</class>
+        <class>Publicaciones.PublicacionMascotaPerdida</class>
+        <class>Utils.Pregunta</class>
+        <class>Mascota.Mascota</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>

@@ -1,16 +1,23 @@
 package Publicaciones;
 
+import ClasesPersistencia.EntidadPersistente;
 import Mascota.DatosMascotaPerdida;
 import Usuario.DatoDeContacto;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PublicacionMascotaPerdida {
+@Entity
+public class PublicacionMascotaPerdida extends EntidadPersistente {
+  @Embedded
   DatosMascotaPerdida datosMascotaPerdida;
   boolean validada = false;
   //Esto no se muestra en interfaz grafica
+  @ManyToMany
   List<DatoDeContacto> datoDeContactoDelRescatista = new ArrayList<>();
 
   public PublicacionMascotaPerdida(DatosMascotaPerdida datosMascotaPerdida, List<DatoDeContacto> datoDeContactoList) {
@@ -36,6 +43,10 @@ public class PublicacionMascotaPerdida {
 
   public boolean encontradaDespuesDe(LocalDate fechaMin) {
     return datosMascotaPerdida.encontradaDespuesDe(fechaMin);
+  }
+
+  public PublicacionMascotaPerdida() {
+
   }
 }
 

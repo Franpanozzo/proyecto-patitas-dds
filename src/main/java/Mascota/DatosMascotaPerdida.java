@@ -9,12 +9,18 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DatosMascotaPerdida {
+  @Transient
   Rescatista rescatista;
+  @Enumerated(EnumType.STRING)
   Animal animal;
+  @Enumerated(EnumType.STRING)
   Tamanio tamanio;
   String foto;
+  @ElementCollection
   List<String> descripcionEstado;
+  @Embedded
   Coordenadas lugarDeEncuentro; //embedded
+  @Column(columnDefinition = "DATE")
   LocalDate fechaEncuentro;
   List<String> descripcionesPosibles = Arrays.asList("Manso","Delgado","Amistoso","Pacifico","Tranquilo");
 
@@ -28,6 +34,7 @@ public class DatosMascotaPerdida {
     this.tamanio = tamanio;
     this.animal = animal;
   }
+
   private void descripcionesValidas(List<String> descripcionEstado) {
     if(!descripcionesPosibles.containsAll(descripcionEstado)) {
       throw new DescripcionInvalidaException("Solo me interesan estas 3 caracteristicas: Manso|Delgado|Amistoso|Pacifico|Tranquilo ");
@@ -56,5 +63,8 @@ public class DatosMascotaPerdida {
     return fechaEncuentro.isAfter(fechaLimite);
   }
 
+  public DatosMascotaPerdida() {
+
+  }
 }
 

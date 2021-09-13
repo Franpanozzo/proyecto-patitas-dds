@@ -17,6 +17,14 @@ public class Coordenadas {
         return longitud;
     }
 
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
+
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
+    }
+
     public double distanciaA(Coordenadas coordenadas){
         double radioTierra = 6371;//en kilómetros
         double dLat = Math.toRadians(latitud - coordenadas.getLatitud());
@@ -29,5 +37,9 @@ public class Coordenadas {
         double distancia = radioTierra * va2;
 
         return distancia;
+    }
+
+    public Coordenadas() {
+
     }
 }

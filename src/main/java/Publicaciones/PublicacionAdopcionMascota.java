@@ -48,6 +48,10 @@ public class PublicacionAdopcionMascota {
   public void  armarListaDeValuesRequeridasIntencion(String key, List<String> requisitos, PublicacionIntencionAdopcion publicacionIntencionAdopcion){
     requisitos.add(publicacionIntencionAdopcion.getDataPublicacion().get(key));
   }
+
+  public PublicacionAdopcionMascota() {
+
+  }
 }
 
 
