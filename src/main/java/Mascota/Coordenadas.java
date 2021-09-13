@@ -1,5 +1,8 @@
 package Mascota;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Coordenadas {
     Double latitud;
     Double longitud;

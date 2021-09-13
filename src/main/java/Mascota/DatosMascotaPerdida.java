@@ -4,10 +4,12 @@ import EntidadesExternas.Rescatista;
 import Exceptions.DescripcionInvalidaException;
 import FormasDeEncuentro.FormaDeEncuentro;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+@Embeddable
 public class DatosMascotaPerdida {
   @Transient
   Rescatista rescatista;
@@ -22,6 +24,7 @@ public class DatosMascotaPerdida {
   Coordenadas lugarDeEncuentro; //embedded
   @Column(columnDefinition = "DATE")
   LocalDate fechaEncuentro;
+  @Transient
   List<String> descripcionesPosibles = Arrays.asList("Manso","Delgado","Amistoso","Pacifico","Tranquilo");
 
   public DatosMascotaPerdida(Rescatista rescatista, String foto, List<String> descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro, Animal animal, Tamanio tamanio) {

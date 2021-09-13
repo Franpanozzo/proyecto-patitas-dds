@@ -13,9 +13,7 @@ import Usuario.*;
 import Usuario.DatoDeContacto;
 //import jdk.vm.ci.meta.Local;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,11 +40,11 @@ public class Asociacion extends EntidadPersistente {
     @Transient
     List<PublicacionIntencionAdopcion> listaDePublicacionesIntencionAdopcion = new ArrayList<>();
     //Lista de Preguntas para crear Publicacion
-    @Transient
+    @OneToMany(mappedBy = "asociacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Pregunta> listaDePreguntas = new ArrayList<>();
     @Transient
     RepositorioUsuarios repositorioUsuarios;
-    @Transient
+    @Embedded
     Coordenadas direccion;
 
     public Asociacion(String nombreAsociacion, Coordenadas direccion) {

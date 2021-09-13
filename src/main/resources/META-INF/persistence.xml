@@ -13,6 +13,10 @@
         <class>Usuario.UsuarioDuenio</class>
         <class>Usuario.UsuarioAdministrador</class>
         <class>Usuario.DatoDeContacto</class>
+        <class>Publicaciones.PublicacionMascotaPerdida</class>
+        <class>Publicaciones.PublicacionIntencionAdopcion</class>
+        <class>Publicaciones.PublicacionAdopcionMascota</class>
+        <class>Utils.Pregunta</class>
         <class>Mascota.Mascota</class>
 
         <properties>
