@@ -11,6 +11,8 @@ import Mascota.*;
 
 public class UsuarioDuenio extends Usuario {
     List<DatoDeContacto> datoDeContactoList = new ArrayList<>();
+
+    @OneToMany(mappedBy="usuario", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     List<Mascota> mascotasList = new ArrayList<>();
 
     String codigoQR;
