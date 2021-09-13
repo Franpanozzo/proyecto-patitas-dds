@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class DatosPersonales {
   String nombreApellido;
   LocalDate fechaNacimiento;
+  @Enumerated(EnumType.STRING)
   TipoDocumento tipoDocumento;
   Integer numeroDocumento;
 
@@ -16,6 +17,10 @@ public class DatosPersonales {
     this.fechaNacimiento = fechaNacimiento;
     this.tipoDocumento = tipoDocumento;
     this.numeroDocumento = numeroDocumento;
+  }
+
+  public DatosPersonales() {
+
   }
 
   public String getNombreYApellidos() {

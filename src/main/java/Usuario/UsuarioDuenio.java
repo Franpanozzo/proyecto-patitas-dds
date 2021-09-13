@@ -44,6 +44,10 @@ public class UsuarioDuenio extends Usuario {
     public List<DatoDeContacto> getDatoDeContactoList() {
         return datoDeContactoList;
     }
+
+    public UsuarioDuenio() {
+
+    }
 }
 
 

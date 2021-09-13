@@ -29,6 +29,10 @@ public class UsuarioVoluntario extends Usuario {
   public List<DatoDeContacto> getDatoDeContactoList() {
     throw new UsuarioNoTieneDatoDeContacto("Los usuarios voluntarios no tienen dato de contacto");
   }
+
+  public UsuarioVoluntario() {
+
+  }
 }
 
 

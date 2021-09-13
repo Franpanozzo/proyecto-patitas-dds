@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
+@DiscriminatorColumn(name = "tipo", length = 1)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Usuario extends EntidadPersistente{
 
   @Transient
@@ -17,17 +19,12 @@ public abstract class Usuario extends EntidadPersistente{
   @Transient
   Asociacion asociacion;
 
-
   public Usuario(String nombreUsuario, String contrasenia, Asociacion asociacion, DatosPersonales datosPersonales) {
     this.nombreUsuario = Objects.requireNonNull(nombreUsuario, "Nombre de usuario no tiene que ser null. ");
     this.contrasenia = Validaciones.validarContrasenia(contrasenia, nombreUsuario);
     this.asociacion = Objects.requireNonNull(asociacion, "El usuario tiene que registrarse en una asociacion. ");
     this.datosPersonales = Objects.requireNonNull(datosPersonales, "Ingrese los datos personales. ");
     asociacion.registrarUsuario(this);
-  }
-
-  public Usuario() {
-
   }
 
   public String getNombreUsuario() {
@@ -43,6 +40,10 @@ public abstract class Usuario extends EntidadPersistente{
   }
 
   public abstract List<DatoDeContacto> getDatoDeContactoList();
+
+  public Usuario() {
+
+  }
 }
 
 

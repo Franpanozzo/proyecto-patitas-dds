@@ -1,5 +1,6 @@
 package Asociacion;
 
+import ClasesPersistencia.EntidadPersistente;
 import Exceptions.NoTodasLasPreguntasFueronRespondidas;
 import Mascota.Coordenadas;
 import Mascota.MascotaPerdida;
@@ -12,6 +13,9 @@ import Usuario.*;
 import Usuario.DatoDeContacto;
 //import jdk.vm.ci.meta.Local;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,17 +24,25 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Asociacion {
+@Entity
+public class Asociacion extends EntidadPersistente {
 
     String nombreAsociacion;
+    @ElementCollection
     List<String> caracteristicasPosibles = new ArrayList<>();
     //Listas de Publicaciones
+    @Transient
     List<PublicacionMascotaPerdida> listaDePublicaciones = new ArrayList<>();
+    @Transient
     List<PublicacionAdopcionMascota> listaDePublicacionesParaAdoptar = new ArrayList<>();
+    @Transient
     List<PublicacionIntencionAdopcion> listaDePublicacionesIntencionAdopcion = new ArrayList<>();
     //Lista de Preguntas para crear Publicacion
+    @Transient
     List<Pregunta> listaDePreguntas = new ArrayList<>();
+    @Transient
     RepositorioUsuarios repositorioUsuarios;
+    @Transient
     Coordenadas direccion;
 
     public Asociacion(String nombreAsociacion, Coordenadas direccion) {
@@ -183,7 +195,9 @@ public class Asociacion {
         return this.preguntasRequeridas().stream().map(Pregunta::getTipo).collect(Collectors.toList());
     }
 
+    public Asociacion() {
 
+    }
 
 }
 

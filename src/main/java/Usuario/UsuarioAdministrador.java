@@ -4,15 +4,18 @@ import Asociacion.Asociacion;
 import Exceptions.*;
 import Utils.Pregunta;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@DiscriminatorValue("A")
 public class UsuarioAdministrador extends Usuario {
-    Asociacion asociacionDondeTrabaja;
 
-    public UsuarioAdministrador(String nombreUsuario, String contrasenia, Asociacion asociacionDondeTrabaja, DatosPersonales datosPersonales) {
-        super(nombreUsuario, contrasenia, asociacionDondeTrabaja, datosPersonales);
-        this.asociacionDondeTrabaja = Objects.requireNonNull(asociacionDondeTrabaja,"La asociacion donde trabaja no tiene que ser nula");
+    public UsuarioAdministrador(String nombreUsuario, String contrasenia, Asociacion asociacion, DatosPersonales datosPersonales) {
+        super(nombreUsuario, contrasenia, asociacion, datosPersonales);
     }
 
     @Override
@@ -31,7 +34,7 @@ public class UsuarioAdministrador extends Usuario {
     }
 
     public void agregarCaracteristica(String nuevaCaract) {
-        asociacionDondeTrabaja.agregarCarateristica(nuevaCaract.toUpperCase());
+        asociacion.agregarCarateristica(nuevaCaract.toUpperCase());
     }
 
     public void quitarPreguntaParaAdopcion(Pregunta pregunta){
@@ -42,5 +45,8 @@ public class UsuarioAdministrador extends Usuario {
         asociacion.agregarPregunta(preguntaNueva);
     }
 
+    public UsuarioAdministrador() {
+
+    }
 
 }
