@@ -19,7 +19,7 @@ public class UsuarioDuenio extends Usuario {
     @JoinColumn(name = "usuario_id", referencedColumnName = "Id")
     List<DatoDeContacto> datoDeContactoList = new ArrayList<>();
 
-    @OneToMany(mappedBy="usuario", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "duenio_id", referencedColumnName = "Id")
     List<Mascota> mascotasList = new ArrayList<>();
 

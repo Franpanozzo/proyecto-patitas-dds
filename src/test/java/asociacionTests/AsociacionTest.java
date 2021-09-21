@@ -1,3 +1,5 @@
+package asociacionTests;
+
 import Publicaciones.PublicacionMascotaPerdida;
 import Exceptions.*;
 import FormasDeEncuentro.*;

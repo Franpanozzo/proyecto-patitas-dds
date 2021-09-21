@@ -1,6 +1,6 @@
-import Exceptions.ContraseniaInvalidaException;
+package asociacionTests;
+
 import Exceptions.NoTodasLasPreguntasFueronRespondidas;
-import FormasDeEncuentro.SinChapita;
 import Publicaciones.PublicacionAdopcionMascota;
 import Publicaciones.PublicacionIntencionAdopcion;
 import Usuario.DatoDeContacto;

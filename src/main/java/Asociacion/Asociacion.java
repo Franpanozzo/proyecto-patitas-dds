@@ -30,15 +30,18 @@ public class Asociacion extends EntidadPersistente {
     @ElementCollection
     List<String> caracteristicasPosibles = new ArrayList<>();
     //Listas de Publicaciones
-    //@OneToMany(mappedBy = "asociacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "asociacion_id", referencedColumnName = "Id")
     List<PublicacionMascotaPerdida> listaDePublicaciones = new ArrayList<>();
-    //@OneToMany(mappedBy = "asociacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Transient
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "asociacion_id", referencedColumnName = "Id")
     List<PublicacionAdopcionMascota> listaDePublicacionesParaAdoptar = new ArrayList<>();
-    //@OneToMany(mappedBy = "asociacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Transient
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "asociacion_id", referencedColumnName = "Id")
     List<PublicacionIntencionAdopcion> listaDePublicacionesIntencionAdopcion = new ArrayList<>();
+
     //Lista de Preguntas para crear Publicacion
     @OneToMany(mappedBy = "asociacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Pregunta> listaDePreguntas = new ArrayList<>();

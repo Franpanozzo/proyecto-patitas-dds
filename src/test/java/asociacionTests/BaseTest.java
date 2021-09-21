@@ -1,3 +1,5 @@
+package asociacionTests;
+
 import Asociacion.Asociacion;
 import EntidadesExternas.Rescatista;
 import Mascota.*;
