@@ -5,14 +5,21 @@ import EntidadesExternas.Rescatista;
 import FormasDeEncuentro.FormaDeEncuentro;
 //import jdk.vm.ci.meta.Local;
 import Mascota.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-
-public class MascotaPerdida {
+@Entity
+public class MascotaPerdida extends EntidadPersistente {
+    @Embedded
     Chapita chapita;
+    @Embedded
     DatosMascotaPerdida datosMascotaPerdida;
 
     public MascotaPerdida(Rescatista rescatista, String foto, List<String> descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro, Animal animal, Tamanio tamanio) {

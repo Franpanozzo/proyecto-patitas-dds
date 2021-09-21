@@ -18,6 +18,7 @@
         <class>Publicaciones.PublicacionAdopcionMascota</class>
         <class>Utils.Pregunta</class>
         <class>Mascota.Mascota</class>
+        <class>Mascota.MascotaPerdida</class>
 
         <properties>
             <!--<property name="hibernate.archive.autodetection" value="class"/>-->
