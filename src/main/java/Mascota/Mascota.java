@@ -4,31 +4,26 @@ import Asociacion.Asociacion;
 import ClasesPersistencia.EntidadPersistente;
 import Mascota.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.*;
 
 @Entity
 public class Mascota extends EntidadPersistente{
 
-    @Transient
+    @Enumerated(EnumType.STRING)
     Animal tipo;
 
     String nombre;
 
     String apodo;
 
-    @Transient
     Integer edadAprox;
 
-    @Transient
+    @Enumerated(EnumType.STRING)
     Sexo sexo;
 
     String descripcion;
 
-    @Transient
     String foto;
 
     @ElementCollection

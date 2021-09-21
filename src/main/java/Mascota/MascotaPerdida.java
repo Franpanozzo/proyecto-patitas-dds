@@ -1,6 +1,7 @@
 package Mascota;
 
 import Asociacion.Asociacion;
+import ClasesPersistencia.EntidadPersistente;
 import EntidadesExternas.Rescatista;
 import FormasDeEncuentro.FormaDeEncuentro;
 //import jdk.vm.ci.meta.Local;
@@ -24,6 +25,10 @@ public class MascotaPerdida extends EntidadPersistente {
 
     public MascotaPerdida(Rescatista rescatista, String foto, List<String> descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro, Animal animal, Tamanio tamanio) {
         datosMascotaPerdida = new DatosMascotaPerdida(rescatista,foto,descripcionEstado,lugarDeEncuentro,fechaEncuentro, animal, tamanio);
+    }
+
+    public MascotaPerdida(){
+
     }
 
     public Chapita getChapita(){

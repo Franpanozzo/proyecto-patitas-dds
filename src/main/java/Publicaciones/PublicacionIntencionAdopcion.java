@@ -10,8 +10,9 @@ import java.util.Map;
 @Entity
 public class PublicacionIntencionAdopcion extends EntidadPersistente {
 
-  //@ElementCollection
-  @Transient
+  @ElementCollection
+  @MapKeyColumn(name = "intencion_requisito")
+  @Column(name = "requisito")
   private Map<String, String> dataPublicacion = new HashMap<>();
 
   @ManyToOne

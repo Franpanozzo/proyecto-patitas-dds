@@ -3,9 +3,7 @@ import ClasesPersistencia.EntidadPersistente;
 import Utils.*;
 import Usuario.DatoDeContacto;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +13,9 @@ import java.util.stream.Collectors;
 @Entity
 public class PublicacionAdopcionMascota extends EntidadPersistente {
 
-  @Transient
+  @ElementCollection
+  @MapKeyColumn(name = "adopcion_requisito")
+  @Column(name = "requisito")
   private Map<String, String> dataPublicacion = new HashMap<>();
   @ManyToOne
   DatoDeContacto datoDeContacto;
