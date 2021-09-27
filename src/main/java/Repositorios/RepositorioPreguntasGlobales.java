@@ -44,6 +44,3 @@ public class RepositorioPreguntasGlobales implements WithGlobalEntityManager {
   }
 }
 
-
-
-
