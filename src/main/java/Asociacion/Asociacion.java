@@ -34,7 +34,7 @@ public class Asociacion extends EntidadPersistente {
     @JoinColumn(name = "asociacion_id", referencedColumnName = "Id")
     List<PublicacionMascotaPerdida> listaDePublicaciones = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "asociacion_id", referencedColumnName = "Id")
     List<PublicacionAdopcionMascota> listaDePublicacionesParaAdoptar = new ArrayList<>();
 

@@ -15,7 +15,7 @@ public class PublicacionIntencionAdopcion extends EntidadPersistente {
   @Column(name = "requisito")
   private Map<String, String> dataPublicacion = new HashMap<>();
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   private DatoDeContacto datoDeContactoInteresado;
 
   public DatoDeContacto getDatoDeContactoInteresado() {

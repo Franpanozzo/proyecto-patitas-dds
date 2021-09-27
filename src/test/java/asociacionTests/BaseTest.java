@@ -17,12 +17,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
-public class BaseTest {
+public class BaseTest implements WithGlobalEntityManager {
   List<String> caracteristicasBombon = Arrays.asList("marron", "grande");
   LocalDate fechaUnMesAtras = LocalDate.now().minusDays(29);
   static LocalDate fechaAntigua = LocalDate.of(1999, 05, 23);
@@ -104,6 +105,7 @@ public class BaseTest {
   @BeforeEach
   public void iniciarPreTest(){
 
+    entityManager().getTransaction().begin();
     DatosPersonales datosPersonales = new DatosPersonales("FranPanozzo", fechaAntigua, TipoDocumento.DNI, 40122287);
     repoUsuarios = patitas.getGestorDeAsociacion();
     RepositorioAsociaciones.getInstance().agregarAsociacion(patitas);
@@ -129,10 +131,11 @@ public class BaseTest {
 
   @AfterEach
   public void despuesDeCada() {
-    RepositorioAsociaciones.getInstance().sacarAsociacion(patitas);
-    franP.quitarPreguntaParaAdopcion(necesitaPatio);
-    RepositorioPreguntasGlobales.getInstance().sacarPreguntaRequerida(tipoAnimal);
-    RepositorioPreguntasGlobales.getInstance().sacarPreguntaRequerida(tipoDeTamanio);
+    //franP.quitarPreguntaParaAdopcion(necesitaPatio);
+    entityManager().getTransaction().rollback();
+    //RepositorioAsociaciones.getInstance().sacarAsociacion(patitas);
+    //RepositorioPreguntasGlobales.getInstance().sacarPreguntaRequerida(tipoAnimal);
+    //RepositorioPreguntasGlobales.getInstance().sacarPreguntaRequerida(tipoDeTamanio);
   }
 
   public MascotaPerdida mascotaPerdida(String foto,List<String> descripcion, LocalDate fecha, Rescatista rescatista, Animal animal, Tamanio tamanio) {

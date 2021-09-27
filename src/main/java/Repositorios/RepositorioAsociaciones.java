@@ -5,11 +5,13 @@ import java.util.Comparator;
 
 import Asociacion.*;
 import Mascota.*;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-public class RepositorioAsociaciones {
+public class RepositorioAsociaciones implements WithGlobalEntityManager {
 
   private static RepositorioAsociaciones instance;
-  public List<Asociacion> listaAsociaciones = new ArrayList<>();
+
 
   public static RepositorioAsociaciones getInstance() {
     if (instance == null) {
@@ -18,21 +20,28 @@ public class RepositorioAsociaciones {
     return instance;
   }
 
+  @SuppressWarnings("unchecked")
   public List<Asociacion> getListaAsociaciones() {
-    return listaAsociaciones;
+    return entityManager()
+        .createQuery("FROM Asociacion")
+        .getResultList();
   }
 
+  @SuppressWarnings("unchecked")
   public void agregarAsociacion(Asociacion asociacion) {
-    listaAsociaciones.add(asociacion);
+    entityManager()
+        .persist(asociacion);
   }
 
   public Asociacion masCercanaA(MascotaPerdida mascota){
-     return listaAsociaciones.stream()
-         .min(Comparator.comparing(asociacion -> asociacion.distanciaALugarDeEncuentro(mascota)))
-         .get();
+    return getListaAsociaciones().stream()
+        .min(Comparator.comparing(asociacion -> asociacion.distanciaALugarDeEncuentro(mascota)))
+        .get();
   }
 
-  public void sacarAsociacion(Asociacion patitas) {
-    listaAsociaciones.remove(patitas);
+  @SuppressWarnings("unchecked")
+  public void sacarAsociacion(Asociacion asociacion) {
+    entityManager()
+        .remove(asociacion);
   }
 }
