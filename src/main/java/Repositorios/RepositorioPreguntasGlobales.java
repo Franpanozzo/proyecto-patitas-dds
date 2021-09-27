@@ -24,14 +24,20 @@ public class RepositorioPreguntasGlobales implements WithGlobalEntityManager {
     return instance;
   }
 
-  public List<Pregunta> getListaDePreguntasRequeridas() {
-    return listaDePreguntasRequeridas;
-  }
-
+  @SuppressWarnings("unchecked")
   public void agregarPreguntaRequerida(Pregunta pregunta) {
-    listaDePreguntasRequeridas.add(pregunta);
+    if(pregunta.getAsociacion() == null){
+      entityManager()
+          .persist(pregunta);
+    }
+    else{
+      throw new PreguntaNoGlobalException(
+          "La pregunta que intenta agregar no es global, pertenece a la asociacion " + pregunta.getAsociacion()
+      );
+    }
   }
 
+  @SuppressWarnings("unchecked")
   public void sacarPreguntaRequerida(Pregunta pregunta) {
     entityManager()
         .remove(pregunta);

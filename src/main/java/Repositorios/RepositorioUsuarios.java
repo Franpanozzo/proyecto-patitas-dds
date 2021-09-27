@@ -4,6 +4,7 @@ import Notificacion.FormaDeNotificar;
 import Notificacion.NotificarPorJavaMail;
 import Publicaciones.PublicacionAdopcionMascota;
 import Usuario.*;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +80,6 @@ public class RepositorioUsuarios {
   }
 
 }
-
 
 
 

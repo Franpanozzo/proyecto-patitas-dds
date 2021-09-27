@@ -17,7 +17,7 @@ public class PublicacionAdopcionMascota extends EntidadPersistente {
   @MapKeyColumn(name = "adopcion_requisito")
   @Column(name = "requisito")
   private Map<String, String> dataPublicacion = new HashMap<>();
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   DatoDeContacto datoDeContacto;
   String link;
 

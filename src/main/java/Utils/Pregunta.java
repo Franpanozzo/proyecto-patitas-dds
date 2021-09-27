@@ -28,6 +28,10 @@ public class Pregunta extends EntidadPersistente {
     this.asociacion = asociacion;
   }
 
+  public Asociacion getAsociacion(){
+    return asociacion;
+  }
+
   public String getTipo() {
     return tipo;
   }
