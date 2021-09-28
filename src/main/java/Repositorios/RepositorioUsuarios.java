@@ -11,30 +11,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 //No es un singleton
-public class RepositorioUsuarios {
+public class RepositorioUsuarios implements WithGlobalEntityManager{
   FormaDeNotificar formaDeNotificar = new NotificarPorJavaMail();
-  List<Usuario> listaDeUsuarios = new ArrayList<>();
 
+  @SuppressWarnings("unchecked")
   public void cargarNuevoUsuario(Usuario usuarioNuevo) {
-    listaDeUsuarios.add(usuarioNuevo);
+    entityManager().persist(usuarioNuevo);
   }
 
+  @SuppressWarnings("unchecked")
   public List<Usuario> getlistaDeUsuarios() {
-    return listaDeUsuarios;
+    return entityManager()
+        .createQuery("from Usuario")
+        .getResultList();
   }
 
   public void buscarDuenioYNotificar(String codigoQR, String nombreAsociacion) {
-
-    // JOIN a la tabla de usuarios y te traes al usuario directamente
-
-
-    // Agarras el QR de la mascotaPerdida y haces este filter
-
-    Usuario usuario = listaDeUsuarios
-        .stream()
-        .filter(unUsuario -> unUsuario.mismoCodigoQR(codigoQR))
-        .findAny().get();
+    Usuario usuario = this.usuarioConQR(codigoQR);
     this.notificar(usuario, nombreAsociacion);
+  }
+
+  public UsuarioDuenio usuarioConQR(String codigoQR) {
+    return (UsuarioDuenio) entityManager()
+        .createQuery("from Usuario where codigoQR = :codigo")
+        .setParameter("codigo", codigoQR)
+        .getSingleResult();
   }
 
   //Set para mockear

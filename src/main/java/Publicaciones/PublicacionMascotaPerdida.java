@@ -4,6 +4,7 @@ import ClasesPersistencia.EntidadPersistente;
 import Mascota.DatosMascotaPerdida;
 import Usuario.DatoDeContacto;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -17,7 +18,7 @@ public class PublicacionMascotaPerdida extends EntidadPersistente {
   DatosMascotaPerdida datosMascotaPerdida;
   boolean validada = false;
   //Esto no se muestra en interfaz grafica
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.ALL)
   List<DatoDeContacto> datoDeContactoDelRescatista = new ArrayList<>();
 
   public PublicacionMascotaPerdida(DatosMascotaPerdida datosMascotaPerdida, List<DatoDeContacto> datoDeContactoList) {

@@ -131,7 +131,7 @@ public class BaseTest implements WithGlobalEntityManager {
 
   @AfterEach
   public void despuesDeCada() {
-    //franP.quitarPreguntaParaAdopcion(necesitaPatio);
+    franP.quitarPreguntaParaAdopcion(necesitaPatio);
     entityManager().getTransaction().rollback();
     //RepositorioAsociaciones.getInstance().sacarAsociacion(patitas);
     //RepositorioPreguntasGlobales.getInstance().sacarPreguntaRequerida(tipoAnimal);

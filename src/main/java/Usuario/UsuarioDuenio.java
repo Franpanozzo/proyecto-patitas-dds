@@ -50,6 +50,10 @@ public class UsuarioDuenio extends Usuario {
         return datoDeContactoList.stream().findAny().get().getEmail();
     }
 
+    public String getCodigoQR() {
+        return codigoQR;
+    }
+
     @Override
     public List<DatoDeContacto> getDatoDeContactoList() {
         return datoDeContactoList;

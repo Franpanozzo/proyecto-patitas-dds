@@ -1,6 +1,9 @@
 package asociacionTests;
 
 import Repositorios.RepositorioPreguntasGlobales;
+import Repositorios.RepositorioUsuarios;
+import Usuario.Usuario;
+import Usuario.UsuarioDuenio;
 import Utils.Pregunta;
 import org.junit.jupiter.api.*;
 
@@ -40,5 +43,21 @@ public class RepositoriosEnBDDTest extends BaseTest implements WithGlobalEntityM
 
     assertEquals(3, preguntas.size());
   }
+
+  @Test
+  public void filtrarUsuarioPorCodigoQR() {
+    UsuarioDuenio usuarioABuscar = duenioConDosMascotas();
+    UsuarioDuenio buscado = repoUsuarios.usuarioConQR("1234");
+    assertEquals(usuarioABuscar.getCodigoQR(), buscado.getCodigoQR());
+  }
+
+
 }
+
+
+
+
+
+
+
 

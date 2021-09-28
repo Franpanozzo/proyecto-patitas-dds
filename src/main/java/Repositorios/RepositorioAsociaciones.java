@@ -23,7 +23,7 @@ public class RepositorioAsociaciones implements WithGlobalEntityManager {
   @SuppressWarnings("unchecked")
   public List<Asociacion> getListaAsociaciones() {
     return entityManager()
-        .createQuery("FROM Asociacion")
+        .createQuery("from Asociacion")
         .getResultList();
   }
 
