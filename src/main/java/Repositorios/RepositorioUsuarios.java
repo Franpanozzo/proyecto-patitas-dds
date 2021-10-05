@@ -1,24 +1,22 @@
 package Repositorios;
 
 import Notificacion.FormaDeNotificar;
-import Notificacion.NotificarPorJavaMail;
+import Notificacion.Notificador;
 import Publicaciones.PublicacionAdopcionMascota;
 import Usuario.*;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 //No es un singleton
 public class RepositorioUsuarios implements WithGlobalEntityManager{
-  FormaDeNotificar formaDeNotificar = new NotificarPorJavaMail();
+  Notificador notificador = new Notificador();
 
   @SuppressWarnings("unchecked")
   public void cargarNuevoUsuario(Usuario usuarioNuevo) {
     entityManager().persist(usuarioNuevo);
   }
-
   @SuppressWarnings("unchecked")
   public List<Usuario> getlistaDeUsuarios() {
     return entityManager()
@@ -28,7 +26,7 @@ public class RepositorioUsuarios implements WithGlobalEntityManager{
 
   public void buscarDuenioYNotificar(String codigoQR, String nombreAsociacion) {
     Usuario usuario = this.usuarioConQR(codigoQR);
-    this.notificar(usuario, nombreAsociacion);
+    this.notificarEncuentro(usuario, nombreAsociacion);
   }
 
   public UsuarioDuenio usuarioConQR(String codigoQR) {
@@ -38,48 +36,31 @@ public class RepositorioUsuarios implements WithGlobalEntityManager{
         .getSingleResult();
   }
 
-  //Set para mockear
-  public void setformaDeNotificar(FormaDeNotificar formaDeNotificar) {
-    this.formaDeNotificar = formaDeNotificar;
-  }
-
-  private void notificar(Usuario usuario, String nombreAsociacion) {
+  private void notificarEncuentro(Usuario usuario, String nombreAsociacion) {
     DatoDeContacto algunContactoDelUsuario = usuario.getDatoDeContactoList().stream().findAny().get();
-    formaDeNotificar.enviarNotificacion(algunContactoDelUsuario, "AVISO DE ENCUENTRO DE MASCOTA",
-        "Buenos dias, encontramos a la mascota que perdio tu familiar " + usuario.getNombreYApellido()
-            + ""
-            + "\nContactanos lo antes posible con la asociacion " + nombreAsociacion + " para acordar el punto de entrega");
+    notificador.notificarEncuentro(usuario,nombreAsociacion,algunContactoDelUsuario);
   }
 
   public void notificarRescatista(DatoDeContacto mailRescatista, String mailDuenioNoRegistrado) {
-    formaDeNotificar.enviarNotificacion(mailRescatista, "AVISO DE ENCUENTRO DE MASCOTA",
-        "Buenos dias, el dueño de la mascota que encontraste quiere coordinar un punto de encuentro."
-            + "\nContactate con el lo antes posible: " + mailDuenioNoRegistrado);
+    notificador.notificarRescatista(mailRescatista, mailDuenioNoRegistrado);
   }
   //Hacer generica estas dos funciones
 
   public void notificarDuenioActual(DatoDeContacto duenioActual, String mailAdoptador) {
-    formaDeNotificar.enviarNotificacion(duenioActual, "AVISO DE ADOPCION",
-        "Buenos dias, alguien quiere adoptar tu mascota."
-            + "\nContactate con el lo antes posible: " + mailAdoptador);
+    notificador.notificarDuenioActual(duenioActual, mailAdoptador);
   }
 
   public void notificarPublicacionCreada(DatoDeContacto futuroAdoptante) {
-    formaDeNotificar.enviarNotificacion(futuroAdoptante, "SU PUBLICACION SE CREO CORRECTAMENTE",
-        "Buenos dias, su publicacion de intencion de adopcion fue creada con éxito \nPuede darla de baja haciendo click aquí https://patitas.com/dar_de_baja_publicacion");
+    notificador.notidicarPublicacionCreada(futuroAdoptante);
   }
 
   public void enviarRecomendacion(DatoDeContacto datoDeContactoInteresado, List<PublicacionAdopcionMascota> publicacionesQueCumplen) {
-    formaDeNotificar.enviarNotificacion(datoDeContactoInteresado, "RECOMENDACION DE MASCOTAS EN ADOPCION",
-        "Buenos dias, te sugerimos que veas las siguientes publicacion que creamos que pueden ser ideales para ti: " + this.agarrarLinks(publicacionesQueCumplen)
-            + ""
-            + "\n Saludos! Proyecto patitas.");
+    notificador.enviarRecomendacion(datoDeContactoInteresado, publicacionesQueCumplen);
   }
 
-  public List<String> agarrarLinks(List<PublicacionAdopcionMascota> publicacionAdopcionMascotas) {
-    return publicacionAdopcionMascotas.stream().map(PublicacionAdopcionMascota::getLink).collect(Collectors.toList());
+  public void setformaDeNotificar(FormaDeNotificar formaDeNotificar) {
+    notificador.setformaDeNotificar(formaDeNotificar);
   }
-
 }
 
 
