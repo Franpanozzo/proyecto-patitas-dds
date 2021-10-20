@@ -1,18 +1,14 @@
 package asociacionTests;
 
-import Repositorios.RepositorioPreguntasGlobales;
-import Repositorios.RepositorioUsuarios;
-import Usuario.Usuario;
-import Usuario.UsuarioDuenio;
-import Utils.Pregunta;
+import domain.Repositorios.RepositorioPreguntasGlobales;
+import domain.Usuario.UsuarioDuenio;
+import domain.Utils.Pregunta;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
-import java.util.Arrays;
 import java.util.List;
 
 

@@ -1,0 +1,10 @@
+package domain.FormasDeEncuentro;
+
+import domain.Mascota.MascotaPerdida;
+import domain.Usuario.DatoDeContacto;
+
+import java.util.List;
+
+public interface FormaDeEncuentro {
+  void ejecutarAccion(MascotaPerdida mascotaPerdida, List<DatoDeContacto> datoDeContactos);
+}

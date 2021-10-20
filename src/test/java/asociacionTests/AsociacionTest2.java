@@ -1,9 +1,9 @@
 package asociacionTests;
 
-import Exceptions.NoTodasLasPreguntasFueronRespondidas;
-import Publicaciones.PublicacionAdopcionMascota;
-import Publicaciones.PublicacionIntencionAdopcion;
-import Usuario.DatoDeContacto;
+import domain.Exceptions.NoTodasLasPreguntasFueronRespondidas;
+import domain.Publicaciones.PublicacionAdopcionMascota;
+import domain.Publicaciones.PublicacionIntencionAdopcion;
+import domain.Usuario.DatoDeContacto;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import java.util.List;

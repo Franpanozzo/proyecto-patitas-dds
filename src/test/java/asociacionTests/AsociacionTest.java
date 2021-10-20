@@ -1,11 +1,11 @@
 package asociacionTests;
 
-import Publicaciones.PublicacionMascotaPerdida;
-import Exceptions.*;
-import FormasDeEncuentro.*;
-import Usuario.*;
-import Mascota.*;
-import EntidadesExternas.*;
+import domain.Publicaciones.PublicacionMascotaPerdida;
+import domain.Exceptions.*;
+import domain.FormasDeEncuentro.*;
+import domain.Usuario.*;
+import domain.Mascota.*;
+import domain.EntidadesExternas.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import java.io.IOException;

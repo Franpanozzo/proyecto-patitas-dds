@@ -8,17 +8,17 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>Asociacion.Asociacion</class>
-        <class>Usuario.Usuario</class>
-        <class>Usuario.UsuarioDuenio</class>
-        <class>Usuario.UsuarioAdministrador</class>
-        <class>Usuario.DatoDeContacto</class>
-        <class>Publicaciones.PublicacionMascotaPerdida</class>
-        <class>Publicaciones.PublicacionIntencionAdopcion</class>
-        <class>Publicaciones.PublicacionAdopcionMascota</class>
-        <class>Utils.Pregunta</class>
-        <class>Mascota.Mascota</class>
-        <class>Mascota.MascotaPerdida</class>
+        <class>domain.Asociacion.Asociacion</class>
+        <class>domain.Usuario.Usuario</class>
+        <class>domain.Usuario.UsuarioDuenio</class>
+        <class>domain.Usuario.UsuarioAdministrador</class>
+        <class>domain.Usuario.DatoDeContacto</class>
+        <class>domain.Publicaciones.PublicacionMascotaPerdida</class>
+        <class>domain.Publicaciones.PublicacionIntencionAdopcion</class>
+        <class>domain.Publicaciones.PublicacionAdopcionMascota</class>
+        <class>domain.Utils.Pregunta</class>
+        <class>domain.Mascota.Mascota</class>
+        <class>domain.Mascota.MascotaPerdida</class>
 
         <properties>
             <!--<property name="hibernate.archive.autodetection" value="class"/>-->
