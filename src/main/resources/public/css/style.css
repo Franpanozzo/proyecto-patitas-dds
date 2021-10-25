@@ -195,7 +195,7 @@ ul ol {
 
 ul.nav {
     padding-left: 0px;
-    background-color: #3D99CE;
+    background-color: lightgray;
     text-align: center;
 }
 ul.nav > li {
