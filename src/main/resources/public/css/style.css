@@ -195,7 +195,7 @@ ul ol {
 
 ul.nav {
     padding-left: 0px;
-    background-color: lightgray;
+    background-color: white;
     text-align: center;
 }
 ul.nav > li {
@@ -203,10 +203,10 @@ ul.nav > li {
     padding: 10px 20px;
 }
 ul.nav > li:hover {
-    background-color: #2779BF;
+    background-color: lightgray;
 }
 ul.nav > li > a {
-    color: black;
+    color: #E896EF;
     text-decoration: none;
 }
 
@@ -652,11 +652,16 @@ progress {
 .container-lg,
 .container-md,
 .container-sm {
+    margin: auto;
     width: 100%;
     padding-right: var(--bs-gutter-x, 0.75rem);
     padding-left: var(--bs-gutter-x, 0.75rem);
     margin-right: auto;
     margin-left: auto;
+}
+
+.container-upper {
+    padding-top: 80px;
 }
 
 @media (min-width: 576px) {
