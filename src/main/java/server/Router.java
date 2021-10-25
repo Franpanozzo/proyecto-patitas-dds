@@ -1,5 +1,6 @@
 package server;
 
+import controllers.MascotasController;
 import controllers.UsuariosController;
 import spark.Spark;
 import spark.debug.DebugScreen;
@@ -27,10 +28,18 @@ public class Router {
   public static void configure() {
     HandlebarsTemplateEngine engineTemplate = new HandlebarsTemplateEngine();
     UsuariosController usuariosController = new UsuariosController();
+    MascotasController mascotasController = new MascotasController();
 
     Spark.get("/", (req, res) -> "Hola");
 
     Spark.get("/usuarios", usuariosController::mostrar, engineTemplate);
+
+    Spark.get("/login", usuariosController::entrar, engineTemplate);
+
+    Spark.post("/session", usuariosController::post, engineTemplate);
+
+    Spark.get("/mascotas", mascotasController::inicio, engineTemplate);
+
 
   }
 
