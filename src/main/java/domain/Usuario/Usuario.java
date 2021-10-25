@@ -44,6 +44,10 @@ public abstract class Usuario extends EntidadPersistente{
   public Usuario() {
 
   }
+
+  public String getContrasenia() {
+    return contrasenia;
+  }
 }
 
 

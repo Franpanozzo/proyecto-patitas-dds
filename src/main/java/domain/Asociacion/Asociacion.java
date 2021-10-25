@@ -45,20 +45,17 @@ public class Asociacion extends EntidadPersistente {
     //Lista de Preguntas para crear Publicacion
     @OneToMany(mappedBy = "asociacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Pregunta> listaDePreguntas = new ArrayList<>();
-    @Transient
-    RepositorioUsuarios repositorioUsuarios;
     @Embedded
     Coordenadas direccion;
 
     public Asociacion(String nombreAsociacion, Coordenadas direccion) {
         this.nombreAsociacion = nombreAsociacion;
-        this.repositorioUsuarios = new RepositorioUsuarios();
         this.direccion = direccion;
     }
 
     //Metodo para implementar MOCKITO
     public void cambiarFormaDeNotificar(FormaDeNotificar mail) {
-        repositorioUsuarios.setformaDeNotificar(mail);
+        RepositorioUsuarios.getInstance().setformaDeNotificar(mail);
     }
 
     public void agregarCarateristica(String caracteristica) {
@@ -66,11 +63,11 @@ public class Asociacion extends EntidadPersistente {
     }
 
     public RepositorioUsuarios getGestorDeAsociacion() {
-        return repositorioUsuarios;
+        return RepositorioUsuarios.getInstance();
     }
 
     public void registrarUsuario(Usuario usuarioNuevo) {
-        repositorioUsuarios.cargarNuevoUsuario(usuarioNuevo);
+        RepositorioUsuarios.getInstance().cargarNuevoUsuario(usuarioNuevo);
     }
 
     public List<String> getCaracteristicasPosibles() {
@@ -97,7 +94,7 @@ public class Asociacion extends EntidadPersistente {
     }
 
     public void buscarDuenioYNotificar(String codigoQR) {
-        repositorioUsuarios.buscarDuenioYNotificar(codigoQR, nombreAsociacion);
+        RepositorioUsuarios.getInstance().buscarDuenioYNotificar(codigoQR, nombreAsociacion);
     }
 
     public void registrarPublicacion(PublicacionMascotaPerdida publicacionMascotaPerdida) {
@@ -122,7 +119,7 @@ public class Asociacion extends EntidadPersistente {
         DatoDeContacto algunContactoDelRescatista = datosDeContRescatista.stream().findAny().get();
 
         this.quitarPublicacion(publicacionMascotaPerdidaElegida);
-        repositorioUsuarios.notificarRescatista(algunContactoDelRescatista, emailSupuestoDuenio);
+        RepositorioUsuarios.getInstance().notificarRescatista(algunContactoDelRescatista, emailSupuestoDuenio);
         // Coordina entrega con el siguiente mail: tataa
     }
     
@@ -170,12 +167,12 @@ public class Asociacion extends EntidadPersistente {
 
     public void adoptarMascotaPublicada(PublicacionAdopcionMascota publicacionAdopcionMascota, String mailDeAdoptador) {
         listaDePublicacionesParaAdoptar.remove(publicacionAdopcionMascota);
-        repositorioUsuarios.notificarDuenioActual(publicacionAdopcionMascota.getDatoDeContacto(), mailDeAdoptador);
+        RepositorioUsuarios.getInstance().notificarDuenioActual(publicacionAdopcionMascota.getDatoDeContacto(), mailDeAdoptador);
     }
 
     public void generarPublicacionIntencionAdopcion(PublicacionIntencionAdopcion publicacionIntencionAdopcion){
         listaDePublicacionesIntencionAdopcion.add(publicacionIntencionAdopcion);
-        repositorioUsuarios.notificarPublicacionCreada(publicacionIntencionAdopcion.getDatoDeContactoInteresado());
+        RepositorioUsuarios.getInstance().notificarPublicacionCreada(publicacionIntencionAdopcion.getDatoDeContactoInteresado());
     }
 
     public void deshacerPublicacionIntencionAdopcion(PublicacionIntencionAdopcion publicacionIntencionAdopcion) {
@@ -186,7 +183,7 @@ public class Asociacion extends EntidadPersistente {
     public void enviarRecomendaciones() {
         listaDePublicacionesIntencionAdopcion.forEach(publicacionInteresado -> {
             List<PublicacionAdopcionMascota> publicacionFiltrada = this.filtrarPublicacionesInteresadosAdopcion(publicacionInteresado);
-            repositorioUsuarios.enviarRecomendacion(publicacionInteresado.getDatoDeContactoInteresado(),publicacionFiltrada);
+            RepositorioUsuarios.getInstance().enviarRecomendacion(publicacionInteresado.getDatoDeContactoInteresado(),publicacionFiltrada);
         });
     }
 

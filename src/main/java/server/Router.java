@@ -30,9 +30,7 @@ public class Router {
     UsuariosController usuariosController = new UsuariosController();
     MascotasController mascotasController = new MascotasController();
 
-    Spark.get("/", (req, res) -> "Hola");
-
-    Spark.get("/usuarios", usuariosController::mostrar, engineTemplate);
+    Spark.get("/", usuariosController::mostrar, engineTemplate);
 
     Spark.get("/login", usuariosController::entrar, engineTemplate);
 
@@ -40,6 +38,7 @@ public class Router {
 
     Spark.get("/mascotas", mascotasController::inicio, engineTemplate);
 
+    Spark.post("/sessionOut", usuariosController::logout);
 
   }
 

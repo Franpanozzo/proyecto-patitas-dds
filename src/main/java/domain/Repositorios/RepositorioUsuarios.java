@@ -12,6 +12,16 @@ import java.util.List;
 public class RepositorioUsuarios implements WithGlobalEntityManager{
   Notificador notificador = new Notificador();
 
+  private static RepositorioUsuarios instance;
+
+
+  public static RepositorioUsuarios getInstance() {
+    if (instance == null) {
+      instance = new RepositorioUsuarios();
+    }
+    return instance;
+  }
+
   @SuppressWarnings("unchecked")
   public void cargarNuevoUsuario(Usuario usuarioNuevo) {
     entityManager().persist(usuarioNuevo);
@@ -26,6 +36,13 @@ public class RepositorioUsuarios implements WithGlobalEntityManager{
   public void buscarDuenioYNotificar(String codigoQR, String nombreAsociacion) {
     Usuario usuario = this.usuarioConQR(codigoQR);
     this.notificarEncuentro(usuario, nombreAsociacion);
+  }
+
+  public Usuario usuarioConNombre(String nombreUsuario) {
+    return (UsuarioDuenio) entityManager()
+        .createQuery("from Usuario where nombreUsuario = :nombreUsuario")
+        .setParameter("nombreUsuario", nombreUsuario)
+        .getSingleResult();
   }
 
   public UsuarioDuenio usuarioConQR(String codigoQR) {
