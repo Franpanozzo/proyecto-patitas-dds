@@ -3,14 +3,17 @@
     <form action="/session" method="POST">
         <div class="mb-3">
           <label for="usuarioInput" class="form-label">Usuario</label>
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese su usuario" value="{{ nombreUsuario }}">
+          <input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Ingrese su nombre de usuario" value="{{ nombre }}">
         </div>
         <div class="mb-3">
           <label for="passwordInput" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Ingrese su contraseña" value="{{ password }}">
+          <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Ingrese su contraseña" value="{{ password }}">
         </div>
 
-        <button type="submit" class="btn btn-primary">Ingresar</button
+        <div>
+        <button type="submit" class="btn btn-primary">Ingresar</button> <br>
+        ¿No tienes una cuenta?<a class="--bs-info" href="/signup"> Registrate!</a>
+        </div>
     </form>
 </div>
 {{/partial}}

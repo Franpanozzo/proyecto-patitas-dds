@@ -645,6 +645,16 @@ progress {
     color: #6c757d;
 }
 
+@media (max-width:450px) {
+    .form-cargar-usuario{
+        width:90%;;
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        padding: 10px;
+    }
+}
+
 .container,
 .container-fluid,
 .container-xxl,

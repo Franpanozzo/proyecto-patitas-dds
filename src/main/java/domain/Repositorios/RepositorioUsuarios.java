@@ -6,6 +6,7 @@ import domain.Publicaciones.PublicacionAdopcionMascota;
 import domain.Usuario.*;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 //No es un singleton
@@ -39,8 +40,19 @@ public class RepositorioUsuarios implements WithGlobalEntityManager{
   }
 
   public Usuario usuarioConNombre(String nombreUsuario) {
+    try {
+      return (UsuarioDuenio) entityManager()
+          .createQuery("from Usuario where nombreUsuario = :nombreUsuario")
+          .setParameter("nombreUsuario", nombreUsuario)
+          .getSingleResult();
+    } catch (NoResultException e) {
+      return null;
+    }
+  }
+
+  public Usuario borrarUsuarioConNombre(String nombreUsuario) {
     return (UsuarioDuenio) entityManager()
-        .createQuery("from Usuario where nombreUsuario = :nombreUsuario")
+        .createQuery("delete from Usuario where nombreUsuario = :nombreUsuario")
         .setParameter("nombreUsuario", nombreUsuario)
         .getSingleResult();
   }

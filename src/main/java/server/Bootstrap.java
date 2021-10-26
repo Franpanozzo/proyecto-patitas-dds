@@ -8,27 +8,40 @@ import domain.Mascota.Sexo;
 import domain.Repositorios.RepositorioAsociaciones;
 import domain.Repositorios.RepositorioUsuarios;
 import domain.Usuario.*;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
 
 import java.time.LocalDate;
 import java.util.*;
 
-public class Bootstrap {
-  static LocalDate fechaAntigua = LocalDate.of(1999, 05, 23);
-  static Asociacion patitas = new Asociacion("Patitas",new Coordenadas(52.5244444,13.410555555555552));;
+public class Bootstrap implements WithGlobalEntityManager {
 
-  public static void init() {
-    //Aca se inicializan todos los datos en la base de datos
+  LocalDate fechaAntigua = LocalDate.of(1999, 05, 23);
+  Asociacion patitas = new Asociacion("Patitas",new Coordenadas(52.5244444,13.410555555555552));;
+  private static Bootstrap instance;
 
-    RepositorioAsociaciones.getInstance().agregarAsociacion(patitas);
-    usuarios().forEach(usuario -> RepositorioUsuarios.getInstance().cargarNuevoUsuario(usuario));
 
+  public static Bootstrap getInstance() {
+    if (instance == null) {
+      instance = new Bootstrap();
+    }
+    return instance;
   }
 
-  public static List<Usuario> usuarios() {
+  public void init() {
+    //Aca se inicializan todos los datos en la base de datos
+      entityManager().getTransaction().begin();
+      RepositorioAsociaciones.getInstance().agregarAsociacion(patitas);
+      usuarios().forEach(usuario -> RepositorioUsuarios.getInstance().cargarNuevoUsuario(usuario));
+      entityManager().getTransaction().commit();
+    }
+
+
+  public List<Usuario> usuarios() {
    return Arrays.asList(duenioConDosMascotas(), usuarioAdmin());
   }
 
-  public static UsuarioDuenio duenioConDosMascotas() {
+  public UsuarioDuenio duenioConDosMascotas() {
     DatoDeContacto datosDeContactoPepe = new DatoDeContacto("juliaGonzales", 1140520843, "francisco.panozzosf@gmail.com");
     DatosPersonales datosPersonalesPepe = new DatosPersonales("Pepe Guardiola", fechaAntigua, TipoDocumento.DNI, 20149687);
     UsuarioDuenio pepe = new UsuarioDuenio("pepe12",
@@ -52,16 +65,16 @@ public class Bootstrap {
     return pepe;
   }
 
-  public static UsuarioAdministrador usuarioAdmin() {
+  public UsuarioAdministrador usuarioAdmin() {
     DatosPersonales datosPersonales = new DatosPersonales("FranPanozzo", fechaAntigua, TipoDocumento.DNI, 40122287);
     return new UsuarioAdministrador("franpano", "sofilamejR24", patitas, datosPersonales);
   }
 
-  public static Mascota oli() {
+  public Mascota oli() {
     return new Mascota(Animal.PERRO, "olivia", "oli", 12, Sexo.HEMBRA, "educada", "foto" /*Collections.singletonList("gris")*/);
   }
 
-  public static Mascota bombon() {
+  public Mascota bombon() {
     return new Mascota(Animal.PERRO, "bombon", "bombi", 15, Sexo.HEMBRA, "labrador", "foto" /*caracteristicasBombon*/);
   }
 }

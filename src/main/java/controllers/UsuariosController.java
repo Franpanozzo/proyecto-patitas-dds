@@ -6,6 +6,10 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import javax.persistence.NoResultException;
+import java.util.HashMap;
+import java.util.Map;
+
 public class UsuariosController {
 
   public ModelAndView mostrar(Request request, Response response) {
@@ -13,17 +17,21 @@ public class UsuariosController {
   }
 
   public ModelAndView entrar(Request request, Response response) {
-    return new ModelAndView(null, "login.hbs");
+    Map<String, Object> model = new HashMap<>();
+    model.put("botonSignUp","botonSignUp");
+    return new ModelAndView(model, "login.hbs");
   }
 
   public ModelAndView post(Request request, Response response) {
+    Map<String, Object> model = new HashMap<>();
     String usuario = request.queryParams("nombre");
     String password = request.queryParams("password");
     Usuario usuarioEncontrado = RepositorioUsuarios.getInstance().usuarioConNombre(usuario);
 
-    if (usuarioEncontrado == null ||
-        !usuarioEncontrado.equals(password)) {
-      return new ModelAndView(null, "login.hbs");
+    if (usuarioEncontrado == null || !usuarioEncontrado.getContrasenia().equals(password)) {
+      //Aca podemos imprimir un mensaje en el coso que esta mal el nombre de usuario o contraseña
+      model.put("botonSignUp","botonSignUp");
+      return new ModelAndView(model, "login.hbs");
     }
 
     request.session().attribute("usuario_logueado", usuario);

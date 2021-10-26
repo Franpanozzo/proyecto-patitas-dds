@@ -28,10 +28,14 @@
                     <a>¿Encontraste una mascota?</a><a class="--bs-info" href="/mascotas">  Avisanos</a>
                 </li>
                 <li>
-                    <a href="#page-top">Patitas</a>
+                    <a href="/">Patitas</a>
                 </li>
                 <li>
-                    <a class="btn btn-dark text-uppercase" href="/login">Login</a>
+                {{#if botonSignUp}}
+                    <a class="btn btn-dark text-uppercase" href="/signup">Sign up</a>
+                {{else}}
+                    <a class="btn btn-dark text-uppercase" href="/login">Log in</a>
+                {{/if}}
                 </li>
             </ul>
         </div>
