@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="css/style.css" rel="stylesheet" />
     </head>
     <body id="page-top">
@@ -32,14 +32,17 @@
                 </li>
                 <li>
                 {{#if botonSignUp}}
-                    <a class="btn btn-dark text-uppercase" href="/signup">Sign up</a>
+                    <a class="btn btn-dark text-uppercase" href="/signup">Registrarse</a>
                 {{else}}
-                    <a class="btn btn-dark text-uppercase" href="/login">Log in</a>
+                    {{#if botonLogOut}}
+                    <a class="btn btn-dark text-uppercase" href="/sessionOut">Cerrar sesión</a>
+                    {{else}}
+                    <a class="btn btn-dark text-uppercase" href="/login">Iniciar sesión</a>
+                    {{/if}}
                 {{/if}}
                 </li>
             </ul>
         </div>
-        
         <!-- Partials-->
         <div>
             {{#block "contenido"}}
@@ -49,6 +52,6 @@
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <!-- <script src="js/scripts.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> -->
 </html>

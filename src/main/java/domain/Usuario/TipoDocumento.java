@@ -1,5 +1,5 @@
 package domain.Usuario;
 
 public enum TipoDocumento {
-    DNI, PASAPORTE, CUIT;
+    DNI, PASAPORTE, CUIT, LIBRETA;
 }
