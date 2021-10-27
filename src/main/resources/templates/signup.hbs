@@ -1,6 +1,6 @@
 {{#partial "contenido"}}
 <div class="container container-upper">
-        <form action="/session" method="POST">
+        <form action="/signup" method="POST">
           <h6> Datos personales </h6>
           <div class="form-row">
             <div class="form-group col-md-4">
@@ -13,18 +13,10 @@
             </div>
           </div>
           <div class="form-row">
-              <label for="text">Fecha de nacimiento </label>
-              <br>
-              <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="fechaNacAño" placeholder="Año" name="fechaNacAño">
-              </div>
-              <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="fechaNacMes" placeholder="Mes" name="fechaNacMes">
-              </div>
-              <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="fechaNacDia" placeholder="dia" name="fechaNacDia">
-              </div>
-          </div>
+              <label for="text">Fecha de nacimiento:  </label>
+              <div class="form-group col-md-3">
+                  <input type="date" class="form-control" id="fechaNac" placeholder="Ingrese fecha de nacimiento" name="fechaNac">
+              </div>          </div>
           <div class="form-row">
               <div class="form-group col-md-2">
                   <select class="custom-select" name="tipoDoc">
@@ -64,12 +56,18 @@
               </div>
           </div>
 
+          {{#if failContra}}
+          <div class="invalid-feedback" style="display:block">
+              * Las contraseñas no coinciden.
+          </div>
+          {{/if}}
+
            <div class="form-row">
-            <div class="form-group col-md-2">
-               <button type="submit" class="btn btn-secondary">Cancelar</button>
+           <div class="form-group col-md-2">
+               <a class="btn btn-secondary" href="/login">Cancelar</a>
             </div>
-           <div class="form-group col-md-1">
-               <a class="btn btn-primary" href="/login">Registrarse</a>
+            <div class="form-group col-md-2">
+               <button type="submit" class="btn btn-primary">Registrarse</button>
             </div>
         </form>
 </div>

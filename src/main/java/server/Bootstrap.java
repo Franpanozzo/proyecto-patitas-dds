@@ -17,7 +17,7 @@ import java.util.*;
 public class Bootstrap implements WithGlobalEntityManager {
 
   LocalDate fechaAntigua = LocalDate.of(1999, 05, 23);
-  Asociacion patitas = new Asociacion("Patitas",new Coordenadas(52.5244444,13.410555555555552));;
+  public static Asociacion patitas = new Asociacion("Patitas",new Coordenadas(52.5244444,13.410555555555552));;
   private static Bootstrap instance;
 
 

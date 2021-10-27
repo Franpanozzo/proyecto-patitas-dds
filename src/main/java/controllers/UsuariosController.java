@@ -1,29 +1,25 @@
 package controllers;
 
 import domain.Repositorios.RepositorioUsuarios;
-import domain.Usuario.Usuario;
+import domain.Usuario.*;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import server.Bootstrap;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import javax.persistence.NoResultException;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
-public class UsuariosController {
 
-  public ModelAndView mostrar(Request request, Response response) {
-    Map<String, Object> model = new HashMap<>();
-    model.put("botonLogOut",request.session().attribute("usuario_logueado"));
-    return new ModelAndView(model, "home.hbs");
-  }
-
-  public ModelAndView entrar(Request request, Response response) {
-    Map<String, Object> model = new HashMap<>();
-    model.put("botonSignUp","botonSignUp");
-    return new ModelAndView(model, "login.hbs");
-  }
+public class UsuariosController{
 
   public ModelAndView loggear(Request request, Response response) {
     Map<String, Object> model = new HashMap<>();
@@ -43,18 +39,41 @@ public class UsuariosController {
     return null;
   }
 
-  public Response logout(Request request, Response response){
-    request.session().invalidate();
-    response.redirect("/");
-    return response;
-  }
+  public ModelAndView guardar(Request req, Response resp) {
+    Map<String, Object> model = new HashMap<>();
+    String contrasenia = req.queryParams("password");
+    String coonfirmContra = req.queryParams("passwordConfirm");
 
-  public ModelAndView signup(Request request, Response response) {
-    return new ModelAndView(null, "signup.hbs");
-  }
+    if(!contrasenia.equals(coonfirmContra)) {
+      model.put("failContra","fallo");
+      return new ModelAndView(model,"signup.hbs");
+    }
 
-  public Object crear(Request request, Response response) {
-    response.redirect("/");
+    String codigoQR = RandomStringUtils.randomAlphabetic(10);
+    String nombreApellido = req.queryParams("nombre") + " " + req.queryParams("apellido");
+
+    DatosPersonales datosPersonales = new DatosPersonales(nombreApellido,
+        LocalDate.parse(req.queryParams("fechaNac")),
+        TipoDocumento.valueOf(req.queryParams("tipoDoc")),
+        Integer.parseInt(req.queryParams("numeroDoc"))
+        );
+
+    DatoDeContacto datoDeContacto = new DatoDeContacto(nombreApellido, Integer.parseInt(req.queryParams("telefono")), req.queryParams("email"));
+
+    UsuarioDuenio usuarioDuenio = new UsuarioDuenio(
+        req.queryParams("nombreUsuario"),
+        contrasenia,
+        null,
+        datosPersonales,
+        Collections.singletonList(datoDeContacto),
+        codigoQR
+    );
+
+    System.out.println("Vamos a cargar a" + req.queryParams("nombreUsuario") + "- " + usuarioDuenio.toString());
+    RepositorioUsuarios.getInstance().cargarNuevoUsuario(usuarioDuenio);
+
+    req.session().attribute("usuario_logueado", req.queryParams("nombreUsuario"));
+    resp.redirect("/");
     return null;
   }
 }
