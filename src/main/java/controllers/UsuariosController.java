@@ -3,20 +3,14 @@ package controllers;
 import domain.Repositorios.RepositorioUsuarios;
 import domain.Usuario.*;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
-import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-import server.Bootstrap;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import javax.persistence.NoResultException;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 
 public class UsuariosController{
@@ -70,7 +64,6 @@ public class UsuariosController{
         codigoQR
     );
 
-    System.out.println("Vamos a cargar a" + req.queryParams("nombreUsuario") + "- " + usuarioDuenio.toString());
     RepositorioUsuarios.getInstance().cargarNuevoUsuario(usuarioDuenio);
 
     req.session().attribute("usuario_logueado", req.queryParams("nombreUsuario"));

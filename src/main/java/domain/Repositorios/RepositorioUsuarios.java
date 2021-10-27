@@ -41,7 +41,7 @@ public class RepositorioUsuarios implements WithGlobalEntityManager{
 
   public Usuario usuarioConNombre(String nombreUsuario) {
     try {
-      return (UsuarioDuenio) entityManager()
+      return (Usuario) entityManager()
           .createQuery("from Usuario where nombreUsuario = :nombreUsuario")
           .setParameter("nombreUsuario", nombreUsuario)
           .getSingleResult();

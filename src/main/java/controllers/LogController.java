@@ -22,7 +22,6 @@ public class LogController {
   }
 
   public Response logout(Request request, Response response){
-    System.out.println("Entre aca papi");
     request.session().invalidate();
     response.redirect("/");
     return response;

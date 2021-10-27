@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import domain.Asociacion.Asociacion;
 import domain.Mascota.*;
@@ -31,6 +32,10 @@ public class UsuarioDuenio extends Usuario {
 
     public List<Mascota> getMascotasList(){
         return mascotasList;
+    }
+
+    public List<Mascota> filtrarPorNombre(String filtro) {
+        return mascotasList.stream().filter(mascota -> mascota.sePareceNombreA(filtro)).collect(Collectors.toList());
     }
 
     public UsuarioDuenio(String nombreUsuario, String contrasenia, Asociacion asociacion,DatosPersonales datosPersonales, List<DatoDeContacto> datoDeContactoList, String codigoQR) {

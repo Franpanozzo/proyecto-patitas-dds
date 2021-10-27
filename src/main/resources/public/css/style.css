@@ -214,6 +214,11 @@ dt {
     font-weight: 700;
 }
 
+img {
+    height:12rem;
+    object-fit: contain;
+}
+
 dd {
     margin-bottom: 0.5rem;
     margin-left: 0;
