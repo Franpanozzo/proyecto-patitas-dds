@@ -1,0 +1,83 @@
+{{#partial "contenido"}}
+<div class="container container-upper">
+        <form action="/mascotas/nueva" method="POST">
+          <h6> Datos personales </h6>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputEmail4">Nombre</label>
+              <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre" name="nombre">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputPassword4">Apodo</label>
+              <input type="text" class="form-control" id="apodo" placeholder="Ingrese el apodo" name="apodo">
+            </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-2">
+                    <select class="custom-select" name="Animal">
+                      <option selected>Categoria</option>
+                      <option value="PERRO">PERRO</option>
+                      <option value="GATO">GATO</option>
+                    </select>
+              </div>
+            <div class="form-group col-md-4">
+              <input type="text" class="form-control" id="nombre" placeholder="Foto de la mascota" name="foto">
+             <div class="form-text" id="aclaracionFoto"> Ingrese URL de la foto </div>
+            </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-2">
+              <label for="inputSexo">Sexo</label>
+                  <select class="custom-select" name="sexo">
+                    <option selected></option>
+                    <option value="MACHO">MACHO</option>
+                    <option value="HEMBRA">HEMBRE</option>
+                  </select>
+              </div>
+              <div class="form-group col-md-4">
+                  <label for="inputEdad">Edad</label>
+                  <input type="text" class="form-control" id="edad" placeholder="Ingrese la edad" name="edad">
+              </div>
+          </div>
+          <label for="inputEdad">Caracteristicas</label>
+          <div class="form-row">
+            <div class="form-group col-md-2">
+            <input type="text" class="form-control" id="tipoCarac" placeholder="Tipo" name="tipoCaract">
+            </div>
+            <div class="form-group col-md-2">
+            <input type="text" class="form-control" id="caract" placeholder="Caract." name="caract">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-2">
+            <input type="text" class="form-control" id="tipoCarac" placeholder="Tipo" name="tipoCaract">
+            </div>
+            <div class="form-group col-md-2">
+            <input type="text" class="form-control" id="caract" placeholder="Caract." name="caract2">
+            </div>
+            <div class="form-group col-md-2">
+            *opcional
+            </div>
+          </div>
+
+          <div class="form-row">
+              <div class="form-group col-md-4">
+                  <label for="inputEdad">Descripcion</label>
+                  <input type="text" class="form-control" id="descrip" name="descrip">
+              </div>
+          </div>
+
+           <div class="form-row">
+           <div class="form-group col-md-2">
+               <a class="btn btn-secondary" href="/mascotas">Cancelar</a>
+            </div>
+            <div class="form-group col-md-2">
+               <button type="submit" class="btn btn-primary">Agregar mascota</button>
+            </div>
+        </form>
+</div>
+
+
+{{/partial}}
+
+{{>layout.hbs}}

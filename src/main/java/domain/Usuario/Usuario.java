@@ -29,6 +29,10 @@ public abstract class Usuario extends EntidadPersistente{
     }
   }
 
+  public Asociacion getAsociacion() {
+    return asociacion;
+  }
+
   public String getNombreUsuario() {
     return nombreUsuario;
   }

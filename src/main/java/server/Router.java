@@ -74,6 +74,12 @@ public class Router implements WithGlobalEntityManager {
 
     Spark.get("/mascotas", mascotasController::mascotas, engineTemplate);
 
+    Spark.get("/mascotas/nueva", logController::nuevaMascota, engineTemplate);
+
+    Spark.post("/mascotas/nueva", mascotasController::guardar);
+
+
+
 
   }
 

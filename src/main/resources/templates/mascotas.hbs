@@ -7,7 +7,7 @@
 
     <form action="/mascotas" method="GET">
          <div class="form-row">
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-6">
             <input type="text" class="form-control" id="searchNombre" placeholder="Mascota a filtrar" name="likeNombre" value="{{ likeNombre }}">
           </div
           <div class="form-group col-md-2">
@@ -16,6 +16,9 @@
          </div>
     </form>
 
+    <div class="form-group col-md-6" style="padding-left:2em;">
+      <a class="btn btn-primary" href="/mascotas/nueva">Agregar mascota</a>
+    </div>
    <div style="padding:2em;">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
      {{#each mascotas}}

@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import domain.Asociacion.*;
 import domain.Mascota.*;
+import domain.Usuario.Usuario;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 public class RepositorioAsociaciones implements WithGlobalEntityManager {
@@ -29,6 +30,13 @@ public class RepositorioAsociaciones implements WithGlobalEntityManager {
   public void agregarAsociacion(Asociacion asociacion) {
     entityManager()
         .persist(asociacion);
+  }
+
+  public Asociacion asociacionConNombre(String nombreAsociacion) {
+    return (Asociacion) entityManager()
+        .createQuery("from Asociacion where nombreAsociacion = :nombreAsociacion")
+        .setParameter("nombreAsociacion", nombreAsociacion)
+        .getSingleResult();
   }
 
   public Asociacion masCercanaA(MascotaPerdida mascota){

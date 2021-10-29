@@ -31,4 +31,8 @@ public class LogController {
     return new ModelAndView(null, "signup.hbs");
   }
 
+  public ModelAndView nuevaMascota(Request request, Response response) {
+    return new ModelAndView(null,"guardar_mascota.hbs");
+  }
+
 }

@@ -53,10 +53,12 @@ public class Mascota extends EntidadPersistente{
 
     public List<Caracteristica> getCaracteristicas() {
         if(caracteristicasAbstraido.size() ==0) {
-            caracteristicas.forEach((k, v) -> caracteristicasAbstraido.add(new Caracteristica(k, v)));
+            caracteristicas.forEach((k, v) -> {
+                if(v != null) caracteristicasAbstraido.add(new Caracteristica(k, v));
+            });
             return caracteristicasAbstraido;
         }
-        return null;
+        return caracteristicasAbstraido;
     }
 
     public void inicializarCaracteristicas(Asociacion asociacion, Map<String, String> caracteristicasNuevas) {

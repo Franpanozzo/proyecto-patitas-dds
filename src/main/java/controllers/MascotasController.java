@@ -1,7 +1,12 @@
 package controllers;
 
+import domain.Asociacion.Asociacion;
+import domain.Mascota.Animal;
 import domain.Mascota.Mascota;
+import domain.Mascota.Sexo;
+import domain.Repositorios.RepositorioAsociaciones;
 import domain.Repositorios.RepositorioUsuarios;
+import domain.Usuario.Usuario;
 import domain.Usuario.UsuarioDuenio;
 import spark.ModelAndView;
 import spark.Request;
@@ -30,4 +35,33 @@ public class MascotasController {
     return new ModelAndView(model, "mascotas.hbs");
 
   }
+
+  public ModelAndView guardar(Request req, Response res) {
+    Map<String, Object> model = new HashMap<>();
+    UsuarioDuenio usuario_logueado = (UsuarioDuenio) RepositorioUsuarios.getInstance().usuarioConNombre(req.session().attribute("usuario_logueado"));
+
+    Mascota mascota = new Mascota(Animal.valueOf(req.queryParams("Animal")),
+        req.queryParams("nombre"),
+        req.queryParams("apodo"),
+        Integer.parseInt(req.queryParams("edad")),
+        Sexo.valueOf(req.queryParams("sexo")),
+        req.queryParams("descrip"),
+        req.queryParams("foto")
+        );
+
+    Map<String,String> caracteristicas = new HashMap<>();
+    caracteristicas.put(req.queryParams("tipoCaract"),req.queryParams("caract"));
+    if(req.queryParams("tipoCaract") != null){
+      caracteristicas.put(req.queryParams("tipoCaract2"),req.queryParams("caract2"));
+    }
+
+    System.out.println("EEE " + caracteristicas.toString());
+
+    usuario_logueado.registrarMascota(mascota, caracteristicas);
+    RepositorioUsuarios.getInstance().modificarUsuario(usuario_logueado);
+
+    res.redirect("/mascotas");
+    return null;
+  }
+
 }

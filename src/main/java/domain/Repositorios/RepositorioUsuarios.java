@@ -27,6 +27,11 @@ public class RepositorioUsuarios implements WithGlobalEntityManager{
   public void cargarNuevoUsuario(Usuario usuarioNuevo) {
     entityManager().persist(usuarioNuevo);
   }
+
+  public void modificarUsuario(Usuario usuario) {
+    entityManager().merge(usuario);
+  }
+
   @SuppressWarnings("unchecked")
   public List<Usuario> getlistaDeUsuarios() {
     return entityManager()
