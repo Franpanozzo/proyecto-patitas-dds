@@ -193,26 +193,6 @@ ul ol {
     margin-bottom: 0;
 }
 
-ul.nav {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background-color: white;
-    text-align: center;
-}
-
-ul.nav > li {
-    display: inline-block;
-    padding: 10px 20px;
-}
-ul.nav > li:hover {
-    background-color: lightgray;
-}
-ul.nav > li > a {
-    color: #E896EF;
-    text-decoration: none;
-}
-
 dt {
     font-weight: 700;
 }
@@ -3975,16 +3955,15 @@ textarea.form-control-lg {
 
 .nav {
     display: flex;
-    flex-wrap: wrap;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
+    background-color: white;
+    text-align: center;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 .nav-link {
     display: block;
     padding: 0.5rem 1rem;
-    color: #ffc800;
+    color: #E17EFD;
     text-decoration: none;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
@@ -4040,8 +4019,8 @@ textarea.form-control-lg {
 }
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: #ffc800;
+    color: #E17EFD;
+    background-color: #1a1e21;
 }
 
 .nav-fill > .nav-link,
@@ -4073,6 +4052,7 @@ textarea.form-control-lg {
 .navbar {
     position: relative;
     display: flex;
+    background-color: white;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;

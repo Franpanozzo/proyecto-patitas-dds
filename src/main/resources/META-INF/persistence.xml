@@ -25,7 +25,7 @@
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tpanual" />
             <property name="hibernate.connection.user" value="root" />
-            <property name="hibernate.connection.password" value="Corbatita12345678910" />
+            <property name="hibernate.connection.password" value="disenio2021" />
 
             <property name="hibernate.show_sql" value="true" />
             <!-- Enable the logging of all the generated SQL statements to the console -->
