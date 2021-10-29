@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class AsociacionTest extends BaseTest{
 
     @Test
