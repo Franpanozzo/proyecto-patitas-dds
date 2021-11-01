@@ -35,4 +35,7 @@ public class LogController {
     return new ModelAndView(null,"guardar_mascota.hbs");
   }
 
+  public ModelAndView encontrar(Request req, Response res) {
+    return new ModelAndView(null, "encontrar_mascota.hbs");
+  }
 }
