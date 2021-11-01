@@ -1,9 +1,11 @@
 package server;
 
-import com.mysql.jdbc.StringUtils;
+import controllers.ConfiguracionController;
 import controllers.LogController;
 import controllers.MascotasController;
 import controllers.UsuariosController;
+import domain.Repositorios.RepositorioUsuarios;
+import domain.Usuario.UsuarioAdministrador;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import spark.Spark;
@@ -33,6 +35,7 @@ public class Router implements WithGlobalEntityManager {
     UsuariosController usuariosController = new UsuariosController();
     MascotasController mascotasController = new MascotasController();
     LogController logController = new LogController();
+    ConfiguracionController configuracionController = new ConfiguracionController();
 
 
     Spark.before(((request, response) -> {
@@ -58,7 +61,21 @@ public class Router implements WithGlobalEntityManager {
       if(request.session().attribute("usuario_logueado") == null) {
         response.redirect("/login");
       }
+
+      UsuarioAdministrador usuario = RepositorioUsuarios.getInstance().administradorConNombre(request.session().attribute("usuario_logueado"));
+      if(usuario != null ) {
+        response.redirect("/configuracion");
+      }
     });
+
+    Spark.before("/configuracion", (request, response) -> {
+      UsuarioAdministrador usuario = RepositorioUsuarios.getInstance().administradorConNombre(request.session().attribute("usuario_logueado"));
+      if(usuario == null ) {
+        response.redirect("/");
+      }
+    });
+
+    //RUTAS
 
     Spark.get("/", logController::mostrar, engineTemplate);
 
@@ -78,9 +95,11 @@ public class Router implements WithGlobalEntityManager {
 
     Spark.post("/mascotas/nueva", mascotasController::guardar);
 
+    Spark.get("/configuracion", logController::configuracion, engineTemplate);
 
+    Spark.post("/configuracion/nuevaCaract", configuracionController::nuevaCaract);
 
-
+    Spark.get("/configuracion/:caractBorrada", configuracionController::borrarCaract, engineTemplate);
   }
 
 }

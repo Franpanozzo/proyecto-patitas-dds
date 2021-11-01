@@ -1,0 +1,36 @@
+{{#partial "contenido"}}
+<div class="container container-upper">
+  <div name="caracteristicas">
+    <h4> Configurar asociación </h6>
+    <form action="/configuracion/nuevaCaract" method="POST">
+              <div class="form-row">
+              <label for="caractersticaInput" class="color:pink;">Caracteristicas</label>
+                <div class="form-group col-md-4">
+                  <input type="text" class="form-control" id="caract" placeholder="Ingrese nueva caracteristica" name="caract">
+                </div>
+                <div class="form-group col-md-2">
+                  <button type="submit" class="btn btn-primary">+</button>
+                </div>
+              </div>
+    </form>
+
+   <div class="col-md-4">
+    <table class="table">
+      <tbody>
+      {{#each caracteristicas}}
+        <tr>
+          <td> {{this}} </td>
+          <!--<td> <a href="/configuracion/{{this}}" name="button" class=" btn btn-edit"><i class="bi bi-trash"></i></a> </td>-->
+          <td> <a class="btn btn-danger text-uppercase" href="/configuracion/{{this}}">-</a></td>
+        </tr>
+      {{/each}}
+      </tbody>
+     </table>
+    </div>
+
+  </div>
+
+</div>
+{{/partial}}
+
+{{>layout.hbs}}

@@ -1,10 +1,13 @@
 package controllers;
 
+import domain.Asociacion.Asociacion;
+import domain.Repositorios.RepositorioAsociaciones;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LogController {
@@ -35,4 +38,13 @@ public class LogController {
     return new ModelAndView(null,"guardar_mascota.hbs");
   }
 
+  public ModelAndView configuracion(Request request, Response response) {
+    Map<String, Object> model = new HashMap<>();
+    Asociacion asociacion = RepositorioAsociaciones.getInstance().asociacionConNombre("Patitas");
+    List<String> caracts = asociacion.getCaracteristicasPosibles();
+    model.put("caracteristicas",caracts);
+    model.put("botonLogOut","botonLogOut");
+
+    return new ModelAndView(model, "configuracion.hbs");
+  }
 }

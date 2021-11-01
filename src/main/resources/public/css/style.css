@@ -217,6 +217,11 @@ dt {
     font-weight: 700;
 }
 
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
 img {
     height:12rem;
     object-fit: contain;

@@ -62,6 +62,10 @@ public class Asociacion extends EntidadPersistente {
         caracteristicasPosibles.add(caracteristica);
     }
 
+    public void quitarCaracteristica(String caract) {
+        caracteristicasPosibles.remove(caract);
+    }
+
     public RepositorioUsuarios getGestorDeAsociacion() {
         return RepositorioUsuarios.getInstance();
     }

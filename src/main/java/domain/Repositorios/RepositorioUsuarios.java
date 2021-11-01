@@ -74,6 +74,20 @@ public class RepositorioUsuarios implements WithGlobalEntityManager{
     notificador.notificarEncuentro(usuario,nombreAsociacion,algunContactoDelUsuario);
   }
 
+
+  public UsuarioAdministrador administradorConNombre(String nombreUsuario) {
+    try {
+      return (UsuarioAdministrador) entityManager()
+          .createQuery("from Usuario where nombreUsuario = :nombreUsuario and tipo = :tipo")
+          .setParameter("nombreUsuario", nombreUsuario)
+          .setParameter("tipo", "A")
+          .getSingleResult();
+    } catch (NoResultException e) {
+      return null;
+    }
+  }
+
+
   public void notificarRescatista(DatoDeContacto mailRescatista, String mailDuenioNoRegistrado) {
     notificador.notificarRescatista(mailRescatista, mailDuenioNoRegistrado);
   }
