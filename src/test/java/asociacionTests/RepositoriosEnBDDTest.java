@@ -26,7 +26,7 @@ public class RepositoriosEnBDDTest extends BaseTest implements WithGlobalEntityM
 
   @Test
   public void seBorraCorrectamenteUnaPreguntaDeLaBase() {
-    RepositorioPreguntasGlobales.getInstance().sacarPreguntaRequerida(tipoAnimal);
+    RepositorioPreguntasGlobales.getInstance().sacarPreguntaRequerida(tipoAnimal.getTipo());
     final List<Pregunta> preguntas = RepositorioPreguntasGlobales.getInstance().getListaDePreguntasRequeridas();
 
     assertEquals(1, preguntas.size());

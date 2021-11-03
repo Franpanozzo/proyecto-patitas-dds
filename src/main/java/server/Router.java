@@ -99,7 +99,13 @@ public class Router implements WithGlobalEntityManager {
 
     Spark.post("/configuracion/nuevaCaract", configuracionController::nuevaCaract);
 
-    Spark.get("/configuracion/:caractBorrada", configuracionController::borrarCaract, engineTemplate);
+    Spark.get("/configuracion/:caractBorrada", configuracionController::borrarCaract);
+
+    Spark.post("/configuracion/preguntas/nuevaPregunta", configuracionController::nuevaPreg);
+
+    Spark.get("/configuracion/preguntas/:pregBorrada", configuracionController::borrarPreg);
+
+
   }
 
 }

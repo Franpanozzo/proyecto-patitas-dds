@@ -1,10 +1,13 @@
 {{#partial "contenido"}}
 <div class="container container-upper">
   <div name="caracteristicas">
-    <h4> Configurar asociación </h6>
+    <h4 style="padding-bottom:2em;"> Configurar asociación </h4>
     <form action="/configuracion/nuevaCaract" method="POST">
               <div class="form-row">
               <label for="caractersticaInput" class="color:pink;">Caracteristicas</label>
+              </div>
+
+              <div class="form-row">
                 <div class="form-group col-md-4">
                   <input type="text" class="form-control" id="caract" placeholder="Ingrese nueva caracteristica" name="caract">
                 </div>
@@ -21,12 +24,64 @@
         <tr>
           <td> {{this}} </td>
           <!--<td> <a href="/configuracion/{{this}}" name="button" class=" btn btn-edit"><i class="bi bi-trash"></i></a> </td>-->
-          <td> <a class="btn btn-danger text-uppercase" href="/configuracion/{{this}}">-</a></td>
+          <td> <a class="btn btn-danger btn-sm text-uppercase" href="/configuracion/{{this}}">-</a></td>
         </tr>
       {{/each}}
       </tbody>
      </table>
     </div>
+
+  </div>
+
+  <div name="preguntas">
+
+    <form action="/configuracion/preguntas/nuevaPregunta" method="POST">
+              <div class="form-row">
+              <label for="caractersticaInput" class="color:pink;">Preguntas</label>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                  <input type="text" class="form-control" id="tabPregunta" placeholder="Pregunta intencion" name="pregIntencion">
+                </div>
+                <div class="form-group col-md-3">
+                  <input type="text" class="form-control" id="tabPregunta" placeholder="Pregunta adopcion" name="pregAdopcion">
+                </div>
+                <div class="form-group col-md-2">
+                  <input type="text" class="form-control" id="tabPregunta" placeholder="Tipo" name="tipo">
+                </div>
+                <div class="form-group col-md-3">
+                  <input type="text" class="form-control" id="tabPregunta" placeholder="Respuestas posibles" name="respPosibles">
+                  <div class="form-text" id="aclaracionResp">Ingrese separadas por coma</div>
+                </div>
+                <div class="form-group col-md-1">
+                  <button type="submit" class="btn btn-primary">+</button>
+                </div>
+              </div>
+    </form>
+
+    <table class="table">
+      <thead>
+          <tr class="table-warning">
+            <th scope="col">Pregunta intencion</th>
+            <th scope="col">Pregunta adopcion</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Respuestas posibles</th>
+          </tr>
+      </thead>
+      <tbody>
+      {{#each preguntas}}
+        <tr>
+          <td> {{preguntaIntencion}} </td>
+          <td> {{preguntaAdopcion}} </td>
+          <td> {{tipo}} </td>
+          <td> {{respuestasPosibles}} </td>
+          <!--<td> <a href="/configuracion/{{this}}" name="button" class=" btn btn-edit"><i class="bi bi-trash"></i></a> </td>-->
+          <td> <a class="btn btn-danger btn-sm text-uppercase" href="/configuracion/preguntas/{{tipo}}">-</a></td>
+        </tr>
+      {{/each}}
+      </tbody>
+     </table>
 
   </div>
 

@@ -2,6 +2,8 @@ package controllers;
 
 import domain.Asociacion.Asociacion;
 import domain.Repositorios.RepositorioAsociaciones;
+import domain.Repositorios.RepositorioPreguntasGlobales;
+import domain.Utils.Pregunta;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -42,8 +44,10 @@ public class LogController {
     Map<String, Object> model = new HashMap<>();
     Asociacion asociacion = RepositorioAsociaciones.getInstance().asociacionConNombre("Patitas");
     List<String> caracts = asociacion.getCaracteristicasPosibles();
+    List<Pregunta> preguntas = RepositorioPreguntasGlobales.getInstance().getListaDePreguntasRequeridas();
     model.put("caracteristicas",caracts);
     model.put("botonLogOut","botonLogOut");
+    model.put("preguntas",preguntas);
 
     return new ModelAndView(model, "configuracion.hbs");
   }

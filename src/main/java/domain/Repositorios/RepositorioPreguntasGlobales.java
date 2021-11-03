@@ -35,9 +35,14 @@ public class RepositorioPreguntasGlobales implements WithGlobalEntityManager {
   }
 
   @SuppressWarnings("unchecked")
-  public void sacarPreguntaRequerida(Pregunta pregunta) {
-    entityManager()
-        .remove(pregunta);
+  public void sacarPreguntaRequerida(String tipoPregunta) {
+
+    Pregunta pregunta = (Pregunta) entityManager()
+        .createQuery("from Pregunta where tipo = :tipo")
+        .setParameter("tipo", tipoPregunta)
+        .getSingleResult();
+
+    entityManager().remove(pregunta);
   }
 }
 
