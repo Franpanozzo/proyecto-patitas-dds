@@ -1,25 +1,27 @@
 {{#partial "contenido"}}
-<div class="container container-upper">
-    <form action="/session" method="POST">
-        {{#if failLog}}
-        <div class="invalid-feedback" style="display:block">
-            * El nombre de usuario o la contraseña ingresados son incorrectos.
-        </div>
-        {{/if}}
-        <div class="mb-3">
-          <label for="usuarioInput" class="form-label">Usuario</label>
-          <input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Ingrese su nombre de usuario" value="{{ nombre }}">
-        </div>
-        <div class="mb-3">
-          <label for="passwordInput" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Ingrese su contraseña" value="{{ password }}">
-        </div>
+<div class="container-fluid">
+    <div class="card-login card-container">
+        <form action="/session" method="POST">
+            {{#if failLog}}
+            <div class="invalid-feedback" style="display:block">
+                * El nombre de usuario o la contraseña ingresados son incorrectos.
+            </div>
+            {{/if}}
+            <div class="mb-3">
+              <label for="usuarioInput" class="form-label">Usuario</label>
+              <input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Ingrese su nombre de usuario" value="{{ nombre }}">
+            </div>
+            <div class="mb-3">
+              <label for="passwordInput" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Ingrese su contraseña" value="{{ password }}">
+            </div>
 
-        <div>
-        <button type="submit" class="btn btn-primary">Ingresar</button> <br>
-        ¿No tienes una cuenta?<a class="--bs-info" href="/signup"> Registrate!</a>
-        </div>
-    </form>
+            <div>
+            <button type="submit" class="btn btn-primary">Ingresar</button> <br>
+            ¿No tienes una cuenta?<a class="--bs-info" href="/signup"> Registrate!</a>
+            </div>
+        </form>
+    </div>
 </div>
 {{/partial}}
 

@@ -11568,3 +11568,21 @@ header.masthead .masthead-heading {
     font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+.contenido {
+    padding-top: 75px;
+    background-image: url("../assets/img/header-bg.jpg");
+    background-size: cover;
+}
+
+.card-container.card-login {
+    max-width: 350px;
+    padding: 40px 40px;
+}
+
+.card-login {
+    background-color:white;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px rgb(0 0 0 / 30%);
+}
