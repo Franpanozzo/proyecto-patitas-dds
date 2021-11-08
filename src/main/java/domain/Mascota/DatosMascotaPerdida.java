@@ -39,7 +39,7 @@ public class DatosMascotaPerdida {
 
   private void descripcionesValidas(List<String> descripcionEstado) {
     if(!descripcionesPosibles.containsAll(descripcionEstado)) {
-      throw new DescripcionInvalidaException("Solo me interesan estas 3 caracteristicas: Manso|Delgado|Amistoso|Pacifico|Tranquilo ");
+      throw new DescripcionInvalidaException("Solo me interesan estas 5 caracteristicas: Manso|Delgado|Amistoso|Pacifico|Tranquilo ");
     }
   }
 

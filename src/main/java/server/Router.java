@@ -105,6 +105,11 @@ public class Router implements WithGlobalEntityManager {
 
     Spark.get("/configuracion/preguntas/:pregBorrada", configuracionController::borrarPreg);
 
+    Spark.get("/mascotas/encontrada", logController::encontrar, engineTemplate);
+
+    Spark.post("/mascotas/encontrada", mascotasController::guardarEncontrada);
+
+
 
   }
 

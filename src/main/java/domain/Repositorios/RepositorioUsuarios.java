@@ -41,6 +41,7 @@ public class RepositorioUsuarios implements WithGlobalEntityManager{
 
   public void buscarDuenioYNotificar(String codigoQR, String nombreAsociacion) {
     Usuario usuario = this.usuarioConQR(codigoQR);
+    System.out.println("EL USUARIO TIENE EL CODIGO: " + codigoQR);
     this.notificarEncuentro(usuario, nombreAsociacion);
   }
 
@@ -71,6 +72,7 @@ public class RepositorioUsuarios implements WithGlobalEntityManager{
 
   private void notificarEncuentro(Usuario usuario, String nombreAsociacion) {
     DatoDeContacto algunContactoDelUsuario = usuario.getDatoDeContactoList().stream().findAny().get();
+    System.out.println("EL DATO DE CONT TIENE EL MAIL: " + algunContactoDelUsuario.getEmail());
     notificador.notificarEncuentro(usuario,nombreAsociacion,algunContactoDelUsuario);
   }
 

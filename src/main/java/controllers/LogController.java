@@ -51,4 +51,11 @@ public class LogController {
 
     return new ModelAndView(model, "configuracion.hbs");
   }
+
+  public ModelAndView encontrar(Request req, Response res) {
+    Map<String, Object> model = new HashMap<>();
+    model.put("botonLogOut",req.session().attribute("usuario_logueado"));
+    return new ModelAndView(model, "encontrar_mascota.hbs");
+  }
+
 }
