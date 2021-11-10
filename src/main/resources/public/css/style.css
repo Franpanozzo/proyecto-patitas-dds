@@ -11438,7 +11438,7 @@ header.masthead {
     padding-bottom: 6rem;
     text-align: center;
     color: #E19DFB;
-    background-image: url("../assets/img/header-bg.jpg");
+    background-image: url("../assets/img/bg-clarito.jpg");
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
@@ -11575,7 +11575,7 @@ header.masthead .masthead-heading {
 
 .contenido {
     padding-top: 75px;
-    background-image: url("../assets/img/header-bg.jpg");
+    background-image: url("../assets/img/bg-clarito.jpg");
     background-size: cover;
 }
 
@@ -11585,6 +11585,19 @@ header.masthead .masthead-heading {
 }
 
 .card-login {
+    background-color:white;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px rgb(0 0 0 / 30%);
+}
+
+.card-container.card-formulario {
+    max-width: 350px;
+    padding: 40px 40px;
+}
+
+.card-formulario {
     background-color:white;
     margin: 0 auto 25px;
     margin-top: 50px;

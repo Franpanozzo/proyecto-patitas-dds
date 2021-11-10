@@ -109,8 +109,6 @@ public class Router implements WithGlobalEntityManager {
 
     Spark.post("/mascotas/encontrada", mascotasController::guardarEncontrada);
 
-
-
   }
 
 }

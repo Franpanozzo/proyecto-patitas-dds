@@ -37,7 +37,6 @@ public class ConfiguracionController {
     RepositorioAsociaciones.getInstance().modificarAsociacion(usuario.getAsociacion());
     PerThreadEntityManagers.getEntityManager().getTransaction().commit();
 
-
     response.redirect("/configuracion");
     return null;
   }
@@ -59,8 +58,6 @@ public class ConfiguracionController {
 
   public ModelAndView borrarPreg(Request request, Response response) {
     String pregBorrada = request.params("pregBorrada");
-
-    System.out.println("Vamo a borrar " + pregBorrada);
 
     PerThreadEntityManagers.getEntityManager().getTransaction().begin();
     RepositorioPreguntasGlobales.getInstance().sacarPreguntaRequerida(pregBorrada);

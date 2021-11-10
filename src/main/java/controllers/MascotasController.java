@@ -94,7 +94,6 @@ public class MascotasController {
         Double.parseDouble(req.queryParams("longitud"))
     );
 
-
     Rescatista rescatista = new Rescatista(datosPersonales, coordenadasDirResc, listaDatosDeContacto);
 
     String[] descripciones = req.queryParams("descripcion").split(",");
