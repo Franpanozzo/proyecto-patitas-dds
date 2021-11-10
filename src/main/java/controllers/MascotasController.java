@@ -123,7 +123,7 @@ public class MascotasController {
 
     RepositorioAsociaciones.getInstance().modificarAsociacion(asociacion);
 
-    res.redirect("/mascotas");
+    res.redirect("/");
     return null;
   }
 }

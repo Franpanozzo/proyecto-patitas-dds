@@ -7,6 +7,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Embeddable
 public class DatosMascotaPerdida {
@@ -24,7 +26,7 @@ public class DatosMascotaPerdida {
   @Column(columnDefinition = "DATE")
   LocalDate fechaEncuentro;
   @Transient
-  List<String> descripcionesPosibles = Arrays.asList("Manso","Delgado","Amistoso","Pacifico","Tranquilo");
+  List<String> descripcionesPosibles = Arrays.asList("MANSO","DELGADO","AMISTOSO","PACIFICO","TRANQUILO");
 
   public DatosMascotaPerdida(Rescatista rescatista, String foto, List<String> descripcionEstado, Coordenadas lugarDeEncuentro, LocalDate fechaEncuentro, Animal animal, Tamanio tamanio) {
     this.rescatista = rescatista;
@@ -38,7 +40,7 @@ public class DatosMascotaPerdida {
   }
 
   private void descripcionesValidas(List<String> descripcionEstado) {
-    if(!descripcionesPosibles.containsAll(descripcionEstado)) {
+    if(!descripcionesPosibles.containsAll(descripcionEstado.stream().map(String::toUpperCase).collect(Collectors.toList()))) {
       throw new DescripcionInvalidaException("Solo me interesan estas 5 caracteristicas: Manso|Delgado|Amistoso|Pacifico|Tranquilo ");
     }
   }
