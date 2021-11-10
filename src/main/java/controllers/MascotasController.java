@@ -78,7 +78,7 @@ public class MascotasController {
 
     DatoDeContacto datoDeContacto = new DatoDeContacto(nombreApellido, Integer.parseInt(req.queryParams("telefonoDC")), req.queryParams("emailDC"));
     listaDatosDeContacto.add(datoDeContacto);
-    if(req.queryParams("telefonoDC2") != null){
+    if(req.queryParams("telefonoDC2").length() != 0){
       System.out.println("Recibi este telefono " + req.queryParams("telefonoDC2"));
       DatoDeContacto datoDeContacto2 = new DatoDeContacto(nombreApellido, Integer.parseInt(req.queryParams("telefonoDC2")), req.queryParams("emailDC2"));
       listaDatosDeContacto.add(datoDeContacto2);
