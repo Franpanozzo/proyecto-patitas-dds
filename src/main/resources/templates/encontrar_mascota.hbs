@@ -1,5 +1,6 @@
 {{#partial "contenido"}}
-<div class="container container-upper">
+<div class="container-fluid">
+    <div class="card-formulario card-container">
     <h2>¿Encontraste una mascota perdida? Dalo a conocer ahora!</h2>
     <h5>Datos del rescatista</h5>
     <form action="/mascotas/encontrada" method="POST">
@@ -140,6 +141,7 @@
            </div>
       </div>
     </form>
+  </div>
 </div>
 {{/partial}}
 {{>layout.hbs}}

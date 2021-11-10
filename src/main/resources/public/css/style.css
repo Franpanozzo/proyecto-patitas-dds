@@ -11334,6 +11334,8 @@ p {
     font-size: 2.5rem;
     margin-top: 0;
     margin-bottom: 1rem;
+    font-style: italic;
+    color: #E19DFB;
 }
 .page-section h3.section-subheading, .page-section .section-subheading.h3 {
     font-size: 1rem;
@@ -11592,12 +11594,14 @@ header.masthead .masthead-heading {
     box-shadow: 0px 2px 2px rgb(0 0 0 / 30%);
 }
 
-.card-container.card-formulario {
+.card-container {
     max-width: 350px;
     padding: 40px 40px;
 }
 
 .card-formulario {
+    max-width: 1000px;
+    padding: 40px 40px;
     background-color:white;
     margin: 0 auto 25px;
     margin-top: 50px;
