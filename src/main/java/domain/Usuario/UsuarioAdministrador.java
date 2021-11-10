@@ -7,6 +7,7 @@ import domain.Utils.Pregunta;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.util.List;
+import java.util.Locale;
 
 @Entity
 @DiscriminatorValue("A")
@@ -33,6 +34,10 @@ public class UsuarioAdministrador extends Usuario {
 
     public void agregarCaracteristica(String nuevaCaract) {
         asociacion.agregarCarateristica(nuevaCaract.toUpperCase());
+    }
+
+    public void quitarCaracteristica(String caract) {
+        asociacion.quitarCaracteristica(caract.toUpperCase());
     }
 
     public void quitarPreguntaParaAdopcion(Pregunta pregunta){

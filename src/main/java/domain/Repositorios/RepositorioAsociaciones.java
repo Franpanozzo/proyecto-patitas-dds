@@ -32,6 +32,10 @@ public class RepositorioAsociaciones implements WithGlobalEntityManager {
         .persist(asociacion);
   }
 
+  public void modificarAsociacion(Asociacion asociacion) {
+    entityManager().merge(asociacion);
+  }
+
   public Asociacion asociacionConNombre(String nombreAsociacion) {
     return (Asociacion) entityManager()
         .createQuery("from Asociacion where nombreAsociacion = :nombreAsociacion")

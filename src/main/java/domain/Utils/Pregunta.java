@@ -14,7 +14,7 @@ public class Pregunta extends EntidadPersistente {
   String preguntaIntencion; //¿Que tipo de animal queres adoptar?
   String tipo; //"ANIMAL"
   @ElementCollection
-  List<String> resupuestasPosibles; //["PERRO", "GATO"]
+  List<String> respuestasPosibles; //["PERRO", "GATO"]
   @ManyToOne
   Asociacion asociacion;
 
@@ -22,7 +22,7 @@ public class Pregunta extends EntidadPersistente {
     this.preguntaAdopcion = preguntaAdopcion;
     this.preguntaIntencion = preguntaIntencion;
     this.tipo = tipo;
-    this.resupuestasPosibles = resupuestasPosibles;
+    this.respuestasPosibles = resupuestasPosibles;
     this.asociacion = asociacion;
   }
 
@@ -32,6 +32,18 @@ public class Pregunta extends EntidadPersistente {
 
   public String getTipo() {
     return tipo;
+  }
+
+  public String getPreguntaAdopcion() {
+    return preguntaAdopcion;
+  }
+
+  public String getPreguntaIntencion() {
+    return preguntaIntencion;
+  }
+
+  public String getRespuestasPosibles() {
+    return String.valueOf(respuestasPosibles);
   }
 
   public boolean mismoTipo(String tipoResp) {

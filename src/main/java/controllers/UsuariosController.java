@@ -1,5 +1,7 @@
 package controllers;
 
+import domain.Asociacion.Asociacion;
+import domain.Repositorios.RepositorioAsociaciones;
 import domain.Repositorios.RepositorioUsuarios;
 import domain.Usuario.*;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -38,6 +40,7 @@ public class UsuariosController{
     Map<String, Object> model = new HashMap<>();
     String contrasenia = req.queryParams("password");
     String coonfirmContra = req.queryParams("passwordConfirm");
+    Asociacion asociacion = RepositorioAsociaciones.getInstance().asociacionConNombre("Patitas");
 
     if(!contrasenia.equals(coonfirmContra)) {
       model.put("failContra","fallo");
@@ -58,7 +61,7 @@ public class UsuariosController{
     UsuarioDuenio usuarioDuenio = new UsuarioDuenio(
         req.queryParams("nombreUsuario"),
         contrasenia,
-        null,
+        asociacion,
         datosPersonales,
         Collections.singletonList(datoDeContacto),
         codigoQR

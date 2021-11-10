@@ -1,8 +1,8 @@
 {{#partial "contenido"}}
-<div class="container-fluid">
-    <h6>¿Encontraste una mascota perdida? Dalo a conocer ahora!</h6>
-    <h6>Datos del rescatista</h6>
-    <form action="" method="POST">
+<div class="container container-upper">
+    <h2>¿Encontraste una mascota perdida? Dalo a conocer ahora!</h2>
+    <h5>Datos del rescatista</h5>
+    <form action="/mascotas/encontrada" method="POST">
       <div class="form-row">
         <div class="form-group col-md-4">
             <label for="inputEmail4">Nombre</label>
@@ -13,19 +13,22 @@
           <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido" name="apellido">
         </div>
       </div>
+
       <div class="form-row">
-        <div class="form-group col-md-4">
-            <label for="inputEmail4">Email</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su email" name="email">
+          <label>Direccion</label>
+       </div>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <input type="text" class="form-control" id="latitud" placeholder="Latitud" name="latitudDir">
+          </div>
+          <div class="form-group col-md-3">
+            <input type="text" class="form-control" id="longitud" placeholder="Longitud" name="longitudDir">
+          </div>
         </div>
-        <div class="form-group col-md-4">
-            <label for="inputPassword4">Telefono</label>
-            <input type="text" class="form-control" id="apellido" placeholder="Ingrese su telefono" name="telefono">
-        </div>
-      </div>
+
       <div class="form-row">
         <div class="form-group col-md-3">
-          <label for="text">Fecha de encuentro:  </label>
+          <label for="text">Fecha de nacimiento:  </label>
           <input type="date" class="form-control" id="fechaNac" placeholder="Ingrese fecha de nacimiento" name="fechaNac">
         </div>
       </div>
@@ -42,11 +45,96 @@
          <div class="form-group col-md-4">
              <input type="text" class="form-control" id="fechaNacMes" placeholder="Numero de documento" name="numeroDoc">
          </div>
-      </div>
+        </div>
+
+                <div class="form-row">
+                <h6>Datos de contacto</h6>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-2">
+                  <input type="text" class="form-control" id="telefono" placeholder="Telefono" name="telefonoDC">
+                  </div>
+                  <div class="form-group col-md-2">
+                  <input type="text" class="form-control" id="email" placeholder="Email" name="emailDC">
+                  </div>
+                </div>
+
+                  <div class="form-row">
+                      <div class="form-group col-md-2">
+                      <input type="text" class="form-control" id="telefono" placeholder="Telefono" name="telefonoDC2">
+                      </div>
+                      <div class="form-group col-md-2">
+                      <input type="text" class="form-control" id="email" placeholder="Email" name="emailDC2">
+                      </div>
+                      <div class="form-group col-md-2">
+                      *Opcional
+                      </div>
+                </div>
+
+                <div class="form-row">
+                <h6>Datos de la mascota perdida</h6>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-2">
+                    <select class="custom-select" name="animal">
+                      <option selected>Animal</option>
+                      <option value="PERRO">PERRO</option>
+                      <option value="GATO">GATO</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <select class="custom-select" name="tamanio">
+                      <option selected>Tamaño</option>
+                      <option value="GRANDE">GRANDE</option>
+                      <option value="CHICA">CHICA</option>
+                      <option value="MEDIANA">MEDIANA</option>
+                    </select>
+                  </div>
+                <div class="form-group col-md-2">
+                  <input type="text" class="form-control" id="nombre" name="foto">
+                 <div class="form-text" id="aclaracionFoto"> Ingrese URL de la foto </div>
+                </div>
+                 <div class="form-group col-md-2">
+                      <select class="custom-select" name="chapita">
+                        <option selected>Chapita</option>
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                      </select>
+                 </div>
+                 <div class="form-group col-md-2">
+                      <input type="text" class="form-control" id="codigoQR" placeholder="Codigo QR" name="codigoQR">
+                      <div class="form-text" id="aclaracionCodigo">*Opcional</div>
+                 </div>
+              </div>
+
+              <div class="form-row">
+                <label>Coordenadas del encuentro</label>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                  <input type="text" class="form-control" id="latitud" placeholder="Latitud" name="latitud">
+                </div>
+                <div class="form-group col-md-3">
+                  <input type="text" class="form-control" id="longitud" placeholder="Longitud" name="longitud">
+                </div>
+              <div class="form-group col-md-3">
+                <input type="date" class="form-control" id="fechaEnc" placeholder="Ingrese fecha de encuentro" name="fechaEnc">
+                  <div class="form-text" id="aclaracionResp">Ingrese fecha de encuentro</div>
+              </div>
+                <div class="form-group col-md-3">
+                  <input type="text" class="form-control" id="descripcion" placeholder="Descripcion" name="descripcion">
+                  <div class="form-text" id="aclaracionResp">Ingrese separadas por coma</div>
+                </div>
+              </div>
+
+
       <div class="form-row">
            <div class="form-group col-md-2">
-               <button type="submit" class="btn btn-primary">Agregar mascota</button>
+               <button type="submit" class="btn btn-primary">Registrar mascota</button>
            </div>
+
            <div class="form-group col-md-2">
                <a class="btn btn-secondary" href="/mascotas">Cancelar</a>
            </div>
