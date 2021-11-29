@@ -1,1 +1,1 @@
-web: gunicorn patitas9.wsgi --log-file -
+web: java $JAVA_OPTS target/classes/server/Server.java --port $PORT target/*.war

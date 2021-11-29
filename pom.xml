@@ -213,7 +213,7 @@
                   <groupId>com.github.jsimone</groupId>
                   <artifactId>webapp-runner</artifactId>
                   <version>8.5.31.0</version>
-                  <destFileName>webapp-runner.jar</destFileName>
+                  <destFileName>Server.java</destFileName>  <!-- Aca supongo que es el nombre del archivo que tiene que correr -->
                 </artifactItem>
               </artifactItems>
             </configuration>
