@@ -35,7 +35,6 @@ public class MascotasController {
   }
 
   public ModelAndView guardar(Request req, Response res) {
-    Map<String, Object> model = new HashMap<>();
     UsuarioDuenio usuario_logueado = (UsuarioDuenio) RepositorioUsuarios.getInstance().usuarioConNombre(req.session().attribute("usuario_logueado"));
 
     Mascota mascota = new Mascota(Animal.valueOf(req.queryParams("Animal")),
@@ -64,7 +63,6 @@ public class MascotasController {
 
 
   public Response guardarEncontrada(Request req, Response res) {
-    Map<String, Object> model = new HashMap<>();
     String nombreApellido = req.queryParams("nombre") + " " + req.queryParams("apellido");
     Asociacion asociacion = RepositorioAsociaciones.getInstance().asociacionConNombre("Patitas");
 
