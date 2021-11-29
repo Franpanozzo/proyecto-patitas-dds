@@ -23,9 +23,9 @@
         <properties>
             <!--<property name="hibernate.archive.autodetection" value="class"/>-->
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tpanual" />
-            <property name="hibernate.connection.user" value="root" />
-            <property name="hibernate.connection.password" value="Corbatita12345678910" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://us-cdbr-east-04.cleardb.com:3306/heroku_12f398e684c7325" />
+            <property name="hibernate.connection.user" value="b82d0be7d9e089" />
+            <property name="hibernate.connection.password" value="5c05d87e" />
 
             <property name="hibernate.show_sql" value="true" />
             <!-- Enable the logging of all the generated SQL statements to the console -->
