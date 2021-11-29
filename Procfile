@@ -1,1 +1,1 @@
-web: gunicorn app:app --log-file=-
+web: gunicorn patitas9.wsgi --log-file -
