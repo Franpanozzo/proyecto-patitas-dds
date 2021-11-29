@@ -140,7 +140,7 @@
           </execution>
         </executions>
       </plugin>
-      <!--
+      <!-- COMENTADO PQ ROMPE EL DEPLOY SINO CON TODOS LOS CODE SMELLS
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
