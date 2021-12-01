@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS target/classes/server/Server.java --port $PORT target/*.war
+web: java -jar target/ejercicio-1.0-jar-with-dependencies.jar

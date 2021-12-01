@@ -7,7 +7,7 @@
 
   <groupId>ar.edu.utn.frba.dds</groupId>
   <artifactId>ejercicio</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
 
   <name>ejercicio</name>
   <url>https://github.com/dds-utn</url>
@@ -199,27 +199,33 @@
           <target>8</target>
         </configuration>
       </plugin>
+
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>3.0.2</version>
+        <artifactId>maven-assembly-plugin</artifactId>
         <executions>
           <execution>
             <phase>package</phase>
-            <goals><goal>copy</goal></goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>com.github.jsimone</groupId>
-                  <artifactId>webapp-runner</artifactId>
-                  <version>8.5.31.0</version>
-                  <destFileName>Server.java</destFileName>  <!-- Aca supongo que es el nombre del archivo que tiene que correr -->
-                </artifactItem>
-              </artifactItems>
-            </configuration>
+            <goals>
+              <goal>single</goal>
+            </goals>
           </execution>
         </executions>
+        <configuration>
+          <descriptorRefs>
+            <!-- This tells Maven to include all dependencies -->
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>server.Server</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
       </plugin>
+
+
+
+
     </plugins>
   </build>
 </project>
