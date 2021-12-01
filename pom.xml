@@ -97,6 +97,12 @@
     </dependency>
 
     <dependency>
+      <groupId>com.sparkjava</groupId>
+      <artifactId>spark-template-velocity</artifactId>
+      <version>2.7.1</version>
+    </dependency>
+
+    <dependency>
       <groupId>com.github.jknack</groupId>
       <artifactId>handlebars-helpers</artifactId>
       <version>4.2.0</version>
