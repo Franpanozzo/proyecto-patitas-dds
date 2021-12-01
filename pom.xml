@@ -232,9 +232,13 @@
             <manifest>
               <mainClass>server.Server</mainClass>
             </manifest>
+            <manifest>
+              <mainClass>domain.CronJobs.RecomendacionSemanal</mainClass>
+            </manifest>
           </archive>
         </configuration>
       </plugin>
+
 
 
 

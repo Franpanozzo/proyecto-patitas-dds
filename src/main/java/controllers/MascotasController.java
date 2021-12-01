@@ -28,6 +28,7 @@ public class MascotasController {
     model.put("likeNombre",filtroParametro);
     model.put("usuario",usuario);
     model.put("mascotas", mascotas);
+    model.put("codigoQR", usuario.getCodigoQR());
 
     model.put("botonLogOut","botonLogOut");
     return new ModelAndView(model, "mascotas.hbs");
