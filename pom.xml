@@ -216,16 +216,15 @@
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
-          <execution>
+          
+             <execution>
+            <id>server</id>
             <phase>package</phase>
             <goals>
               <goal>single</goal>
             </goals>
-          </execution>
-        </executions>
         <configuration>
           <descriptorRefs>
-            <!-- This tells Maven to include all dependencies -->
             <descriptorRef>jar-with-dependencies</descriptorRef>
           </descriptorRefs>
           <archive>
@@ -234,20 +233,29 @@
             </manifest>
           </archive>
         </configuration>
-      </plugin>
+        </execution>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
+        <execution>
+            <id>recomendacion</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
         <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
           <archive>
             <manifest>
               <mainClass>domain.CronJobs.RecomendacionSemanal</mainClass>
             </manifest>
           </archive>
+          <finalName>recomendacion</finalName>
         </configuration>
-      </plugin>
+        </execution>
 
+        </executions>
+       </plugin>
 
     </plugins>
   </build>
