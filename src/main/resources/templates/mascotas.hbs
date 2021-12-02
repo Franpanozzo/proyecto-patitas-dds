@@ -48,6 +48,24 @@
     </div>
    </div>
 
+   <!-- <img src="https://lh6.googleusercontent.com/proxy/LH9iA7eF_Rr984x9vW3BqFRCQSD-OixG4NDCLH-JZ0QN5TxyCTgQ-1RimTKFLfb2IHZDjVhZ7YEc_97obFiX5TYZ9dYseLIgwImtvtsYvuiA3S4=w1200-h630-p-k-no-nu"> -->
+
+<!-- (A) LOAD QRCODEJS LIBRARY -->
+<!-- https://cdnjs.com/libraries/qrcodejs -->
+<!-- https://github.com/davidshimjs/qrcodejs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- (B) GENERATE QR CODE HERE -->
+<div id="qrcode" style="padding-left:30px;"></div>
+
+<!-- (C) CREATE QR CODE ON PAGE LOAD -->
+<script>
+window.addEventListener("load", function(){
+  var qrc = new QRCode(document.getElementById("qrcode"), "{{ codigoQR }}");
+});
+</script>
+
+
 </div>
 
 {{/partial}}
