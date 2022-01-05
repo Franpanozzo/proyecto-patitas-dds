@@ -23,9 +23,22 @@ Bibliotecas Utilizadas:
 
 ![image](https://user-images.githubusercontent.com/62455934/148273411-75ae035c-5bd7-4ce1-8dbd-13217e62ebf0.png)
 
+![image](https://user-images.githubusercontent.com/62455934/148273636-fad475b5-3dc8-4eec-9ce8-ac26d4f48f39.png)
+
+![image](https://user-images.githubusercontent.com/62455934/148273720-8e46a655-57fb-4c74-aec2-f0afefaf7265.png)
+
+![image](https://user-images.githubusercontent.com/62455934/148273810-5824a8c8-1ae9-4702-ac35-b9610a29e35a.png)
+
 ![image](https://user-images.githubusercontent.com/62455934/148273330-96219061-3e89-486f-a883-51d15147a31f.png)
 
 ![image](https://user-images.githubusercontent.com/62455934/148273189-5094af8b-3ff2-4b52-b0ab-4fb7b0a97cf7.png)
+
+![image](https://user-images.githubusercontent.com/62455934/148273864-9191a566-3cf5-4af1-a6ed-c8be32727857.png)
+
+![image](https://user-images.githubusercontent.com/62455934/148273959-eb9396df-0ac0-4ab3-a6c2-8be41f4b1b35.png)
+
+![image](https://user-images.githubusercontent.com/62455934/148274722-99acff88-77bc-44c0-be10-3994275be109.png)
+
 
 
 
