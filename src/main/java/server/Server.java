@@ -9,7 +9,7 @@ public class Server {
     //Spark.port(Integer.parseInt(System.getenv("PORT")));
     Spark.port(getHerokuAssignedPort());
     Router.init();
-    DebugScreen.enableDebugScreen(); //TODO: No hay que tener esta linea cuando entreguemos
+    //DebugScreen.enableDebugScreen(); TODO: desactivar
     Spark.staticFileLocation("/src/resources");
   }
 
